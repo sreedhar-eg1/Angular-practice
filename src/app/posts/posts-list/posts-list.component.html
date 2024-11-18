@@ -1,0 +1,50 @@
+<div class="relative h-[80vh] overflow-x-auto overflow-y-auto">
+  <div class="flex justify-between items-center w-full">
+    <h3 class="font-bold text-xl">Posts List</h3>
+    <a
+      class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
+      [routerLink]="['./addPost']"
+      >Add Post</a
+    >
+  </div>
+  <div class="grid grid-cols-3 gap-4 mt-6 ">
+      <table
+        class="col-span-2 w-full h-full grid-flow-row-dense text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 mt-5"
+      >
+        <thead
+          class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+        >
+          <tr>
+            <th scope="col" class="px-6 py-3">Id</th>
+            <th scope="col" class="px-6 py-3">Title</th>
+            <th scope="col" class="px-6 py-3">Description</th>
+            <th scope="col" class="px-6 py-3">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of posts$ | async; track item.id) {
+          <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.description }}</td>
+            <td>
+                <a
+                class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800"
+                [routerLink]="['./edit', item.id]"
+                >Edit Post</a>
+                <a
+                class="ms-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-red-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-red-800"
+                (click)="onDelete(item.id!)"
+                >Delete</a>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+      <div class="col-span-1 text-left">
+        <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>
+
+
