@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { loginStart } from '../state/auth.actions';
+import { setErrorMessage, setLoading } from '../../store/shared/shared.actions';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { loginStart } from '../state/auth.actions';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  private store = inject(Store<AppState>)
+  private store = inject(Store<AppState>);
 
   loginForm = new FormGroup({
     email: new FormControl('', {
@@ -27,12 +28,15 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.invalid) {
-      return
+      return;
     }
 
     const email = this.loginForm.value.email!;
     const password = this.loginForm.value.password!;
 
-    this.store.dispatch(loginStart({email, password}))
+    this.store.dispatch(setErrorMessage({message: ''}))
+    this.store.dispatch(setLoading({ spinner: true }));
+
+    this.store.dispatch(loginStart({ email, password }));
   }
 }

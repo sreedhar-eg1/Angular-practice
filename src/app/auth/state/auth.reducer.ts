@@ -4,6 +4,7 @@ import { lognSuccess } from "./auth.actions"
 
 const _authReducer = createReducer(AuthinitialState,
     on(lognSuccess, (state, action) => {
+        console.log(state, action)
         return {
             ...state,
             user: action.user
