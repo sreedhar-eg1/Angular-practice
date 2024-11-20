@@ -12,6 +12,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 import { appReducer } from './store/app.state';
+import { AuthEffect } from './auth/state/auth.effects';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { appReducer } from './store/app.state';
     FormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ logOnly: !isDevMode() }),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([AuthEffect])
   ],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent]

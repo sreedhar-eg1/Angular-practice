@@ -7,6 +7,8 @@ import { EditPostComponent } from './edit-post/edit-post.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
 import { StoreModule } from '@ngrx/store';
 import { postsReducer } from './state/post.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PostsEffect } from './state/post.effect';
 
 const routes: Routes = [
   {
@@ -26,6 +28,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     StoreModule.forFeature('posts', postsReducer),
+    EffectsModule.forFeature([PostsEffect])
   ],
 })
 export class PostsModule {}

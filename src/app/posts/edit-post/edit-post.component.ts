@@ -11,6 +11,9 @@ import { updatePost } from '../state/post.action';
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.css',
+  host: {
+    class: 'w-full'
+  }
 })
 export class EditPostComponent implements OnInit {
   post!: Post;

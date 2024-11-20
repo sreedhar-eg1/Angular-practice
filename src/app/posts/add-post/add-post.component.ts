@@ -8,7 +8,10 @@ import { addPost } from '../state/post.action';
 @Component({
   selector: 'app-add-post',
   templateUrl: './add-post.component.html',
-  styleUrl: './add-post.component.css'
+  styleUrl: './add-post.component.css',
+  host: {
+    class: 'w-full'
+  }
 })
 export class AddPostComponent {
   postForm = new FormGroup({
