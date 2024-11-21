@@ -9,10 +9,15 @@ import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { provideHttpClient } from '@angular/common/http';
+import {
+  HTTP_INTERCEPTORS,
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/component/loading-spinner/loading-spinner.component';
 import { appReducer } from './store/app.state';
 import { AuthEffect } from './auth/state/auth.effects';
+import { AuthTokenInterceptor } from './services/authToken.interceptor';
 
 @NgModule({
   declarations: [
@@ -27,9 +32,16 @@ import { AuthEffect } from './auth/state/auth.effects';
     FormsModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ logOnly: !isDevMode() }),
-    EffectsModule.forRoot([AuthEffect])
+    EffectsModule.forRoot([AuthEffect]),
   ],
-  providers: [provideHttpClient()],
-  bootstrap: [AppComponent]
+  providers: [
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

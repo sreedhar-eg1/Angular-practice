@@ -21,4 +21,22 @@ export class PostsService {
       })
     );
   }
+
+  addPost(post: Post): Observable<{ name: string }> {
+    return this.http.post<{ name: string }>(
+      environment.POST_API_URL + 'posts.json',
+      post
+    );
+  }
+
+  editPost(post: Post) {
+    const postData = {
+      [post.id as string]: { title: post.title, description: post.description },
+    };
+    return this.http.patch(environment.POST_API_URL + 'posts.json', postData);
+  }
+
+  deletepost(id: string) {
+    return this.http.delete(environment.POST_API_URL + `posts/${id}.json`)
+  }
 }
