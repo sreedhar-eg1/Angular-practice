@@ -39,4 +39,8 @@ export class PostsService {
   deletepost(id: string) {
     return this.http.delete(environment.POST_API_URL + `posts/${id}.json`)
   }
+
+  getSinglePost(id: string) {
+    return this.http.get(environment.POST_API_URL + `posts/${id}.json`)
+  }
 }

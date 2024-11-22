@@ -13,7 +13,6 @@ const _postsReducer = createReducer(
     };
   }),
   on(updatePostSuccess, (state, action) => {
-    console.log(state, action);
     const updatedPost = state.posts.map((post) =>
       post.id === action.post.id ? action.post : post
     );
@@ -32,6 +31,7 @@ const _postsReducer = createReducer(
     }
   }),
   on(loadPostSuccess, (state, action) => {
+    console.log(state, action);
     return {
       ...state,
       posts: action.post

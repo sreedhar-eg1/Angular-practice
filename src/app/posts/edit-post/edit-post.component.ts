@@ -6,6 +6,7 @@ import { getPostById } from '../state/post.selector';
 import { Post } from '../../models/post.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { updatePost } from '../state/post.action';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-edit-post',
@@ -37,24 +38,31 @@ export class EditPostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.id = params.get('id')!;
-      const subscription = this.store
-        .select(getPostById(this.id!))
-        .subscribe((data) => {
-          this.post = data;
-        });
+    const subscription = this.store.select(getPostById).subscribe((post) => {
+      this.post = post!
+      this.patchValue()
+    })
 
-      this.patchValue();
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
 
-      this.destroyRef.onDestroy(() => subscription.unsubscribe());
-    });
+    // this.route.paramMap.subscribe((params) => {
+    //   this.id = params.get('id')!;
+    //   const subscription = this.store
+    //     .select(getPostById(this.id!))
+    //     .subscribe((data) => {
+    //       this.post = data;
+    //     });
+
+    //   this.patchValue();
+
+    //   this.destroyRef.onDestroy(() => subscription.unsubscribe());
+    // });
   }
 
   patchValue() {
     this.edtPostForm.patchValue({
-      title: this.post.title,
-      description: this.post.description,
+      title: this.post?.title,
+      description: this.post?.description,
     });
   }
 
@@ -64,13 +72,13 @@ export class EditPostComponent implements OnInit {
     }
 
     const post: Post = {
-      id: this.id,
+      id: this.post.id,
       title: this.edtPostForm.value.title!,
       description: this.edtPostForm.value.description!,
     };
 
     this.store.dispatch(updatePost({ post }));
 
-    this.router.navigate(['posts'])
+    // this.router.navigate(['posts'])
   }
 }

@@ -1,0 +1,7 @@
+<div class="flex flex-col space-y-4 w-full border rounded-md mx-auto divide-y">
+    <h2 class="font-semibold text-lg">{{ (post | async)?.id }}</h2>
+    <h1 class="font-extrabold text-xl">{{ (post | async)?.title }}</h1>
+    <p>{{ (post | async)?.description }}</p>
+</div>
+
+<a [routerLink]="['/posts']">Back to posts</a>
