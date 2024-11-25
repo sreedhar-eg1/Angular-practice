@@ -12,6 +12,8 @@ export const AUTO_LOGIN = '[Auth_page] auto login';
 
 export const LOGOUT = '[Auth_page] logout';
 
+export const DUMMY_ACTION = 'dummy action'
+
 export const loginStart = createAction(
   LOGIN_START,
   props<{ email: string; password: string }>()
@@ -37,3 +39,5 @@ export const signupSuccess = createAction(
 export const autoLogin = createAction(AUTO_LOGIN);
 
 export const logout = createAction(LOGOUT);
+
+export const dummyAction = createAction(DUMMY_ACTION)
