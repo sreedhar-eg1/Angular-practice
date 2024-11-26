@@ -1,63 +1,94 @@
 <div class="container mx-auto px-4 mt-8">
-    <div class="w-full">
-        <h3 class="text-lg font-semibold ml-3 text-slate-800">Post List</h3>
-       </div>
-       <div class="relative flex flex-col w-3/4 h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-        <table class="w-full text-left table-auto min-w-max">
-          <thead>
-              <tr>
-                  <th class="p-4 border-b border-slate-300 bg-slate-50">
-                      <p class="block text-sm font-normal leading-none text-slate-500">
-                          Id
-                      </p>
-                  </th>
-                  <th class="p-4 border-b border-slate-300 bg-slate-50">
-                      <p class="block text-sm font-normal leading-none text-slate-500">
-                          Title
-                      </p>
-                  </th>
-                  <th class="p-4 border-b border-slate-300 bg-slate-50">
-                      <p class="block text-sm font-normal leading-none text-slate-500">
-                          Description
-                      </p>
-                  </th>
-                  <th class="p-4 border-b border-slate-300 bg-slate-50">
-                      <p class="block text-sm font-normal leading-none text-slate-500">
-                          Action
-                      </p>
-                  </th>
-              </tr>
-          </thead>
-          <tbody>
-            @for (post of posts | async; track post.id) {
-                <tr class="hover:bg-slate-50">
-                    <td class="p-4 border-b border-slate-200">
-                        <p class="block text-sm text-slate-800">
-                            {{post.id}}
-                        </p>
-                    </td>
-                    <td class="p-4 border-b border-slate-200">
-                        <p class="block text-sm text-slate-800">
-                            {{post.title}}
-                        </p>
-                    </td>
-                    <td class="p-4 border-b border-slate-200">
-                        <p class="block text-sm text-slate-800">
-                            {{post.description}}
-                        </p>
-                    </td>
-                    <td class="p-4 border-b border-slate-200">
-                        <p class="block text-sm text-slate-800">
-                            
-                        </p>
-                    </td>
-                </tr>
-            }
-          </tbody>
-        </table>
-      </div>
-    
-      <div class="w-1/4">
-          <router-outlet></router-outlet>
-      </div>
+  <div class="w-full">
+    <h3 class="text-lg font-semibold ml-3 text-slate-800">Post List</h3>
+    <button
+      class="bg-blue-600 text-white rounded-sm p-2 my-4"
+      [routerLink]="['/add']"
+      routerLinkActive="router-link-active"
+      type="button"
+    >
+      Add Post
+    </button>
+  </div>
+  <div class="flex space-x-4 w-full h-full">
+    <div
+      class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border"
+    >
+      <table class="w-full text-left table-auto min-w-max">
+        <thead>
+          <tr>
+            <th class="p-4 border-b border-slate-300 bg-slate-50">
+              <p class="block text-sm font-normal leading-none text-slate-500">
+                Id
+              </p>
+            </th>
+            <th class="p-4 border-b border-slate-300 bg-slate-50">
+              <p class="block text-sm font-normal leading-none text-slate-500">
+                Title
+              </p>
+            </th>
+            <th class="p-4 border-b border-slate-300 bg-slate-50">
+              <p class="block text-sm font-normal leading-none text-slate-500">
+                Description
+              </p>
+            </th>
+            <th class="p-4 border-b border-slate-300 bg-slate-50">
+              <p class="block text-sm font-normal leading-none text-slate-500">
+                Action
+              </p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (post of posts$ | async; track post.id) {
+          <tr class="hover:bg-slate-50">
+            <td class="p-4 border-b border-slate-200">
+              <p class="block text-sm text-slate-800">
+                {{ post.id }}
+              </p>
+            </td>
+            <td class="p-4 border-b border-slate-200">
+              <p class="block text-sm text-slate-800">
+                {{ post.title }}
+              </p>
+            </td>
+            <td class="p-4 border-b border-slate-200">
+              <p class="block text-sm text-slate-800">
+                {{ post.description }}
+              </p>
+            </td>
+            <td class="p-4 border-b border-slate-200">
+                <a [routerLink]="['/edit', post.id]" class="mr-2 relative inline-flex items-center justify-start px-6 py-3 overflow-hidden font-medium transition-all bg-red-500 rounded-xl group">
+                    <span class="absolute top-0 right-0 inline-block w-4 h-4 transition-all duration-500 ease-in-out bg-red-700 rounded group-hover:-mr-4 group-hover:-mt-4">
+                        <span class="absolute top-0 right-0 w-5 h-5 rotate-45 translate-x-1/2 -translate-y-1/2 bg-white"></span>
+                    </span>
+                    <span class="absolute bottom-0 left-0 w-full h-full transition-all duration-500 ease-in-out delay-200 -translate-x-full translate-y-full bg-red-600 rounded-2xl group-hover:mb-12 group-hover:translate-x-0"></span>
+                    <span class="relative w-full text-left text-white transition-colors duration-200 ease-in-out group-hover:text-white">Update</span>
+                </a>
+
+                <a (click)="onDelete($event, post.id!)"  class="mr-2 relative inline-flex items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group">
+                    <span class="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 bg-red-500 rounded-full blur-md ease"></span>
+                    <span class="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
+                        <span class="absolute bottom-0 left-0 w-24 h-24 -ml-10 bg-purple-500 rounded-full blur-md"></span>
+                        <span class="absolute bottom-0 right-0 w-24 h-24 -mr-10 bg-pink-500 rounded-full blur-md"></span>
+                    </span>
+                    <span class="relative text-white">Delete</span>
+                </a>
+
+                <a [routerLink]="['/detail', post.id]" class="relative inline-block px-4 py-2 font-medium group">
+                    <span class="absolute inset-0 w-full h-full transition duration-200 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:-translate-x-0 group-hover:-translate-y-0"></span>
+                    <span class="absolute inset-0 w-full h-full bg-white border-2 border-black group-hover:bg-black"></span>
+                    <span class="relative text-black group-hover:text-white">Detail</span>
+                </a>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- <div class="w-1/4">
+      <router-outlet></router-outlet>
+    </div> -->
+  </div>
 </div>
