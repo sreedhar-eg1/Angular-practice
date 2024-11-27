@@ -1,0 +1,25 @@
+<div class="flex ml-20">
+    <div class="basis-[20%]">
+        <ul class="list-disc text-blue-800">
+            <li>
+                <a class="underline" [routerLink]="['./buffer']" routerLinkActive="text-red-700">Buffer Operator</a>
+            </li>
+            <li>
+                <a class="underline" [routerLink]="['./buffercount']" routerLinkActive="text-red-700">Buffer Count Operator</a>
+            </li>
+            <li>
+                <a class="underline" [routerLink]="['./buffertime']" routerLinkActive="text-red-700">Buffer Time Operator</a>
+            </li>
+            <li>
+                <a class="underline" [routerLink]="['./buffertoggle']" routerLinkActive="text-red-700">Buffer Toggle Operator</a>
+            </li>
+            <li>
+                <a class="underline" [routerLink]="['./bufferwhen']" routerLinkActive="text-red-700">Buffer When Operator</a>
+            </li>
+        </ul>
+
+    </div>
+    <div  class="basis-[80%]">
+        <router-outlet></router-outlet>
+    </div>
+</div>
