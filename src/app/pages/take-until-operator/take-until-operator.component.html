@@ -1,0 +1,45 @@
+<p>
+  Emits the values emitted by the source Observable until a notifier Observable
+  emits a value.
+</p>
+<p>
+  takeUntil subscribes and begins mirroring the source Observable. It also
+  monitors a second Observable, notifier that you provide. If the notifier emits
+  a value, the output Observable stops mirroring the source Observable and
+  completes. If the notifier doesn't emit any value and completes then takeUntil
+  will pass all values.
+</p>
+
+<div class="flex space-x-4 my-8">
+  <a
+    (click)="onStart()"
+    class="relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+  >
+    <span
+      class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
+    ></span>
+    <span class="relative">Start Interval</span>
+  </a>
+  <a
+    id="button-click"
+    class="relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+  >
+    <span
+      class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
+    ></span>
+    <span class="relative">Stop when this button clicked</span>
+  </a>
+  <a
+    (click)="onStopInterval()"
+    class="relative rounded px-5 py-2.5 overflow-hidden group bg-green-500 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-green-400 transition-all ease-out duration-300"
+  >
+    <span
+      class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
+    ></span>
+    <span class="relative">Stop Interval</span>
+  </a>
+</div>
+
+@for (interval of intervalData; track interval) {
+<div>{{ interval }}</div>
+}
