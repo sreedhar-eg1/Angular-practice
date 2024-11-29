@@ -27,6 +27,17 @@ import { ElementAtOperatorComponent } from './pages/element-at-operator/element-
 import { IgnoreElementsOperatorComponent } from './pages/ignore-elements-operator/ignore-elements-operator.component';
 import { SingleOperatorComponent } from './pages/single-operator/single-operator.component';
 import { MapOperatorComponent } from './pages/map-operator/map-operator.component';
+import { MapToOperatorComponent } from './pages/map-to-operator/map-to-operator.component';
+import { AjaxOperatorComponent } from './pages/ajax-operator/ajax-operator.component';
+import { MergeMapOperatorComponent } from './pages/merge-map-operator/merge-map-operator.component';
+import { MergeMapToOperatorComponent } from './pages/merge-map-to-operator/merge-map-to-operator.component';
+import { ConcatMapOperatorComponent } from './pages/concat-map-operator/concat-map-operator.component';
+import { ConcatMapToOperatorComponent } from './pages/concat-map-to-operator/concat-map-to-operator.component';
+import { ExhaustMapOperatorComponent } from './pages/exhaust-map-operator/exhaust-map-operator.component';
+import { SwitchMapOperatorComponent } from './pages/switch-map-operator/switch-map-operator.component';
+import { SwitchMapToOperatorComponent } from './pages/switch-map-to-operator/switch-map-to-operator.component';
+import { SubjectComponent } from './pages/subject/subject.component';
+import { SubjectPracticeComponent } from './pages/subject-practice/subject-practice.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -48,8 +59,14 @@ export const routes: Routes = [
       { path: 'skipuntil', component: SkipUntilComponent },
       { path: 'skipwhile', component: SkipWhileComponent },
       { path: 'distinct', component: DistinctOperatorComponent },
-      { path: 'distinctuntilchanged', component: DistinctUntilChangedOperatorComponent },
-      { path: 'distinctuntilkeychanged', component: DistictUntilKeyChangedOperatorComponent },
+      {
+        path: 'distinctuntilchanged',
+        component: DistinctUntilChangedOperatorComponent,
+      },
+      {
+        path: 'distinctuntilkeychanged',
+        component: DistictUntilKeyChangedOperatorComponent,
+      },
       { path: 'filter', component: FilterOperatorComponent },
       { path: 'sample', component: SampleOperatorComponent },
       { path: 'audit', component: AuditOperatorComponent },
@@ -61,6 +78,25 @@ export const routes: Routes = [
       { path: 'ignoreelements', component: IgnoreElementsOperatorComponent },
       { path: 'single', component: SingleOperatorComponent },
       { path: 'map', component: MapOperatorComponent },
+      { path: 'mapto', component: MapToOperatorComponent },
+      { path: 'ajax', component: AjaxOperatorComponent },
+      { path: 'mergemap', component: MergeMapOperatorComponent },
+      { path: 'mergemapto', component: MergeMapToOperatorComponent },
+      { path: 'concatmap', component: ConcatMapOperatorComponent },
+      { path: 'concatmapto', component: ConcatMapToOperatorComponent },
+      { path: 'exhaustmap', component: ExhaustMapOperatorComponent },
+      { path: 'switchtmap', component: SwitchMapOperatorComponent },
+      { path: 'switchmapto', component: SwitchMapToOperatorComponent },
+    ],
+  },
+  {
+    path: 'subject',
+    component: SubjectComponent,
+    children: [
+      {
+        path: 'sub',
+        component: SubjectPracticeComponent,
+      },
     ],
   },
 ];
