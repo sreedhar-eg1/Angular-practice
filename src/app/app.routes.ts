@@ -51,6 +51,15 @@ import { PublishReplayOperatorComponent } from './pages/publish-replay-operator/
 import { CatchErrorOperatorComponent } from './pages/catch-error-operator/catch-error-operator.component';
 import { RetryOperatorComponent } from './pages/retry-operator/retry-operator.component';
 import { RetryWhenOperatorComponent } from './pages/retry-when-operator/retry-when-operator.component';
+import { CombineLatestOperatorComponent } from './pages/combine-latest-operator/combine-latest-operator.component';
+import { ConcatOperatorComponent } from './pages/concat-operator/concat-operator.component';
+import { ForkjoinComponent } from './pages/forkjoin/forkjoin.component';
+import { MergeComponent } from './pages/merge/merge.component';
+import { PartitionComponent } from './pages/partition/partition.component';
+import { RaceComponent } from './pages/race/race.component';
+import { ZipComponent } from './pages/zip/zip.component';
+import { SchedularsComponent } from './pages/schedulars/schedulars.component';
+import { SchedularImplemetationComponent } from './pages/schedular-implemetation/schedular-implemetation.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -107,6 +116,13 @@ export const routes: Routes = [
       { path: 'publishreplay', component: PublishReplayOperatorComponent },
       { path: 'retry', component: RetryOperatorComponent },
       { path: 'retrywhen', component: RetryWhenOperatorComponent },
+      { path: 'combinelatest', component: CombineLatestOperatorComponent },
+      { path: 'concat', component: ConcatOperatorComponent },
+      { path: 'forkjoin', component: ForkjoinComponent },
+      { path: 'merge', component: MergeComponent },
+      { path: 'partition', component: PartitionComponent },
+      { path: 'race', component: RaceComponent },
+      { path: 'zip', component: ZipComponent },
     ],
   },
   {
@@ -139,4 +155,11 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'schedulars',
+    component: SchedularsComponent,
+    children:[
+      {path: 'schedularimp', component: SchedularImplemetationComponent}
+    ]
+  }
 ];
