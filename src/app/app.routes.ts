@@ -38,6 +38,19 @@ import { SwitchMapOperatorComponent } from './pages/switch-map-operator/switch-m
 import { SwitchMapToOperatorComponent } from './pages/switch-map-to-operator/switch-map-to-operator.component';
 import { SubjectComponent } from './pages/subject/subject.component';
 import { SubjectPracticeComponent } from './pages/subject-practice/subject-practice.component';
+import { ColdObservableComponent } from './pages/cold-observable/cold-observable.component';
+import { MulticastOperatorComponent } from './pages/multicast-operator/multicast-operator.component';
+import { ShareOperatorComponent } from './pages/share-operator/share-operator.component';
+import { BehaviorSubjectComponent } from './pages/behavior-subject/behavior-subject.component';
+import { ReplaySubjectComponent } from './pages/replay-subject/replay-subject.component';
+import { AsyncSubjectComponent } from './pages/async-subject/async-subject.component';
+import { VoidSubjectComponent } from './pages/void-subject/void-subject.component';
+import { PublishBehaviorOperatorComponent } from './pages/publish-behavior-operator/publish-behavior-operator.component';
+import { PublishLastOperatorComponent } from './pages/publish-last-operator/publish-last-operator.component';
+import { PublishReplayOperatorComponent } from './pages/publish-replay-operator/publish-replay-operator.component';
+import { CatchErrorOperatorComponent } from './pages/catch-error-operator/catch-error-operator.component';
+import { RetryOperatorComponent } from './pages/retry-operator/retry-operator.component';
+import { RetryWhenOperatorComponent } from './pages/retry-when-operator/retry-when-operator.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -87,6 +100,13 @@ export const routes: Routes = [
       { path: 'exhaustmap', component: ExhaustMapOperatorComponent },
       { path: 'switchtmap', component: SwitchMapOperatorComponent },
       { path: 'switchmapto', component: SwitchMapToOperatorComponent },
+      { path: 'multicast', component: MulticastOperatorComponent },
+      { path: 'share', component: ShareOperatorComponent },
+      { path: 'publishbehavior', component: PublishBehaviorOperatorComponent },
+      { path: 'publishlast', component: PublishLastOperatorComponent },
+      { path: 'publishreplay', component: PublishReplayOperatorComponent },
+      { path: 'retry', component: RetryOperatorComponent },
+      { path: 'retrywhen', component: RetryWhenOperatorComponent },
     ],
   },
   {
@@ -96,6 +116,26 @@ export const routes: Routes = [
       {
         path: 'sub',
         component: SubjectPracticeComponent,
+      },
+      {
+        path: 'coldobservable',
+        component: ColdObservableComponent,
+      },
+      {
+        path: 'behaviorsubject',
+        component: BehaviorSubjectComponent,
+      },
+      {
+        path: 'replaysubject',
+        component: ReplaySubjectComponent,
+      },
+      {
+        path: 'asyncsubject',
+        component: AsyncSubjectComponent,
+      },
+      {
+        path: 'voidsubject',
+        component: VoidSubjectComponent,
       },
     ],
   },
