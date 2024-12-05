@@ -60,6 +60,22 @@ import { RaceComponent } from './pages/race/race.component';
 import { ZipComponent } from './pages/zip/zip.component';
 import { SchedularsComponent } from './pages/schedulars/schedulars.component';
 import { SchedularImplemetationComponent } from './pages/schedular-implemetation/schedular-implemetation.component';
+import { DeferComponent } from './pages/defer/defer.component';
+import { RangeComponent } from './pages/range/range.component';
+import { GenerateComponent } from './pages/generate/generate.component';
+import { TimerComponent } from './pages/timer/timer.component';
+import { CountComponent } from './pages/count/count.component';
+import { MaxComponent } from './pages/max/max.component';
+import { MinComponent } from './pages/min/min.component';
+import { ReduceComponent } from './pages/reduce/reduce.component';
+import { IsEmptyOperatorComponent } from './pages/is-empty-operator/is-empty-operator.component';
+import { FindOperatorComponent } from './pages/find-operator/find-operator.component';
+import { FindIndexOperatorComponent } from './pages/find-index-operator/find-index-operator.component';
+import { EveryOperatorComponent } from './pages/every-operator/every-operator.component';
+import { DefaultIfEmptyOperatorComponent } from './pages/default-if-empty-operator/default-if-empty-operator.component';
+import { ToArrayOperatorComponent } from './pages/to-array-operator/to-array-operator.component';
+import { SubscribeOnOperatorComponent } from './pages/subscribe-on-operator/subscribe-on-operator.component';
+import { ObserveOnOperatorComponent } from './pages/observe-on-operator/observe-on-operator.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -123,6 +139,22 @@ export const routes: Routes = [
       { path: 'partition', component: PartitionComponent },
       { path: 'race', component: RaceComponent },
       { path: 'zip', component: ZipComponent },
+      { path: 'defer', component: DeferComponent },
+      { path: 'range', component: RangeComponent },
+      { path: 'generate', component: GenerateComponent },
+      { path: 'timer', component: TimerComponent },
+      { path: 'count', component: CountComponent },
+      { path: 'max', component: MaxComponent },
+      { path: 'min', component: MinComponent },
+      { path: 'reduce', component: ReduceComponent },
+      { path: 'isempty', component: IsEmptyOperatorComponent },
+      { path: 'findindex', component: FindIndexOperatorComponent },
+      { path: 'find', component: FindOperatorComponent },
+      { path: 'every', component: EveryOperatorComponent },
+      { path: 'defaultifempty', component: DefaultIfEmptyOperatorComponent },
+      { path: 'toarray', component: ToArrayOperatorComponent },
+      { path: 'subscribeon', component: SubscribeOnOperatorComponent },
+      { path: 'observeon', component: ObserveOnOperatorComponent },
     ],
   },
   {
