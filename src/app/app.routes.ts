@@ -76,6 +76,17 @@ import { DefaultIfEmptyOperatorComponent } from './pages/default-if-empty-operat
 import { ToArrayOperatorComponent } from './pages/to-array-operator/to-array-operator.component';
 import { SubscribeOnOperatorComponent } from './pages/subscribe-on-operator/subscribe-on-operator.component';
 import { ObserveOnOperatorComponent } from './pages/observe-on-operator/observe-on-operator.component';
+import { MaterializeOperatorComponent } from './pages/materialize-operator/materialize-operator.component';
+import { DeMaterializeOperatorComponent } from './pages/de-materialize-operator/de-materialize-operator.component';
+import { DelayOperatorComponent } from './pages/delay-operator/delay-operator.component';
+import { CombineLatestAllOperatorComponent } from './pages/combine-latest-all-operator/combine-latest-all-operator.component';
+import { ConcattAllOperatorComponent } from './pages/concatt-all-operator/concatt-all-operator.component';
+import { ExhaustAllOperatorComponent } from './pages/exhaust-all-operator/exhaust-all-operator.component';
+import { SwitchAllOperatorComponent } from './pages/switch-all-operator/switch-all-operator.component';
+import { MergeAllOperatorComponent } from './pages/merge-all-operator/merge-all-operator.component';
+import { StartsWithOperatorComponent } from './pages/starts-with-operator/starts-with-operator.component';
+import { WithLatestFromOperatorComponent } from './pages/with-latest-from-operator/with-latest-from-operator.component';
+import { GroupByOperatorComponent } from './pages/group-by-operator/group-by-operator.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -155,6 +166,17 @@ export const routes: Routes = [
       { path: 'toarray', component: ToArrayOperatorComponent },
       { path: 'subscribeon', component: SubscribeOnOperatorComponent },
       { path: 'observeon', component: ObserveOnOperatorComponent },
+      { path: 'materialize', component: MaterializeOperatorComponent },
+      { path: 'dematerialize', component: DeMaterializeOperatorComponent },
+      { path: 'delay', component: DelayOperatorComponent },
+      { path: 'combinelatestall', component: CombineLatestAllOperatorComponent },
+      { path: 'concatall', component: ConcattAllOperatorComponent },
+      { path: 'exhaustall', component: ExhaustAllOperatorComponent },
+      { path: 'switchall', component: SwitchAllOperatorComponent },
+      { path: 'mergeall', component: MergeAllOperatorComponent },
+      { path: 'startswith', component: StartsWithOperatorComponent },
+      { path: 'withlatestfrom', component: WithLatestFromOperatorComponent },
+      { path: 'groupby', component: GroupByOperatorComponent },
     ],
   },
   {
