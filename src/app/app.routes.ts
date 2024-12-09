@@ -87,6 +87,12 @@ import { MergeAllOperatorComponent } from './pages/merge-all-operator/merge-all-
 import { StartsWithOperatorComponent } from './pages/starts-with-operator/starts-with-operator.component';
 import { WithLatestFromOperatorComponent } from './pages/with-latest-from-operator/with-latest-from-operator.component';
 import { GroupByOperatorComponent } from './pages/group-by-operator/group-by-operator.component';
+import { PairWiseOperatorComponent } from './pages/pair-wise-operator/pair-wise-operator.component';
+import { WindowOperatorComponent } from './pages/window-operator/window-operator.component';
+import { WindowCountOperatorComponent } from './pages/window-count-operator/window-count-operator.component';
+import { WindowTimeOperatorComponent } from './pages/window-time-operator/window-time-operator.component';
+import { WindowToggleOperatorComponent } from './pages/window-toggle-operator/window-toggle-operator.component';
+import { WindowWhenOperatorComponent } from './pages/window-when-operator/window-when-operator.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'operator', pathMatch: 'full' },
@@ -177,6 +183,12 @@ export const routes: Routes = [
       { path: 'startswith', component: StartsWithOperatorComponent },
       { path: 'withlatestfrom', component: WithLatestFromOperatorComponent },
       { path: 'groupby', component: GroupByOperatorComponent },
+      { path: 'pairwise', component: PairWiseOperatorComponent },
+      { path: 'window', component: WindowOperatorComponent },
+      { path: 'windowcount', component: WindowCountOperatorComponent },
+      { path: 'windowtime', component: WindowTimeOperatorComponent },
+      { path: 'windowtoggle', component: WindowToggleOperatorComponent },
+      { path: 'windowwhen', component: WindowWhenOperatorComponent },
     ],
   },
   {
