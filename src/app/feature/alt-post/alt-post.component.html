@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Post Details</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="list-group">
+      @for (post of posts$ | async; track post.id) {
+      <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action">
+        {{ post.title }} ({{ post.categoryName }})
+      </a>
+      }
+    </div>
+  </div>
+  <div class="col-md-8">
+    <app-single-post />
+  </div>
+</div>

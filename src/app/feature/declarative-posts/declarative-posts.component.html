@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3>Post Data</h3>
+
+    <div class="row my-4">
+      <div class="col-md-4">
+        <select class="form-select w-100" (change)="onChangeCategory($event)">
+          <option value="">Select Category</option>
+          @for (category of categories$ | async; track category.id) {
+          <option [value]="category.id">{{ category.title }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <table class="table table-success table-striped">
+      <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (filteredPosts$ | async; as posts ) { @for (post of posts; track
+        post.id) {
+        <tr>
+          <th scope="row">{{ post.id }}</th>
+          <td>{{ post.title }}</td>
+          <td>{{ post.description }}</td>
+          <td>{{ post.categoryName }}</td>
+        </tr>
+        } }
+      </tbody>
+    </table>
+  </div>
+</div>
