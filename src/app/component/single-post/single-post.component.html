@@ -1,1 +1,33 @@
-<p>single-post works!</p>
+<!-- Using Signal, works fine without creating action stream -->
+<!-- @if (errorMessage()) {
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+  </div>
+</div>
+}  -->
+
+<!-- normal assignment, need to create action stream -->
+<!-- @if (errorMessage) {
+    <div class="row">
+      <div class="col-md-12">
+        <div class="alert alert-danger">{{ errorMessage }}</div>
+      </div>
+    </div>
+    }  -->
+
+<!-- With the use of action stream -->
+@if (errormessageAction$ | async; as errorMessage) {
+<div class="row">
+  <div class="col-md-12">
+    <div class="alert alert-danger">{{ errorMessage }}</div>
+  </div>
+</div>
+} @if (selectedPost$ | async; as post) {
+<div>
+  <div>Id: {{ post.id }}</div>
+  <div>Title: {{ post.title }}</div>
+  <div>Description: {{ post.description }}</div>
+  <div>Category: {{ post.categoryName }}</div>
+</div>
+}

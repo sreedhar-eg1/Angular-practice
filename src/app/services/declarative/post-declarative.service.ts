@@ -1,6 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { combineLatest, map } from 'rxjs';
+import {
+  catchError,
+  combineLatest,
+  map,
+  Subject,
+  throwError,
+  shareReplay,
+  delay,
+} from 'rxjs';
 import { Post } from '../../models/posts.model';
 import { CategoryDeclarativeService } from './category-declarative.service';
 
@@ -16,6 +24,7 @@ export class PostDeclarativeService {
       'https://angular-rxjs-advance-default-rtdb.firebaseio.com/posts.json'
     )
     .pipe(
+      delay(1000),
       map((posts) => {
         let postData: Post[] = [];
 
@@ -24,7 +33,9 @@ export class PostDeclarativeService {
         }
 
         return postData;
-      })
+      }),
+      shareReplay(1),
+      catchError(this.handleErrror)
     );
 
   postsWithCategory$ = combineLatest([
@@ -38,8 +49,32 @@ export class PostDeclarativeService {
           (category) => post.categoryId === category.id
         )?.title,
       }));
-    })
+    }),
+    shareReplay(1),
+    catchError(this.handleErrror)
   );
 
-  constructor() {}
+  private selectPostSubject = new Subject<string>();
+  selectPostAction$ = this.selectPostSubject.asObservable();
+
+  selectPost(postId: string) {
+    this.selectPostSubject.next(postId);
+  }
+
+  singlePost$ = combineLatest<[Post[], string]>([
+    this.postsWithCategory$,
+    this.selectPostAction$,
+  ]).pipe(
+    map(([posts, selectedPostId]) =>
+      posts.find((post) => post.id === selectedPostId)
+    ),
+    shareReplay(1),
+    catchError(this.handleErrror)
+  );
+
+  handleErrror(error: Error) {
+    return throwError(() => {
+      return 'Unknown error occured. Please try again.';
+    });
+  }
 }

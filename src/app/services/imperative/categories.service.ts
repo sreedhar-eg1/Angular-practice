@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
 import { Category } from '../../models/category.model';
 
 @Injectable({
@@ -20,7 +20,8 @@ export class CategoriesService {
         }
 
         return categoryData;
-      })
+      }),
+      shareReplay(1)
     );
   }
 }

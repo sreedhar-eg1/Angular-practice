@@ -1,20 +1,34 @@
 <div class="row">
   <div class="col-md-12">
     <h3>Post Details</h3>
+    <div class="my-3">
+      <button (click)="onAddPost()" class="btn btn-primary" type="button">
+        Add Post
+      </button>
+    </div>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-4">
     <div class="list-group">
-      @for (post of posts$ | async; track post.id) {
-      <a (click)="onSelectPost(post)" class="list-group-item list-group-item-action">
+      @if (vm$ | async; as vm) { @for (post of vm.posts; track post.id) {
+      <a
+        (click)="onSelectPost(post)"
+        [ngClass]="{ active: post.id === vm.selectedPost?.id }"
+        class="list-group-item list-group-item-action"
+      >
         {{ post.title }} ({{ post.categoryName }})
       </a>
-      }
+      } }
     </div>
   </div>
   <div class="col-md-8">
+    @if (!showAddPostForm()) {
     <app-single-post />
+
+    } @else {
+    <app-add-post-form />
+    }
   </div>
 </div>

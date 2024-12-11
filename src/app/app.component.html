@@ -1,5 +1,15 @@
 <app-header />
 
+<!-- with async -->
+ @if (isLoading$ | async) { 
+  <app-loading />
+}
+
+<!-- With the use of signal -->
+<!-- @if (loading()) { 
+  <app-loading />
+} -->
+
 <div class="container">
   <div class="row">
     <div class="col-md-12">

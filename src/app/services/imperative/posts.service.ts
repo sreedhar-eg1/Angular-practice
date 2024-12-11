@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, mergeMap, Observable } from 'rxjs';
+import { map, mergeMap, Observable, shareReplay } from 'rxjs';
 import { Post } from '../../models/posts.model';
 import { CategoriesService } from './categories.service';
 
@@ -27,7 +27,8 @@ export class PostsService {
           }
 
           return postData;
-        })
+        }),
+        shareReplay(1)
       );
   }
 
@@ -42,7 +43,8 @@ export class PostsService {
                 (category) => category.id === post.categoryId
               )?.title,
             }));
-          })
+          }),
+          shareReplay(1)
         );
       })
     );

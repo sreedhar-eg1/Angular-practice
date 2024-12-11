@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, share, shareReplay } from 'rxjs/operators';
 import { Category } from '../../models/category.model';
 
 @Injectable({
@@ -22,7 +22,8 @@ export class CategoryDeclarativeService {
         }
 
         return categoryData;
-      })
+      }),
+      shareReplay(1)
     );
 
   constructor() {}
