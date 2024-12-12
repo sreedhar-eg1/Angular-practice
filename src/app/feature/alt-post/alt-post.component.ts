@@ -18,7 +18,13 @@ export class AltPostComponent {
 
   showAddPostForm = signal(false)
 
-  posts$ = this.declarativePostService.postsWithCategory$.pipe(
+  // posts$ = this.declarativePostService.postsWithCategory$.pipe(
+  //   tap(
+  //     (posts) =>
+  //       posts[0].id && this.declarativePostService.selectPost(posts[0].id)
+  //   )
+  // );
+  posts$ = this.declarativePostService.allPost$.pipe(
     tap(
       (posts) =>
         posts[0].id && this.declarativePostService.selectPost(posts[0].id)
@@ -38,5 +44,6 @@ export class AltPostComponent {
 
   onAddPost() {
     this.showAddPostForm.set(true)
+    
   }
 }

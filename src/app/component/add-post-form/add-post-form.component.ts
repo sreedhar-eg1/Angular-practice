@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 import { CategoryDeclarativeService } from '../../services/declarative/category-declarative.service';
 import { AsyncPipe } from '@angular/common';
+import { PostDeclarativeService } from '../../services/declarative/post-declarative.service';
+import { Post } from '../../models/posts.model';
 
 @Component({
   selector: 'app-add-post-form',
@@ -16,6 +18,7 @@ import { AsyncPipe } from '@angular/common';
 })
 export class AddPostFormComponent {
   private declarativeCategoryService = inject(CategoryDeclarativeService)
+  private postsService = inject(PostDeclarativeService)
 
   categories$ = this.declarativeCategoryService.categories$
 
@@ -29,7 +32,7 @@ export class AddPostFormComponent {
     if (this.addForm.invalid) {
       return;
     }
-
-    console.log(this.addForm.value);
+    
+    this.postsService.addPost(this.addForm.value as Post)
   }
 }
