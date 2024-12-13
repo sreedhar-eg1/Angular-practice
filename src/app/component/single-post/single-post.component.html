@@ -27,7 +27,10 @@
 <div>
   <div class="d-inline-flex flex-column">
     <h3>Post Details</h3>
-    <button (click)="onClickEditPost(post)" class="btn btn-warning my-3" type="button">Edit Post</button>
+    <div class="d-flex space-right2 my-3">
+      <button (click)="onClickEditPost(post)" class="btn btn-warning me-3" type="button">Edit Post</button>
+      <button (click)="onClickDeletePost(post)" class="btn btn-danger" type="button">Delete Post</button>
+    </div>
   </div>
   <div class="my-3">  
     <div>Id: {{ post.id }}</div>

@@ -15,9 +15,13 @@ import {
   EMPTY,
   toArray,
   of,
+  share,
+  tap,
+  BehaviorSubject,
 } from 'rxjs';
 import { CRUDAction, Post } from '../../models/posts.model';
 import { CategoryDeclarativeService } from './category-declarative.service';
+import { NotificationService } from '../notification.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +29,7 @@ import { CategoryDeclarativeService } from './category-declarative.service';
 export class PostDeclarativeService {
   private http = inject(HttpClient);
   private categoryService = inject(CategoryDeclarativeService);
+  private notificationService = inject(NotificationService);
 
   post$ = this.http
     .get<{ [id: string]: Post }[]>(
@@ -61,7 +66,7 @@ export class PostDeclarativeService {
     catchError(this.handleErrror)
   );
 
-  private selectPostSubject = new Subject<string>();
+  private selectPostSubject = new BehaviorSubject<string>('');
   selectPostAction$ = this.selectPostSubject.asObservable();
 
   selectPost(postId: string) {
@@ -102,18 +107,43 @@ export class PostDeclarativeService {
       (posts, addedPost) => this.modifyPostData(posts, addedPost),
       [] as Post[]
     ),
-    shareReplay(1)
+    shareReplay(1),
+    catchError((err) => {
+      console.log(err);
+      return EMPTY;
+    })
   );
 
   postOperation(postAction: CRUDAction<Post>) {
     let responseData$!: Observable<Post>;
 
     if (postAction.action === 'add') {
-      responseData$ = this.savePost(postAction.data);
+      responseData$ = this.savePostToServer(postAction.data).pipe(
+        tap(() =>
+          this.notificationService.setSuccessMesssage('Post added successfully')
+        )
+      );
     }
 
     if (postAction.action === 'update') {
-      responseData$ = this.updatePost(postAction.data);
+      responseData$ = this.updatePostToServer(postAction.data).pipe(
+        tap(() =>
+          this.notificationService.setSuccessMesssage(
+            'Post updated successfully'
+          )
+        )
+      );
+    }
+
+    if (postAction.action === 'delete') {
+      return this.removePostFromServer(postAction.data).pipe(
+        tap(() =>
+          this.notificationService.setSuccessMesssage(
+            'Post deleted successfully'
+          )
+        ),
+        map((post) => postAction.data)
+      );
     }
 
     return responseData$.pipe(
@@ -130,7 +160,7 @@ export class PostDeclarativeService {
     );
   }
 
-  savePost(post: Post) {
+  savePostToServer(post: Post) {
     return this.http
       .post<{ name: string }>(
         'https://angular-rxjs-advance-default-rtdb.firebaseio.com/posts.json',
@@ -139,10 +169,16 @@ export class PostDeclarativeService {
       .pipe(map((id) => ({ ...post, id: id.name })));
   }
 
-  updatePost(post: Post) {
+  updatePostToServer(post: Post) {
     return this.http.patch<Post>(
-      `https://angular-rxjs-advance-default-rtdb.firebaseio.com/${post.id}.json`,
+      `https://angular-rxjs-advance-default-rtdb.firebaseio.com/posts/${post.id}.json`,
       post
+    );
+  }
+
+  removePostFromServer(post: Post) {
+    return this.http.delete(
+      `https://angular-rxjs-advance-default-rtdb.firebaseio.com/posts/${post.id}.json`
     );
   }
 
@@ -157,6 +193,10 @@ export class PostDeclarativeService {
           post.id === crudOperationData.data.id ? crudOperationData.data : post
         );
       }
+
+      if (crudOperationData.action === 'delete') {
+        return posts.filter((post) => post.id !== crudOperationData.data.id);
+      }
     } else {
       return crudOperationData;
     }
@@ -170,5 +210,9 @@ export class PostDeclarativeService {
 
   editPost(post: Post) {
     this.postCrudSubject.next({ action: 'update', data: post });
+  }
+
+  deletePost(post: Post) {
+    this.postCrudSubject.next({ action: 'delete', data: post });
   }
 }

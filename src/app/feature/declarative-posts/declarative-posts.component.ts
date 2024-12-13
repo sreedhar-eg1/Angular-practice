@@ -11,10 +11,11 @@ import { CategoryDeclarativeService } from '../../services/declarative/category-
 import { BehaviorSubject, combineLatest, map, Observable, share, Subject, tap } from 'rxjs';
 import { LoaderService } from '../../services/loader.service';
 import { Post } from '../../models/posts.model';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-declarative-posts',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, RouterLink],
   templateUrl: './declarative-posts.component.html',
   styleUrl: './declarative-posts.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,30 +30,41 @@ export class DeclarativePostsComponent implements OnInit {
   selectedCategoryAction$ = this.selectedCategorySubject.asObservable();
 
   // post$ = this.declarativePostsService.post$
-  postWithCategory$ = this.declarativePostsService.postsWithCategory$;
+  postWithCategory$ = this.declarativePostsService.allPost$;
   categories$ = this.declarativeCategoryService.categories$;
 
-  filteredPosts$!: Observable<Post[]>
+  filteredPosts$: Observable<Post[]> = combineLatest([
+    this.postWithCategory$,
+    this.selectedCategoryAction$,
+  ]).pipe(
+    tap((data) => {
+      this.loaderService.hideLoader()
+    }),
+    map(([posts, categoryId]) =>
+      posts.filter((post) =>
+        this.selectedCategoryId() ? post.categoryId === categoryId : true
+      )
+    ),
+  );
 
   constructor() {}
 
   ngOnInit(): void {
       this.loaderService.showLoader()
 
-      this.filteredPosts$ = combineLatest([
-        this.postWithCategory$,
-        this.selectedCategoryAction$,
-      ]).pipe(
-        tap((data) => {
-          this.loaderService.hideLoader()
-        }),
-        map(([posts, categoryId]) =>
-          posts.filter((post) =>
-            this.selectedCategoryId() ? post.categoryId === categoryId : true
-          )
-        ),
-        share()
-      );
+      // this.filteredPosts$ = combineLatest([
+      //   this.postWithCategory$,
+      //   this.selectedCategoryAction$,
+      // ]).pipe(
+      //   tap((data) => {
+      //     this.loaderService.hideLoader()
+      //   }),
+      //   map(([posts, categoryId]) =>
+      //     posts.filter((post) =>
+      //       this.selectedCategoryId() ? post.categoryId === categoryId : true
+      //     )
+      //   ),
+      // );
   }
 
 

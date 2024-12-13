@@ -1,14 +1,22 @@
 <app-header />
 
 <!-- with async -->
- @if (isLoading$ | async) { 
-  <app-loading />
+@if (isLoading$ | async) {
+<app-loading />
 }
 
 <!-- With the use of signal -->
 <!-- @if (loading()) { 
   <app-loading />
 } -->
+
+<div class="container">
+  @if (successMessage$ | async; as successMessage) {
+  <div class="alert alert-success">{{ successMessage }}</div>
+  } @if (errorMessage$ | async; as errorMessage) {
+  <div class="alert alert-danger">{{ errorMessage$ }}</div>
+  }
+</div>
 
 <div class="container">
   <div class="row">

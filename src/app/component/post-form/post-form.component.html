@@ -1,0 +1,49 @@
+
+<!-- @if (vm$ | async) {
+    <div class="my-3">
+        <h3>{{!postId() ? 'Add Post' : 'Edit Post'}}</h3>
+    </div>
+} -->
+
+@if (vm$ | async) {
+    <div class="my-3">
+        <h3>{{!this.id() ? 'Add Post' : 'Edit Post'}}</h3>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label for="exampleInputtitle1" class="form-label">Title</label>
+          <input
+            type="text"
+            class="form-control"
+            id="exampleInputtitle1"
+            aria-describedby="titleHelp"
+            formControlName="title"
+          />
+        </div>
+        <div class="mb-3 form-floating">
+          <textarea
+            class="form-control"
+            placeholder="Leave a description"
+            id="floatingTextarea"
+            formControlName="description"
+          ></textarea>
+          <label for="floatingTextarea">Description</label>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputcategory1" class="form-label">Category</label>
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            formControlName="categoryId"
+          >
+            <option value="" selected>Select Category</option>
+            @for (category of categories$ | async; track $index) {
+            <option [value]="category.id">{{ category.title }}</option>
+      
+            }
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+}

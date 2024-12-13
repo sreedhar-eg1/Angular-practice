@@ -1,10 +1,15 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import { PostDeclarativeService } from '../../services/declarative/post-declarative.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { SinglePostComponent } from '../../component/single-post/single-post.component';
 import { Post } from '../../models/posts.model';
 import { combineLatest, map, tap } from 'rxjs';
-import { AddPostFormComponent } from "../../component/add-post-form/add-post-form.component";
+import { AddPostFormComponent } from '../../component/add-post-form/add-post-form.component';
 
 @Component({
   selector: 'app-alt-post',
@@ -16,7 +21,7 @@ import { AddPostFormComponent } from "../../component/add-post-form/add-post-for
 export class AltPostComponent {
   private declarativePostService = inject(PostDeclarativeService);
 
-  showAddPostForm = signal(false)
+  showAddPostForm = signal(false);
 
   // posts$ = this.declarativePostService.postsWithCategory$.pipe(
   //   tap(
@@ -38,12 +43,10 @@ export class AltPostComponent {
   );
 
   onSelectPost(post: Post) {
-    console.log(post);
     post.id && this.declarativePostService.selectPost(post.id);
   }
 
   onAddPost() {
-    this.showAddPostForm.set(true)
-    
+    this.showAddPostForm.set(true);
   }
 }

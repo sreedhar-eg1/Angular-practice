@@ -11,6 +11,11 @@
           }
         </select>
       </div>
+      <div class="col-md-8 text-end">
+        <button [routerLink]="['./add']" class="btn btn-primary" type="button">
+          Add Post
+        </button>
+      </div>
     </div>
 
     <table class="table table-success table-striped">
@@ -20,6 +25,7 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Category</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -30,6 +36,15 @@
           <td>{{ post.title }}</td>
           <td>{{ post.description }}</td>
           <td>{{ post.categoryName }}</td>
+          <td>
+            <button
+              [routerLink]="['./edit', post.id]"
+              class="btn btn-danger"
+              type="button"
+            >
+              Edit Post
+            </button>
+          </td>
         </tr>
         } }
       </tbody>
