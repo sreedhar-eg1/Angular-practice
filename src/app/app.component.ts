@@ -5,6 +5,7 @@ import { UserProfileComponent } from './basics/user-profile/user-profile.compone
 import { NgComponentOutlet } from '@angular/common';
 import { HostComponent } from './basics/host/host.component';
 import { ParentComponent } from './basics/parent/parent.component';
+import { StylesComponent } from "./basics/styles/styles.component";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { ParentComponent } from './basics/parent/parent.component';
     NgComponentOutlet,
     HostComponent,
     ParentComponent,
-  ],
+    StylesComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
