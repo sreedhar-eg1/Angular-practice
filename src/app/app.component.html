@@ -7,6 +7,7 @@
 <hr>
 
 <!-- Instead of using ngComponentOutlet we can use lazy loading -->
+ <h3>Instead of using ngComponentOutlet we can use lazy loading</h3>
 <ng-container *ngComponentOutlet="profileComponent">
   <app-admin-profile />
   <app-user-profile />
@@ -15,5 +16,10 @@
 <hr>
 
 <div>
+  <h3>Dynamicaaly rendering component using viewcontainerRef</h3>
   <app-host/>
 </div>
+
+<hr>
+<h3>Change detection strategy OnPush and default</h3>
+<app-parent />

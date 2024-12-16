@@ -1,0 +1,10 @@
+@if (number$ | async) {
+<p>
+  Child component runs on every count changes (On Push Strategy) {{ count() }}
+</p>
+<p>
+    Now it only detect changes when the data from parent component changes or on
+    any event occurs(Ex: click event) or with the help of async pipe(observable)
+  </p>
+  <p>if we use signal then there is no need of using change detection strategy</p>
+}
