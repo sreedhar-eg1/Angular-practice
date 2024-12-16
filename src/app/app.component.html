@@ -4,34 +4,51 @@
   <app-user-profile />
 </ng-container> -->
 
-<hr>
+<hr />
 
 <!-- Instead of using ngComponentOutlet we can use lazy loading -->
- <h3>Instead of using ngComponentOutlet we can use lazy loading</h3>
+<h3>Instead of using ngComponentOutlet we can use lazy loading</h3>
 <ng-container *ngComponentOutlet="profileComponent">
   <app-admin-profile />
   <app-user-profile />
 </ng-container>
 
-<hr>
+<hr />
 
 <div>
   <h3>Dynamicaaly rendering component using viewcontainerRef</h3>
-  <app-host/>
+  <app-host />
 </div>
 
-<hr>
+<hr />
 <h3>Change detection strategy OnPush and default</h3>
 <app-parent />
 
-<hr>
+<hr />
 <h3>Different types of applying style</h3>
 <app-styles />
 
-<hr>
+<hr />
 <div>
   <h3>Two way communication across the component using model</h3>
   <p>Here to achieve this, we must make use of signal</p>
-  <app-sizer [(size)]="fontSize"/>
-  <div>font size in px: {{fontSize()}}</div>
+  <app-sizer [(size)]="fontSize" />
+  <div>font size in px: {{ fontSize() }}</div>
+</div>
+
+<hr />
+<div>
+  <h3>For loop configuration: $index, $count; $first, $last, $even, $odd</h3>
+  @for (item of [1,2,3,4]; track item; let count = $count; let index = $index;
+  let first = $first; let last = $last; let even = $even; let odd = $odd) {
+  <div>
+    <span>Item: {{ item }} &nbsp;</span>
+    <span>Index: {{ index }}&nbsp;</span>
+    <span>count: {{ count }}&nbsp;</span>
+    <span>first: {{ first }}&nbsp;</span>
+    <span>last: {{ last }}&nbsp;</span>
+    <span>even: {{ even }}&nbsp;</span>
+    <span>odd: {{ odd }}&nbsp;</span>
+  </div>
+  }
 </div>
