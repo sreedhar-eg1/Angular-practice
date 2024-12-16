@@ -3,10 +3,11 @@ import { RouterOutlet } from '@angular/router';
 import { AdminProfileComponent } from "./basics/admin-profile/admin-profile.component";
 import { UserProfileComponent } from "./basics/user-profile/user-profile.component";
 import { NgComponentOutlet } from '@angular/common';
+import { HostComponent } from "./basics/host/host.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, AdminProfileComponent, UserProfileComponent, NgComponentOutlet],
+  imports: [RouterOutlet, AdminProfileComponent, UserProfileComponent, NgComponentOutlet, HostComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
