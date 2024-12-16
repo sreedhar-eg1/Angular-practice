@@ -27,3 +27,11 @@
 <hr>
 <h3>Different types of applying style</h3>
 <app-styles />
+
+<hr>
+<div>
+  <h3>Two way communication across the component using model</h3>
+  <p>Here to achieve this, we must make use of signal</p>
+  <app-sizer [(size)]="fontSize"/>
+  <div>font size in px: {{fontSize()}}</div>
+</div>

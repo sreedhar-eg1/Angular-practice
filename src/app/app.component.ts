@@ -6,6 +6,7 @@ import { NgComponentOutlet } from '@angular/common';
 import { HostComponent } from './basics/host/host.component';
 import { ParentComponent } from './basics/parent/parent.component';
 import { StylesComponent } from "./basics/styles/styles.component";
+import { SizerComponent } from "./basics/sizer/sizer.component";
 
 @Component({
   selector: 'app-root',
@@ -16,13 +17,15 @@ import { StylesComponent } from "./basics/styles/styles.component";
     NgComponentOutlet,
     HostComponent,
     ParentComponent,
-    StylesComponent
+    StylesComponent,
+    SizerComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   title = 'angular-19-feature';
+  fontSize = signal(24)
 
   isAdmin = signal(true);
   profileComponent: {
