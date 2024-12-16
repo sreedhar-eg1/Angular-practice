@@ -50,5 +50,31 @@
     <span>even: {{ even }}&nbsp;</span>
     <span>odd: {{ odd }}&nbsp;</span>
   </div>
+  } @empty {
+  <div>No items found</div>
   }
+</div>
+
+<hr />
+<div>
+  <h3>Switch Statement</h3>
+  @switch (userRole()) { @case ('admin') {
+  <div>You are an admin</div>
+  } @case ('analyst') {
+  <div>You are an analyst</div>
+  }@case ('senior analyst') {
+  <div>You are an senior analyst</div>
+  } @default {
+  <div>You are not authorized</div>
+  } }
+</div>
+
+@let role = userRole();
+@let userDetails = num$ | async;
+
+<hr>
+<div>
+  <h3>Local Template variable</h3>
+  <div>Role: {{role}}</div>
+  {{userDetails}}
 </div>
