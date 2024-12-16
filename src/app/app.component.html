@@ -1,8 +1,18 @@
 <!-- Rendering component using ngComponentOutlet -->
-<ng-container *ngComponentOutlet="getComponent()">
+<!-- <ng-container *ngComponentOutlet="getComponent()">
+  <app-admin-profile />
+  <app-user-profile />
+</ng-container> -->
+
+<hr>
+
+<!-- Instead of using ngComponentOutlet we can use lazy loading -->
+<ng-container *ngComponentOutlet="profileComponent">
   <app-admin-profile />
   <app-user-profile />
 </ng-container>
+
+<hr>
 
 <div>
   <app-host/>
