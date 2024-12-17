@@ -26,6 +26,8 @@ import { HasPermissionDirective } from './directives/has-permission.directive';
 import { DynamicListDirective } from './directives/dynamic-list.directive';
 import { ShowIfDirective } from './directives/show-if.directive';
 import { RepeatTimesDirective } from './directives/repeat-times.directive';
+import { IsDogDirective } from './directives/is-dog.directive';
+import { Animal } from './models/animal.model';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +54,8 @@ import { RepeatTimesDirective } from './directives/repeat-times.directive';
     HasPermissionDirective,
     DynamicListDirective,
     ShowIfDirective,
-    RepeatTimesDirective
+    RepeatTimesDirective,
+    IsDogDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -91,6 +94,11 @@ export class AppComponent implements OnInit {
   num$ = from(this.users)!;
 
   fillColor = signal('rgb(255, 0, 0)');
+  animal = signal<Animal>({
+    name: 'belumbuli',
+    breed: 'rot',
+    type: 'dog'
+  })
 
   getComponent() {
     return this.isAdmin() ? AdminProfileComponent : UserProfileComponent;

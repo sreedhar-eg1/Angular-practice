@@ -195,3 +195,13 @@
     <div>Repeat this for a given number of times {{ ind }}</div>
   </ng-template>
 </div>
+
+<hr />
+<div>
+  <h3>NgTemplateGaurd</h3>
+  <p>
+    Directive dont have strict typing, with the help of
+    <strong>NgTemplateGaurd</strong> we can enable strict typing
+  </p>
+  <div *appIsDog="animal()">Show only for dog {{ animal() | json }}</div>
+</div>
