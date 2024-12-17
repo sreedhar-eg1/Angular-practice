@@ -93,4 +93,44 @@
     To apply pipe to the result of ternary operator [(condition ? a : b) | pipe]
     : because pipe has higher precedence
   </div>
+  <div>
+    Whenever a value associated with pipe changes, the change detection runs
+  </div>
+  <div>
+    But whenever a value inside object changes then, we need to use impure pipe
+  </div>
+  <div>impure pipe runs for every DOM event(every keystroke)</div>
+  <h4>Impure Pipe</h4>
+  <label for="name">My Hero name</label>
+  <input
+    type="text"
+    id="name"
+    #inputBox
+    (keydown.enter)="onAdd(inputBox.value); inputBox.value = ''"
+    placeholder="Enter hero name"
+  />
+  <p>Hero List</p>
+  @for (hero of heros() | flyingHeros; track heros.name) {
+  <span>{{ hero.name + "," }}</span>
+  }
+</div>
+
+<hr />
+<div>
+  <h3>Template Reference variable</h3>
+  <p>
+    If we use reference variable inside any if block, it will be limited to that
+    block only, we cant use outside the block
+  </p>
+</div>
+
+<hr>
+<div>
+  <h3>SVG template in angular</h3>
+  <svg>
+    <g>
+      <rect width="100" height="100" [attr.fill]="fillColor()" (click)="onChangeColor()"></rect>
+      <text x="110" y="50">Click on rectangle to change color</text>
+    </g>
+  </svg>
 </div>
