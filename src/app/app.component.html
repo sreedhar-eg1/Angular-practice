@@ -198,10 +198,31 @@
 
 <hr />
 <div>
-  <h3>NgTemplateGaurd</h3>
+  <h3>NgTemplateGuard</h3>
   <p>
     Directive dont have strict typing, with the help of
     <strong>NgTemplateGaurd</strong> we can enable strict typing
   </p>
   <div *appIsDog="animal()">Show only for dog {{ animal() | json }}</div>
+</div>
+
+<hr />
+<div>
+  <h3>ngTemplateContextGuard</h3>
+  <p>
+    This is the easy way of sending multiple value: directive name appDemo, if
+    we need to send another value give <strong>appDemoUrl</strong> and use
+    <strong>url</strong> in the place where you call the directive
+  </p>
+  <div
+    *appDemo="
+      demoString();
+      url: demoUrl();
+      let version = $implicit;
+      let name = demo;
+      let demoData = url
+    "
+  >
+    This is the context {{version}} , {{name}} , {{demoData | json}}
+  </div>
 </div>

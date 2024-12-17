@@ -28,6 +28,8 @@ import { ShowIfDirective } from './directives/show-if.directive';
 import { RepeatTimesDirective } from './directives/repeat-times.directive';
 import { IsDogDirective } from './directives/is-dog.directive';
 import { Animal } from './models/animal.model';
+import { DemoDirective } from './directives/demo.directive';
+import { DemoUrl } from './models/demo.model';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +57,8 @@ import { Animal } from './models/animal.model';
     DynamicListDirective,
     ShowIfDirective,
     RepeatTimesDirective,
-    IsDogDirective
+    IsDogDirective,
+    DemoDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -97,8 +100,14 @@ export class AppComponent implements OnInit {
   animal = signal<Animal>({
     name: 'belumbuli',
     breed: 'rot',
-    type: 'dog'
-  })
+    type: 'dog',
+  });
+
+  demoString = signal('Demo String');
+  demoUrl = signal<DemoUrl>({
+    url: 'http://localhost:5000/',
+    video: false,
+  });
 
   getComponent() {
     return this.isAdmin() ? AdminProfileComponent : UserProfileComponent;

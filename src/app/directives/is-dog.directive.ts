@@ -28,7 +28,7 @@ export class IsDogDirective implements OnChanges {
     }
   }
 
-  static ngTemplateGuard__appIsDog(dir: IsDogDirective, state: Animal): state is Dog {
+  static ngTemplateGuard__appIsDog(directive: IsDogDirective, state: Animal): state is Dog {
     return true
   }
 }
