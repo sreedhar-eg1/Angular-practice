@@ -124,32 +124,57 @@
   </p>
 </div>
 
-<hr>
+<hr />
 <div>
   <h3>SVG template in angular</h3>
   <svg>
     <g>
-      <rect width="100" height="100" [attr.fill]="fillColor()" (click)="onChangeColor()"></rect>
+      <rect
+        width="100"
+        height="100"
+        [attr.fill]="fillColor()"
+        (click)="onChangeColor()"
+      ></rect>
       <text x="110" y="50">Click on rectangle to change color</text>
     </g>
   </svg>
 </div>
 
-<hr>
+<hr />
 <div>
   <h3>Directive</h3>
   <div>Two Types: Attribute and structural directive</div>
   <h5>Built-in attribute and structural directive</h5>
   <p>Attribute directive : NgClass, NgStyle, NgModel</p>
   <p>Structural directive : NgIf, NgFor, NgSwitch</p>
-  <div>When there is no element to host directive, then we can use <strong>ng-container</strong></div>
+  <div>
+    When there is no element to host directive, then we can use
+    <strong>ng-container</strong>
+  </div>
   <h3>Custom attribute directive</h3>
   <p appHighlight>Highlight text using custom attribute directive</p>
   <div>To check for event, we need to use hostListener</div>
   <div>We can pass value, and can capture it using input decorator</div>
-  <p [appHighlight]="'green'" defaultColor="orange">Highlight text using custom attribute directive by passing value</p>
+  <p [appHighlight]="'green'" defaultColor="orange">
+    Highlight text using custom attribute directive by passing value
+  </p>
   <h3>NgNonBindable</h3>
-  <div>if we use any expression inside string interpolation it gets executed, if we use NgNonBindable, then it wont get executed</div>
-  <div>Without NgNonBindable: 1 + 1 => {{1 + 1}}</div>
-  <div ngNonBindable>With NgNonBindable: {{ 1 + 1}}</div>
+  <div>
+    if we use any expression inside string interpolation it gets executed, if we
+    use NgNonBindable, then it wont get executed
+  </div>
+  <div>Without NgNonBindable: 1 + 1 => {{ 1 + 1 }}</div>
+  <div ngNonBindable>With NgNonBindable: {{ 1 + 1 }}</div>
+  <h3>Structural directive</h3>
+  <div *appHasPermission="'admin'">
+    Change template using structural directive(show if it is an admin)
+  </div>
+  <p>sending single value via input property and adding context</p>
+  <div *appDynamicList="users; let user = $user">{{ user.name }}</div>
+  <ng-template [appDynamicList]="users" [otherUsers]="altUsers" let-user let-otherUsers="otherUsers">
+    <div>
+      {{ user.name }} | Other Users: {{ otherUsers.length }}
+    </div>
+  </ng-template>
+  
 </div>

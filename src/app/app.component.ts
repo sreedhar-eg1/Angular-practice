@@ -22,6 +22,8 @@ import { GreetPipe } from './pipes/greet.pipe';
 import { ExponentPipe } from './pipes/exponent.pipe';
 import { FlyingHerosPipe } from './pipes/flying-heros.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { HasPermissionDirective } from './directives/has-permission.directive';
+import { DynamicListDirective } from './directives/dynamic-list.directive';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +46,9 @@ import { HighlightDirective } from './directives/highlight.directive';
     GreetPipe,
     ExponentPipe,
     FlyingHerosPipe,
-    HighlightDirective
+    HighlightDirective,
+    HasPermissionDirective,
+    DynamicListDirective,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -69,6 +73,15 @@ export class AppComponent implements OnInit {
       name: 'user 1',
     },
     { id: 2, name: 'user 2' },
+    { id: 3, name: 'user 3' },
+  ];
+  altUsers = [
+    {
+      id: 1,
+      name: 'user 1',
+    },
+    { id: 2, name: 'user 2' },
+    { id: 3, name: 'user 3' },
   ];
 
   num$ = from(this.users)!;
