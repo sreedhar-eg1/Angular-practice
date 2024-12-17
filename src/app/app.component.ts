@@ -2,17 +2,18 @@ import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminProfileComponent } from './basics/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './basics/user-profile/user-profile.component';
-import { AsyncPipe, NgComponentOutlet } from '@angular/common';
+import { AsyncPipe, CurrencyPipe, DatePipe, DecimalPipe, JsonPipe, NgComponentOutlet, PercentPipe, SlicePipe, UpperCasePipe } from '@angular/common';
 import { HostComponent } from './basics/host/host.component';
 import { ParentComponent } from './basics/parent/parent.component';
 import { StylesComponent } from './basics/styles/styles.component';
 import { SizerComponent } from './basics/sizer/sizer.component';
 import { from } from 'rxjs';
+import { GreetPipe } from './pipes/greet.pipe';
+import { ExponentPipe } from './pipes/exponent.pipe';
 
 @Component({
   selector: 'app-root',
   imports: [
-    RouterOutlet,
     AdminProfileComponent,
     UserProfileComponent,
     NgComponentOutlet,
@@ -20,7 +21,16 @@ import { from } from 'rxjs';
     ParentComponent,
     StylesComponent,
     SizerComponent,
-    AsyncPipe
+    AsyncPipe,
+    DatePipe,
+    UpperCasePipe,
+    CurrencyPipe,
+    DecimalPipe,
+    PercentPipe,
+    SlicePipe,
+    JsonPipe,
+    GreetPipe,
+    ExponentPipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -29,6 +39,8 @@ export class AppComponent implements OnInit {
   title = 'angular-19-feature';
   fontSize = signal(24);
   userRole = signal('admin');
+
+  todaysdate = new Date()
 
   isAdmin = signal(true);
   profileComponent: {
