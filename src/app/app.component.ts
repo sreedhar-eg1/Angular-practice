@@ -21,6 +21,7 @@ import { from } from 'rxjs';
 import { GreetPipe } from './pipes/greet.pipe';
 import { ExponentPipe } from './pipes/exponent.pipe';
 import { FlyingHerosPipe } from './pipes/flying-heros.pipe';
+import { HighlightDirective } from './directives/highlight.directive';
 
 @Component({
   selector: 'app-root',
@@ -43,6 +44,7 @@ import { FlyingHerosPipe } from './pipes/flying-heros.pipe';
     GreetPipe,
     ExponentPipe,
     FlyingHerosPipe,
+    HighlightDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
