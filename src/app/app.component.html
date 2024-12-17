@@ -171,10 +171,27 @@
   </div>
   <p>sending single value via input property and adding context</p>
   <div *appDynamicList="users; let user = $user">{{ user.name }}</div>
-  <ng-template [appDynamicList]="users" [otherUsers]="altUsers" let-user let-otherUsers="otherUsers">
-    <div>
-      {{ user.name }} | Other Users: {{ otherUsers.length }}
-    </div>
+  <p>sending multiple value via input property and adding multiple context</p>
+  <ng-template
+    [appDynamicList]="users"
+    [otherUsers]="altUsers"
+    let-user="$user"
+    let-otherUsers="$otherUsers"
+  >
+    <div>{{ user.name }} | Other Users: {{ otherUsers.length }}</div>
   </ng-template>
-  
+</div>
+
+<hr />
+<div>
+  <h3>Advance structural directive</h3>
+  <ng-template appShowIf [isVisible]="isAdmin()">
+    <div>Show template if it is true</div>
+  </ng-template>
+  <button (click)="isAdmin.set(!isAdmin())" type="button">
+    Toggle visibility
+  </button>
+  <ng-template [appRepeatTimes] [count]="5" let-ind="$index">
+    <div>Repeat this for a given number of times {{ ind }}</div>
+  </ng-template>
 </div>

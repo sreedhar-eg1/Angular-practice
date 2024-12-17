@@ -15,14 +15,16 @@ export class DynamicListDirective implements OnInit {
   private viewContainerRef = inject(ViewContainerRef);
 
   appDynamicList = input<any[]>()
-  otherUsers = input<any[]>()
+  otherUsers = input<any[] | undefined>()
 
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.otherUsers());
+    
       this.viewContainerRef.clear()
       for (const user of this.appDynamicList()!) {
-        const context = {$user: user}
+        const context = {$user: user, $otherUsers: this.otherUsers(),}
         this.viewContainerRef.createEmbeddedView(this.templateRef, context)
       }
   }

@@ -24,6 +24,8 @@ import { FlyingHerosPipe } from './pipes/flying-heros.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { HasPermissionDirective } from './directives/has-permission.directive';
 import { DynamicListDirective } from './directives/dynamic-list.directive';
+import { ShowIfDirective } from './directives/show-if.directive';
+import { RepeatTimesDirective } from './directives/repeat-times.directive';
 
 @Component({
   selector: 'app-root',
@@ -49,6 +51,8 @@ import { DynamicListDirective } from './directives/dynamic-list.directive';
     HighlightDirective,
     HasPermissionDirective,
     DynamicListDirective,
+    ShowIfDirective,
+    RepeatTimesDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -62,7 +66,7 @@ export class AppComponent implements OnInit {
 
   heros = signal<{ name: string; canFly: boolean }[]>([]);
 
-  isAdmin = signal(true);
+  isAdmin = signal(false);
   profileComponent: {
     new (): UserProfileComponent | AdminProfileComponent;
   } | null = null;
