@@ -223,6 +223,31 @@
       let demoData = url
     "
   >
-    This is the context {{version}} , {{name}} , {{demoData | json}}
+    This is the context {{ version }} , {{ name }} , {{ demoData | json }}
+  </div>
+</div>
+
+<hr />
+<div>
+  <h3>Directive Composition API</h3>
+  <p>Will allow us to apply directive to component host elememt</p>
+  <p>
+    If we have two directive and need to apply for the component, it also can be
+    done
+  </p>
+  <div>
+    <app-widget appColor appBackgroundColor />
+    <p>
+      <strong>'app-widget appColor appBackgroundColor/>'</strong> instead of
+      using like this (adding multiple directive to component host level) we can
+      make use of
+      <strong>Directive Composition API</strong>
+    </p>
+    <p>
+      So we dont need to import on each component where we need to use this
+      directive, by directly using this directive inside the host componet ts
+      file only
+    </p>
+    <p>That is with the help of <strong>host directive</strong></p>
   </div>
 </div>

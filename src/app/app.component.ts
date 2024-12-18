@@ -30,6 +30,7 @@ import { IsDogDirective } from './directives/is-dog.directive';
 import { Animal } from './models/animal.model';
 import { DemoDirective } from './directives/demo.directive';
 import { DemoUrl } from './models/demo.model';
+import { WidgetComponent } from "./basics/widget/widget.component";
 
 @Component({
   selector: 'app-root',
@@ -59,7 +60,8 @@ import { DemoUrl } from './models/demo.model';
     RepeatTimesDirective,
     IsDogDirective,
     DemoDirective,
-  ],
+    WidgetComponent,
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
