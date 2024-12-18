@@ -395,3 +395,16 @@
   <div>If we are looking at null injector, it always throws an error unless we have use {{'@optional()'}}</div>
 </div>
 
+<hr>
+<div>
+  <h3>ElementInjectors </h3>
+  <div><strong>Implicit Creation</strong> : For each DOM element like a componet app-child app-root... a element injectors has been created automatically</div>
+  <div>Which means each component, directive, template.. has its own associated element injector</div>
+  <div><strong>Hierarchy structure</strong> : heirarchy is based on DOM heirarchy</div>
+  <div>providing services in <strong>{{'@Component()'}}</strong> decorator:</div>
+  <div>We can see two providers in {{'@Component()'}}: <strong>providers</strong> and <strong>viewProviders</strong></div>
+  <div>When we provide a service in <strong>providers</strong> or <strong>viewProviders</strong> we are telling angular to create the instance of the service and also associate with its componet element injector</div>
+  <div>So if we create a service, then that service will be associated with its components element injector and also child components element injector</div>
+  <div>When component instance is destroyed, service instance also destroyed as service as associated with components element injector</div>
+</div>
+
