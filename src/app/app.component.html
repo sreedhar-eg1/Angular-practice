@@ -383,3 +383,15 @@
   <div>First is is more preffered than the second one, because optimization tool can perform tree shaking and can remove unused dependency</div>
 </div>
 
+<hr>
+<div>
+  <h3>Override Root Providers with bootstrapApplication</h3>
+  <h4>ModuleInjector</h4>
+  <div>In NgModule based application, ModuleInjector can be configured in one of the two ways</div>
+  <div>1. {{'@Injectable()'}} and giving providedIn to root or platform </div>
+  <div>2. {{'@NgModule()'}}: providers array</div>
+  <div><strong>Platform Injector</strong> There are two more injector above the root, an additional EnvironmentInjector and NullInjector()</div>
+  <div>Hierarchy : Null Injector -> EnvironmentInjector -> root EnvironmentInjector </div>
+  <div>If we are looking at null injector, it always throws an error unless we have use {{'@optional()'}}</div>
+</div>
+
