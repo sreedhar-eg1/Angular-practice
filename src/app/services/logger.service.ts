@@ -8,6 +8,6 @@ export class LoggerService implements Logger {
   constructor() {}
 
   log(message: string) {
-    console.log(message);
+    console.log('LoggerService ' +message);
   }
 }

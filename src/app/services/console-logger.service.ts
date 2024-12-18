@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class ConsoleLoggerService {
   constructor() {}
   log(message: string) {
-    console.log('log from console service' + message);
+    console.log('Console Service ' + message);
   }
 }

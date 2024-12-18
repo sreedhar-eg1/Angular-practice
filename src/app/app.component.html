@@ -298,7 +298,7 @@
     </p>
     <p>
       <strong>4 types of provider definition object:</strong>useClass,
-      useFactory, useExisting,
+      useFactory, useExisting, useValue
     </p>
     <h5>UseClass</h5>
     <p>
@@ -309,9 +309,26 @@
       {{
         "providers: [{provide: LoggerService, useClass: ConsoleLoggerService}]"
       }}
-      now loggerService has been replaced with ConsoleLoggerService on run time
+      now loggerService has been replaced with ConsoleLoggerService on run time, here replaced means along with loggerService, it will also contains the instance of the consoleLoggerService
     </p>
     <p>Here provide should be either a class or a token</p>
-    <p>To create injection Token: <strong> {{"const Logger_Token = new InjectionToken\<Logger>('logger')"}}</strong></p>
+    <p>To create injection Token: <strong> {{"const Logger_Token = new InjectionToken\<Logger\>('logger')"}}</strong></p>
   </div>
+</div>
+
+<hr>
+<div>
+  <h3>Dependency Injection Techniques: usefactory</h3>
+  <p>useFactory allows us to dynamically create instances of the services or token within our angular application</p>
+  <p>Here we need to provide a function to useFactory</p>
+  <p>If we want the instance of the service based on condition then we will using useFactory</p>
+  <div>
+    <app-weather-widget />
+  </div>
+</div>
+
+<hr>
+<div>
+  <h3>Dependency Injection Techniques: useValue and useExisting</h3>
+  <div></div>
 </div>
