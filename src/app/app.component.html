@@ -285,3 +285,33 @@
   </h5>
 </div>
 
+<hr />
+<div>
+  <h3>Dependency Techniques(DI): useClass</h3>
+  <div>
+    <p>Not only services, we can inject boolean, string, date, object... etc</p>
+    <p>
+      {{ "[{provide: LoggerService, useClass: LoggerService}]" }} here provide
+      property will holds the token that serves as a key to consume dependency
+      values, second property(here useClass) provider definition object which
+      tell injector how to create dependency value
+    </p>
+    <p>
+      <strong>4 types of provider definition object:</strong>useClass,
+      useFactory, useExisting,
+    </p>
+    <h5>UseClass</h5>
+    <p>
+      provider configuration option, which allows us to replace one dependency
+      with anothor on runtime
+    </p>
+    <p>
+      {{
+        "providers: [{provide: LoggerService, useClass: ConsoleLoggerService}]"
+      }}
+      now loggerService has been replaced with ConsoleLoggerService on run time
+    </p>
+    <p>Here provide should be either a class or a token</p>
+    <p>To create injection Token: <strong> {{"const Logger_Token = new InjectionToken\<Logger>('logger')"}}</strong></p>
+  </div>
+</div>
