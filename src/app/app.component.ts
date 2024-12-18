@@ -33,6 +33,7 @@ import { DemoUrl } from './models/demo.model';
 import { WidgetComponent } from "./basics/widget/widget.component";
 import { WeatherWidgetComponent } from "./basics/weather-widget/weather-widget.component";
 import { DiWidgetComponent } from "./basics/di-widget/di-widget.component";
+import { InjectionWidgetComponent } from "./basics/injection-widget/injection-widget.component";
 
 @Component({
   selector: 'app-root',
@@ -65,7 +66,8 @@ import { DiWidgetComponent } from "./basics/di-widget/di-widget.component";
     DemoDirective,
     WidgetComponent,
     WeatherWidgetComponent,
-    DiWidgetComponent
+    DiWidgetComponent,
+    InjectionWidgetComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
