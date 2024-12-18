@@ -236,7 +236,7 @@
     done
   </p>
   <div>
-    <app-widget color="lightPink" (colorChanged)="changedColor($event)"/>
+    <app-widget textColor="lightPink" (colorChanged)="changedColor($event)" />
     <p>
       <strong>'app-widget appColor appBackgroundColor/>'</strong> instead of
       using like this (adding multiple directive to component host level) we can
@@ -254,5 +254,34 @@
       what and all input value its is holding
     </p>
     <p>We can send output event also</p>
+    <p>
+      we can also pass alias name for the input and output in the host directive
+      itself
+    </p>
   </div>
 </div>
+
+<hr />
+<div>
+  <h3>Dependency Injection (DI)</h3>
+  <div>
+    We need to use injectable decorator to show that services can be injected
+  </div>
+  <div>Dependency injection can be provided in multiple places</div>
+  <strong>Different places</strong>
+  <div>Prefered: At application root level</div>
+  <div>At the component level</div>
+  <div>At the application root level using appConfig</div>
+  <div>NgModule based application</div>
+  <h5>
+    At application root level: Using providedIn: 'root', it will also remove
+    unused services from the registry
+  </h5>
+  <h5>
+    At component level, we need to use providers array in the component
+    decorator itself and use the service that we need, for each new instance of
+    the component new service instance is created. Even if the service is not
+    used, then also service will be included
+  </h5>
+</div>
+

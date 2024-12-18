@@ -13,10 +13,19 @@ import { BackgroundColorDirective } from '../../directives/background-color.dire
   //   BackgroundColorDirective
   // ]
   //With input values
+  // hostDirectives: [
+  //   {
+  //     directive: ColorDirective,
+  //     inputs: ['color'],
+  //     outputs: ['colorChanged']
+  //   },
+  //   BackgroundColorDirective
+  // ]
+  // Giving alias name to the input
   hostDirectives: [
     {
       directive: ColorDirective,
-      inputs: ['color'],
+      inputs: ['color: textColor'],
       outputs: ['colorChanged']
     },
     BackgroundColorDirective
