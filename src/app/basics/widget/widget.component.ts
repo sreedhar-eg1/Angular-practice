@@ -7,8 +7,18 @@ import { BackgroundColorDirective } from '../../directives/background-color.dire
   imports: [],
   templateUrl: './widget.component.html',
   styleUrl: './widget.component.scss',
+  // without any input values
+  // hostDirectives: [
+  //   ColorDirective,
+  //   BackgroundColorDirective
+  // ]
+  //With input values
   hostDirectives: [
-    ColorDirective,
+    {
+      directive: ColorDirective,
+      inputs: ['color'],
+      outputs: ['colorChanged']
+    },
     BackgroundColorDirective
   ]
 })

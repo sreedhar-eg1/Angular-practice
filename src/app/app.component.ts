@@ -148,4 +148,9 @@ export class AppComponent implements OnInit {
 
     this.fillColor.set(`rgb(${r}, ${g}, ${b}`);
   }
+
+  changedColor(event: string) {
+    console.log(event);
+    
+  }
 }

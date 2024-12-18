@@ -236,7 +236,7 @@
     done
   </p>
   <div>
-    <app-widget appColor appBackgroundColor />
+    <app-widget color="lightPink" (colorChanged)="changedColor($event)"/>
     <p>
       <strong>'app-widget appColor appBackgroundColor/>'</strong> instead of
       using like this (adding multiple directive to component host level) we can
@@ -249,5 +249,10 @@
       file only
     </p>
     <p>That is with the help of <strong>host directive</strong></p>
+    <p>
+      To send Input values: in the host directive itself, we need to specify
+      what and all input value its is holding
+    </p>
+    <p>We can send output event also</p>
   </div>
 </div>
