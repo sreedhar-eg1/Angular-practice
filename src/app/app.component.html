@@ -363,3 +363,12 @@
   <app-injection-widget />
 </div>
 
+<hr>
+<div>
+  <h3>runInInjectionContext & assertInInjectionContext</h3>
+  <div>How to inject services outside of the context(other than constructor, inject(), injectionToken, factory)</div>
+  <div>If we need to inject any services inside any method then we can use <strong>runInInjectionContext</strong>, it takes two parameter, first is an injector imported as Injector, second a callback function, inside this we need to place our logic</div>
+  <div>There is another method which is used to check injection context exist using <strong>assertInInjectionContext</strong>, if injection context doesnot exist then it will throw an error</div>
+  <app-injection-widget />
+</div>
+
