@@ -408,3 +408,15 @@
   <div>When component instance is destroyed, service instance also destroyed as service as associated with components element injector</div>
 </div>
 
+<hr>
+<div>
+  <h3>ElementInjector & EnvironmentInjector</h3>
+  <div>
+    <h4>Providers and Element Injector:</h4>
+    <div>When we use provider property in component or directive, then it will be associated with element injector</div>
+    <div>Component or directive that are present on the same element share the same element injector</div>
+    <div><strong>EnvironmentInjector </strong> : If no provider found in element hierarchy, then it move into EnvironmentInjector, This EnvironmentInjector is shared by all components in the application(application wide provider)</div>
+    <div><strong>NullInjector </strong> : If no provider in EnvironmentInjector then it throws an error</div>
+  </div>
+</div>
+
