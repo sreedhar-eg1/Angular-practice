@@ -309,7 +309,7 @@
       {{
         "providers: [{provide: LoggerService, useClass: ConsoleLoggerService}]"
       }}
-      now loggerService has been replaced with ConsoleLoggerService on run time, here replaced means along with loggerService, it will also contains the instance of the consoleLoggerService
+      now loggerService has been replaced with ConsoleLoggerService on run time
     </p>
     <p>Here provide should be either a class or a token</p>
     <p>To create injection Token: <strong> {{"const Logger_Token = new InjectionToken\<Logger\>('logger')"}}</strong></p>
@@ -330,5 +330,12 @@
 <hr>
 <div>
   <h3>Dependency Injection Techniques: useValue and useExisting</h3>
-  <div></div>
+  <div>
+    <p>If we have two service, and one service need to have the instance of other service then <strong>{{'[{ provide: MainService, useClass: ExperimentService }]'}}</strong></p>
+    <p>Here in above with the help of useClass, one instance is replaced to other on run time</p>
+    <p>If we want to have same instance for both the services then <strong>useExist</strong> can be used</p>
+    <p>If we want to supply any primitive value or object directly, then we can use <strong>useValue</strong></p>
+    <p>And also, if we use useValue, then we cant access the method or variable that exist in the service, it will get replaced by the value passed using useValue</p>
+    <app-di-widget />
+  </div>
 </div>

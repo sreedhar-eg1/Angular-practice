@@ -32,6 +32,7 @@ import { DemoDirective } from './directives/demo.directive';
 import { DemoUrl } from './models/demo.model';
 import { WidgetComponent } from "./basics/widget/widget.component";
 import { WeatherWidgetComponent } from "./basics/weather-widget/weather-widget.component";
+import { DiWidgetComponent } from "./basics/di-widget/di-widget.component";
 
 @Component({
   selector: 'app-root',
@@ -62,7 +63,8 @@ import { WeatherWidgetComponent } from "./basics/weather-widget/weather-widget.c
     IsDogDirective,
     DemoDirective,
     WidgetComponent,
-    WeatherWidgetComponent
+    WeatherWidgetComponent,
+    DiWidgetComponent
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
