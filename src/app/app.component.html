@@ -372,3 +372,14 @@
   <app-injection-widget />
 </div>
 
+<hr>
+<div>
+  <h3>Hierarchical Dependency Injection</h3>
+  <div>Two Hierarchy: <strong>EnvironmentInjector</strong> and <strong>ElementInjector</strong></div>
+  <h4>EnvironmentInjector</h4>
+  <div>It can be configured in two ways</div>
+  <div>1. {{'@Injectable()'}} and giving providedIn to root or platform </div>
+  <div>2. ApplicationConfig: providers array</div>
+  <div>First is is more preffered than the second one, because optimization tool can perform tree shaking and can remove unused dependency</div>
+</div>
+
