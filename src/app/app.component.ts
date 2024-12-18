@@ -37,6 +37,7 @@ import { DiWidgetComponent } from "./basics/di-widget/di-widget.component";
 @Component({
   selector: 'app-root',
   imports: [
+    RouterOutlet,
     AdminProfileComponent,
     UserProfileComponent,
     NgComponentOutlet,
