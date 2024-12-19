@@ -36,6 +36,7 @@ import { DiWidgetComponent } from './basics/di-widget/di-widget.component';
 import { InjectionWidgetComponent } from './basics/injection-widget/injection-widget.component';
 import { DiParentComponent } from './basics/di-parent/di-parent.component';
 import { DiService } from './services/di.service';
+import { DiProviderViewProviderComponent } from "./basics/di-provider-view-provider/di-provider-view-provider.component";
 
 @Component({
   selector: 'app-root',
@@ -71,7 +72,8 @@ import { DiService } from './services/di.service';
     DiWidgetComponent,
     InjectionWidgetComponent,
     DiParentComponent,
-  ],
+    DiProviderViewProviderComponent
+],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
   viewProviders: [DiService],

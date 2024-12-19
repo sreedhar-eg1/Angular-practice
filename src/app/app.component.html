@@ -446,3 +446,71 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>Providers vs ViewProviders</h3>
+  <div>
+    <app-di-provider-view-provider />
+    <div>logical things happened here</div>
+    <pre ngNonBindable>&#123;&#123;
+      '&lt;app-root &#64;ApplicationConfig
+        &#64;Inject(FlowerService) flower=&quot;🌺&quot;&gt;
+        &lt;#VIEW&gt;
+          &lt;p&gt;Emoji from FlowerService: &#123;&#123;flower.emoji&#125;&#125; (🌺)&lt;/p&gt;
+          &lt;app-child &#64;Provide(FlowerService=&quot;🌻&quot;)
+                    &#64;Inject(FlowerService)=&gt;&quot;🌻&quot;&gt; &lt;!-- search ends here --&gt;
+            &lt;#VIEW&gt; &lt;!-- search starts here --&gt;
+              &lt;h2&gt;Child Component&lt;/h2&gt;
+              &lt;p&gt;Emoji from FlowerService: &#123;&#123;flower.emoji&#125;&#125; (🌻)&lt;/p&gt;
+            &lt;/#VIEW&gt;
+          &lt;/app-child&gt;
+        &lt;/#VIEW&gt;
+      &lt;/app-root&gt;'
+      &#125;&#125;</pre>
+  </div>
+  <div>Using view provider, dependency injection happens inside view</div>
+  <div>Logical thing happened while using viewProvider </div>
+  <pre ngNonBindable>
+    &lt;app-root &#64;ApplicationConfig<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&#64;Inject(AnimalService) animal=&gt;&quot;🐳&quot;&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;#VIEW&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;app-child&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;#VIEW &#64;Provide(AnimalService=&quot;🐶&quot;)<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#64;Inject(AnimalService=&gt;&quot;🐶&quot;)&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- ^^using viewProviders means AnimalService is available in &lt;#VIEW&gt; --&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Emoji from AnimalService: &#123;&#123;animal.emoji&#125;&#125; (🐶)&lt;/p&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/app-child&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
+    &lt;/app-root&gt;
+  </pre>
+  <div>view providers is similar to providers, with one difference that is configured providers in viewProviders are not visible to the projected content(Ng Content) </div>
+  <h4>Final logic: View provider check dependency injection from view</h4>
+  <pre ngNonBindable>
+    &lt;app-root &#64;ApplicationConfig<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&#64;Inject(AnimalService) animal=&gt;&quot;🐳&quot;&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;#VIEW&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;app-child&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;#VIEW &#64;Provide(AnimalService=&quot;🐶&quot;)<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#64;Inject(AnimalService=&gt;&quot;🐶&quot;)&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- ^^using viewProviders means AnimalService is available in &lt;#VIEW&gt; --&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Emoji from AnimalService: &#123;&#123;animal.emoji&#125;&#125; (🐶)&lt;/p&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;container&quot;&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Content projection&lt;/h3&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;app-inspector &#64;Inject(AnimalService) animal=&gt;&quot;🐳&quot;&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Emoji from AnimalService: &#123;&#123;animal.emoji&#125;&#125; (🐳)&lt;/p&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/app-inspector&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;app-inspector&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;#VIEW &#64;Inject(AnimalService) animal=&gt;&quot;🐶&quot;&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Emoji from AnimalService: &#123;&#123;animal.emoji&#125;&#125; (🐶)&lt;/p&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/app-inspector&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/app-child&gt;<br />
+    &nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
+    &lt;/app-root&gt;
+  </pre>
+  
+</div>
+
