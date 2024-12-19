@@ -435,7 +435,7 @@
     <h4>{{'@SkipSelf()'}}</h4>
     <div>Start the search from the parent ElementInjector by skipping the current ElementInjector</div>
     <h4>{{'@host()'}}</h4>
-    <div>Designate the current component as the last stop in the injection tree when searching for services in the providers</div>
+    <div>Designate the current component as the last stop in the injection tree when searching for services in the providers(look at the host element injector)</div>
     <div>We can use any of the method together, accept ({{'@Self()'}} and {{'@host()'}}) and ({{'@SkipSelf()'}} and {{'@Self()'}}) </div>
     <div>When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array</div>
     <h4>Poviders and viewProviders</h4>
@@ -511,6 +511,20 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&lt;/#VIEW&gt;<br />
     &lt;/app-root&gt;
   </pre>
-  
+</div>
+
+<hr>
+<div>
+  <h3>Service Isolation in Angular Standalone Components</h3>
+  <div>
+    <app-villian-list />
+    <div><strong>Root App Component</strong></div>
+    @for (villan of villans(); track villan) {
+      <div>{{villan}}</div>
+  }
+  <button (click)="onAddVillan()" type="button">Add Villan</button>
+  </div>
+  <div>Here the service that injected in app and villianList component instance is not same(both have different instances)</div>
+  <div>When we try to add villan only one component gets updated, which says both component services have different instances, when we not provide services in root</div>
 </div>
 

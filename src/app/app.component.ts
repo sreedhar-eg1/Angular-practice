@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminProfileComponent } from './basics/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './basics/user-profile/user-profile.component';
@@ -37,6 +37,8 @@ import { InjectionWidgetComponent } from './basics/injection-widget/injection-wi
 import { DiParentComponent } from './basics/di-parent/di-parent.component';
 import { DiService } from './services/di.service';
 import { DiProviderViewProviderComponent } from "./basics/di-provider-view-provider/di-provider-view-provider.component";
+import { VillianListComponent } from "./basics/villian-list/villian-list.component";
+import { VillianService } from './services/villian.service';
 
 @Component({
   selector: 'app-root',
@@ -72,11 +74,13 @@ import { DiProviderViewProviderComponent } from "./basics/di-provider-view-provi
     DiWidgetComponent,
     InjectionWidgetComponent,
     DiParentComponent,
-    DiProviderViewProviderComponent
+    DiProviderViewProviderComponent,
+    VillianListComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
   viewProviders: [DiService],
+  providers: [VillianService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -126,6 +130,10 @@ export class AppComponent implements OnInit {
     video: false,
   });
 
+  // villans = signal<string[]>(inject(VillianService).getVillans())
+  villanService = inject(VillianService)
+  villans = signal<string[]>([])
+
   getComponent() {
     return this.isAdmin() ? AdminProfileComponent : UserProfileComponent;
   }
@@ -147,6 +155,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getComponentUsingLazy();
+    this.villans.set(this.villanService.getVillans())
   }
 
   onAdd(heroName: string) {
@@ -166,5 +175,9 @@ export class AppComponent implements OnInit {
 
   changedColor(event: string) {
     console.log(event);
+  }
+
+  onAddVillan() {
+    this.villanService.addVillan('Dome')
   }
 }
