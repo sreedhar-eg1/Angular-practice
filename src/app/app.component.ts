@@ -30,10 +30,12 @@ import { IsDogDirective } from './directives/is-dog.directive';
 import { Animal } from './models/animal.model';
 import { DemoDirective } from './directives/demo.directive';
 import { DemoUrl } from './models/demo.model';
-import { WidgetComponent } from "./basics/widget/widget.component";
-import { WeatherWidgetComponent } from "./basics/weather-widget/weather-widget.component";
-import { DiWidgetComponent } from "./basics/di-widget/di-widget.component";
-import { InjectionWidgetComponent } from "./basics/injection-widget/injection-widget.component";
+import { WidgetComponent } from './basics/widget/widget.component';
+import { WeatherWidgetComponent } from './basics/weather-widget/weather-widget.component';
+import { DiWidgetComponent } from './basics/di-widget/di-widget.component';
+import { InjectionWidgetComponent } from './basics/injection-widget/injection-widget.component';
+import { DiParentComponent } from './basics/di-parent/di-parent.component';
+import { DiService } from './services/di.service';
 
 @Component({
   selector: 'app-root',
@@ -67,8 +69,12 @@ import { InjectionWidgetComponent } from "./basics/injection-widget/injection-wi
     WidgetComponent,
     WeatherWidgetComponent,
     DiWidgetComponent,
-    InjectionWidgetComponent
-],
+    InjectionWidgetComponent,
+    DiParentComponent,
+  ],
+  // providers: [DiService],
+  // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
+  viewProviders: [DiService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -158,6 +164,5 @@ export class AppComponent implements OnInit {
 
   changedColor(event: string) {
     console.log(event);
-    
   }
 }

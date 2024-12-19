@@ -420,3 +420,29 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>Dependency Injection with {{'@Self and @Optional'}}</h3>
+  <div>
+    <div>If angular doesnot find the service that we are looking for {{'@Optional()'}}</div>
+    <div>Where to start looking {{'@SkipSelf()'}}</div>
+    <div>Where to stop looking {{'@Self()'}} and {{'@host()'}}</div>
+    <div>Angular resolution behavior can be modified using above methods</div>
+    <h4>{{'@Optional()'}}</h4>
+    <div>Indicates that injected service is optional, if it not resolved at runtime, return null instead of throwing an error</div>
+    <h4>{{'@Self()'}}</h4>
+    <div>Limit the search of the service to the current ElementInjector, means it doesnot trace up to find the services</div>
+    <h4>{{'@SkipSelf()'}}</h4>
+    <div>Start the search from the parent ElementInjector by skipping the current ElementInjector</div>
+    <h4>{{'@host()'}}</h4>
+    <div>Designate the current component as the last stop in the injection tree when searching for services in the providers</div>
+    <div>We can use any of the method together, accept ({{'@Self()'}} and {{'@host()'}}) and ({{'@SkipSelf()'}} and {{'@Self()'}}) </div>
+    <div>When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array</div>
+    <h4>Poviders and viewProviders</h4>
+    <div>providers: when the service provided is a child of parent component, then ehile using host dependency injection works(Its like ng-content data) otherwise we need to use viewProviders to make it work</div>
+  </div>
+  <div>
+    <app-di-parent />
+  </div>
+</div>
+
