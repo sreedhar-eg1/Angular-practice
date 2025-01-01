@@ -594,3 +594,17 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>prevent Circular dependency using forwardRef</h3>
+  <div>
+    <p>when two or more classes depend on each other directly or indirectly, creating a situaltion where angular cannot resolve the dependency</p>
+    <p>forwardRef is a way to solve this problem, which breaks circular dependency</p>
+    <p>It does this by allowing a class to refer to the another class indirectly</p>
+    <p>Here forwardRef delays the evaluation of a dependency</p>
+  </div>
+  <div>
+    <app-list></app-list>
+  </div>
+</div>
+

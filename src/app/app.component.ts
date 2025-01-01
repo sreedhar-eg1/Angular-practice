@@ -46,6 +46,7 @@ import { SportsCarComponent } from "./basics/sports-car/sports-car.component";
 import { LibCardComponent } from "./basics/lib-card/lib-card.component";
 import { LibHeaderComponent } from "./basics/lib-header/lib-header.component";
 import { BrowserStorageService } from './services/browser-storage.service';
+import { ListComponent } from "./basics/list/list.component";
 
 @Component({
   selector: 'app-root',
@@ -87,7 +88,7 @@ import { BrowserStorageService } from './services/browser-storage.service';
     CarComponent,
     SportsCarComponent,
     LibCardComponent,
-    // LibHeaderComponent
+    ListComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
