@@ -547,3 +547,30 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>Angular Tree shaking</h3>
+  <div>
+    <p>Optimizing the bundle size for application using lightwight injection token</p>
+    <h5>Optimizing the application via tree shaking</h5>
+    <p>It remove unused code from the final bundle of the client application</p>
+    <p>To make proper use of tree shaking, we need to apply injection token in particular manner</p>
+    <p><strong>Token: </strong> It is used to look up a dependency in the dependency injection system</p>
+    <p>Two scenario, which cause token to be retained, preventing tree shaking</p>
+    <p>1. While using content queries  (contentChild or contentChildren)</p>
+    <p>2. In constructor injection, where a class is injected using dependency injection</p>
+    <p><strong>Solution:</strong> Need to use kightweight injection token</p>
+  </div>
+  <div>
+    <app-lib-card>
+      <!-- comment and uncomment to see tree shacking -->
+      <!-- <app-lib-header></app-lib-header> -->
+    </app-lib-card>
+  </div>
+  <h4>Tree-Shaking and Lightweight Injection Tokens</h4>
+  <div>
+    <p>To avoid retaining of unneccessary unneccessary token and component in the final bundle, lightweight injection token are used </p>
+    <p>By creating abstract class and extending it in our component(injected in constructor or while using content queries)</p>
+  </div>
+</div>
+

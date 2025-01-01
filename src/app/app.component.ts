@@ -43,6 +43,8 @@ import { HeroTaxReturn } from './models/heroTaxReturn.model';
 import { HeroTaxComponent } from "./basics/hero-tax/hero-tax.component";
 import { CarComponent } from "./basics/car/car.component";
 import { SportsCarComponent } from "./basics/sports-car/sports-car.component";
+import { LibCardComponent } from "./basics/lib-card/lib-card.component";
+import { LibHeaderComponent } from "./basics/lib-header/lib-header.component";
 
 @Component({
   selector: 'app-root',
@@ -82,7 +84,9 @@ import { SportsCarComponent } from "./basics/sports-car/sports-car.component";
     VillianListComponent,
     HeroTaxComponent,
     CarComponent,
-    SportsCarComponent
+    SportsCarComponent,
+    LibCardComponent,
+    // LibHeaderComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
