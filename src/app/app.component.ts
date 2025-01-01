@@ -39,6 +39,10 @@ import { DiService } from './services/di.service';
 import { DiProviderViewProviderComponent } from "./basics/di-provider-view-provider/di-provider-view-provider.component";
 import { VillianListComponent } from "./basics/villian-list/villian-list.component";
 import { VillianService } from './services/villian.service';
+import { HeroTaxReturn } from './models/heroTaxReturn.model';
+import { HeroTaxComponent } from "./basics/hero-tax/hero-tax.component";
+import { CarComponent } from "./basics/car/car.component";
+import { SportsCarComponent } from "./basics/sports-car/sports-car.component";
 
 @Component({
   selector: 'app-root',
@@ -75,7 +79,10 @@ import { VillianService } from './services/villian.service';
     InjectionWidgetComponent,
     DiParentComponent,
     DiProviderViewProviderComponent,
-    VillianListComponent
+    VillianListComponent,
+    HeroTaxComponent,
+    CarComponent,
+    SportsCarComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
@@ -133,6 +140,25 @@ export class AppComponent implements OnInit {
   // villans = signal<string[]>(inject(VillianService).getVillans())
   villanService = inject(VillianService)
   villans = signal<string[]>([])
+
+  heroTaxReturns: HeroTaxReturn[] = [
+    {
+      id: 1,
+      name: 'Superman',
+      taxAmount: 1000,
+      clone: function() {
+        return {...this}
+      }
+    },
+    {
+      id: 2,
+      name: 'Batman',
+      taxAmount: 1500,
+      clone: function() {
+        return {...this}
+      }
+    }
+  ]
 
   getComponent() {
     return this.isAdmin() ? AdminProfileComponent : UserProfileComponent;

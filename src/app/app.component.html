@@ -528,3 +528,22 @@
   <div>When we try to add villan only one component gets updated, which says both component services have different instances, when we not provide services in root</div>
 </div>
 
+<hr>
+<div>
+  <h3>Isolate Services for Multiple Edit Sessions</h3>
+  <div>
+    <h4>Hero Tax Returns</h4>
+    @for (heroTaxReturn of heroTaxReturns; track heroTaxReturn.id) {
+      <app-hero-tax [taxReturn]="heroTaxReturn"></app-hero-tax>
+    }
+  </div>
+  <div>
+    <h4>Specialized Providers in Standalone Components</h4>
+    <p>When parent component provides one service, where in child component need some other service, then we need to use Specialized Providers</p>
+    <div>
+      <app-car></app-car>
+      <app-sports-car></app-sports-car>
+    </div>
+  </div>
+</div>
+
