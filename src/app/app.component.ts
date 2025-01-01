@@ -45,6 +45,7 @@ import { CarComponent } from "./basics/car/car.component";
 import { SportsCarComponent } from "./basics/sports-car/sports-car.component";
 import { LibCardComponent } from "./basics/lib-card/lib-card.component";
 import { LibHeaderComponent } from "./basics/lib-header/lib-header.component";
+import { BrowserStorageService } from './services/browser-storage.service';
 
 @Component({
   selector: 'app-root',
@@ -183,9 +184,12 @@ export class AppComponent implements OnInit {
     }
   }
 
+  private storage = inject(BrowserStorageService)
+
   ngOnInit(): void {
     this.getComponentUsingLazy();
     this.villans.set(this.villanService.getVillans())
+    this.storage.set('texting', 'added to storage')
   }
 
   onAdd(heroName: string) {
