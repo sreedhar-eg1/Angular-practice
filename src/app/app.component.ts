@@ -49,6 +49,7 @@ import { BrowserStorageService } from './services/browser-storage.service';
 import { ListComponent } from "./basics/list/list.component";
 import { ComputedSignalComponent } from "./basics/computed-signal/computed-signal.component";
 import { outputToObservable } from '@angular/core/rxjs-interop';
+import { InputSignalsComponent } from "./basics/input-signals/input-signals.component";
 
 @Component({
   selector: 'app-root',
@@ -91,7 +92,8 @@ import { outputToObservable } from '@angular/core/rxjs-interop';
     SportsCarComponent,
     LibCardComponent,
     ListComponent,
-    ComputedSignalComponent
+    ComputedSignalComponent,
+    InputSignalsComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
