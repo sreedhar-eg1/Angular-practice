@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal, viewChild } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminProfileComponent } from './basics/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './basics/user-profile/user-profile.component';
@@ -17,7 +17,7 @@ import { HostComponent } from './basics/host/host.component';
 import { ParentComponent } from './basics/parent/parent.component';
 import { StylesComponent } from './basics/styles/styles.component';
 import { SizerComponent } from './basics/sizer/sizer.component';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { GreetPipe } from './pipes/greet.pipe';
 import { ExponentPipe } from './pipes/exponent.pipe';
 import { FlyingHerosPipe } from './pipes/flying-heros.pipe';
@@ -47,6 +47,8 @@ import { LibCardComponent } from "./basics/lib-card/lib-card.component";
 import { LibHeaderComponent } from "./basics/lib-header/lib-header.component";
 import { BrowserStorageService } from './services/browser-storage.service';
 import { ListComponent } from "./basics/list/list.component";
+import { ComputedSignalComponent } from "./basics/computed-signal/computed-signal.component";
+import { outputToObservable } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-root',
@@ -88,7 +90,8 @@ import { ListComponent } from "./basics/list/list.component";
     CarComponent,
     SportsCarComponent,
     LibCardComponent,
-    ListComponent
+    ListComponent,
+    ComputedSignalComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array
@@ -97,7 +100,11 @@ import { ListComponent } from "./basics/list/list.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
+  computedSignal = viewChild<ComputedSignalComponent>('computedSignal')
+
+  convertCounterToObservable$!: Observable<number> 
+
   title = 'angular-19-feature';
   fontSize = signal(24);
   userRole = signal('admin');
@@ -191,6 +198,16 @@ export class AppComponent implements OnInit {
     this.getComponentUsingLazy();
     this.villans.set(this.villanService.getVillans())
     this.storage.set('texting', 'added to storage')
+  }
+
+  ngAfterViewInit(): void {
+      if (this.computedSignal()) {
+        this.convertCounterToObservable$ = outputToObservable(this.computedSignal()!.sendEmittedCounter)
+      }
+  }
+
+  getCounter(event: number) {
+    console.log('Observable emitted value from child component: ' + event)
   }
 
   onAdd(heroName: string) {

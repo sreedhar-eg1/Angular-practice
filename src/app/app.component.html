@@ -608,3 +608,86 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>Signals</h3>
+  <div>
+    <p>Two types of signals: <strong>Writable signals</strong> and <strong>Read only signal</strong></p>
+    <p><strong>Writable Signals:</strong> This can be updated, meaning we can both read and modify values</p>
+    <p><strong>Read only signals:</strong> This only allow reading the value, but cannit modify</p>
+  </div>
+  <hr>
+  <h4>Computed signals</h4>
+  <div>
+    <p>Its a way to derive value from other signals and also track dependencies between the signals</p>
+    <p>Its a read only signal which derive value from other signals</p>
+    <p>We must use computed() method and pass a function to use this</p>
+    <p>whenever value in signal changes, computed automatically runs and derive values based on that</p>
+    <p>we can also perform lazy evaluation and memoization</p>
+    <p><strong>Lazy evaluation:</strong>  angular does not compute their values until you actually read them</p>
+    <p><strong>Memoization:</strong> Which means they cache calculated values, means untill the signal gets changed, we get the old computed cached value</p>
+    <p>If computed signal depend on two or more signal, then if any one of them changes, then this computed block gets executed</p>
+    <div>
+      <app-computed-signal (sendEmittedCounter)="getCounter($event)" #computedSignal></app-computed-signal>
+    </div>
+  </div>
+  <hr>
+  <h4>Effects in signal</h4>
+  <div>
+    <p>effects allow us to trigger side effects when one or more signal changes, and they serve as an important tool for integrating signals into different part of an application</p>
+    <p>Effect is an function, which runs whenever a signal changes</p>
+    <p>When we create effect using effect(), angular tracks the signals used within the effect and re run the function when any one of the signal changes</p>
+    <p>first time execution will be there, so even though no signal changes, effects always execute first time</p>
+    <p>effect execute asynchronously during angular change detection process, and also effect re executes when angular finishes processing changes in the application state</p>
+    <p>Whenever we are using multiple signal inside effects which leads to error, then we ineed to use allowSignalWrites to true (Not Required on angular 19 and above)</p>
+  </div>
+  <hr>
+  <h4>Create and destroy effects</h4>
+  <div>
+    <p>Signals aloows for reactive data flow, with effects you can respond to changes in signal values</p>
+    <p>To create effect, it must be done within injection context</p>
+    <p>Creating effect in a component constructor</p>
+    <p>We can create effects by creating a variable and assigning effects to it</p>
+    <p>We can also create effect outside the constructor,</p>
+    <p>By default angular destroys the effect, when component or dervices are destroyed, we can also manully destroy the effect by providing <strong>manualCleanup</strong> to true, and manually destroying it in ngDestroy</p>
+  </div>
+  <hr>
+  <h4>Equality Functions in Angular Signals</h4>
+  <div>
+    <p>whenever we compare two signals, resul yields false, because two signals are different instances</p>
+    <p>To compare deeply we can use third party package such as loadash and set {{'{equal: isEqual}'}} as a second parameter to the siganl, here isEqual is imported from loadAsh which deep compare </p>
+  </div>
+  <hr>
+  <h4> Read Without Tracking Dependencies</h4>
+  <div>
+    <p>While using computed or effects, its crucial to control which signal read are tracked as dependencies</p>
+    <p><strong>Untracked function: </strong> allows you to read a signal without marking it as a dependency of the current reactive context</p>
+    <p>this is beneficial when we dont want to react to certain signals changes</p>
+    <p><strong>untracked(inside this method we can pass signal that need to be untracked)</strong></p>
+  </div>
+  <hr>
+  <h4>Cleanup in effects</h4>
+  <div>
+    <p>When we use effect its better to cleanup to avoid memory leaks, it can be achieved by passing cleanup function</p>
+    <p><strong>Cleanup function: </strong>Where we can write cleanup logic, which will be executed before effect run again or effect that will be destroyed</p>
+  </div>
+  <hr>
+  <h4>Rxjs Interop package</h4>
+  <div>
+    <p><strong>toSignal() method: </strong>Will convert rxjx observable to angular signals, toSignal automatically subscribe to the observable and update the siganl value as the observable emit new values</p>
+    <p>We can pass initialValue as an option(object, second parameter) to give it a initial value</p>
+    <p> by default by using toSignal gets destroyed when component gets destroyed, we can manually destroy using manualCleanup</p>
+    <p>If an observable throws an error, then we can use try catch to catch the error</p>
+    <p><strong>toObservable in Angular :</strong> which convert reactive signals into an observable</p>
+    <p>when a signal value changes, toObservable utility track the changes using the effects and emits the updated value through an observable</p>
+    <p><strong>outputFromObservable : </strong> If we have observable in child component, and whenever this observable emits data we need to send it as a event to parent component</p>
+    <p>We can achieve this using a method called outputFromObservable</p>
+    <p><strong>outputToObservable : </strong>The emitted value that was recieved in parent component can be converted into observable using outputToObservable</p>
+    <span>Converted to observable where the value is sent from child component using <strong>outputToObservable : </strong> {{ convertCounterToObservable$ | async }}</span>
+  </div>
+</div>
+
+<hr>
+<h3>Signal Input</h3>
+<div></div>
+

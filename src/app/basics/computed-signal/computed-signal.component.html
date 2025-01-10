@@ -1,0 +1,10 @@
+<p>Count: {{count()}}</p>
+<p>Double Count: {{ doubleCount() }}</p>
+
+<button (click)="onIncrement()" type="button">Increment</button>
+<button (click)="onDecrement()" type="button">Decrement</button>
+<button (click)="onCreate()" type="button">Create effect outside constructor</button>
+<button (click)="onChangeName()" type="button">Change Name</button>
+
+
+<p><strong>toSignal() method: </strong> {{ counterSignal() }}</p>
