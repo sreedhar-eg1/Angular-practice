@@ -1,0 +1,10 @@
+<h1>Grocery List</h1>
+
+<ul>
+  @for (grocery of groceryList$ | async; track grocery.id) {
+  <span>
+    <li>{{ grocery.name }}</li>
+    <a [routerLink]="['/groceries', 'edit', grocery.id]">Edit</a>
+  </span>
+  }
+</ul>
