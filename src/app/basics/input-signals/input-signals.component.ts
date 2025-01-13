@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, model } from '@angular/core';
 import { Animal } from '../../models/animal.model';
 
 @Component({
@@ -12,4 +12,9 @@ export class InputSignalsComponent {
   // user = input.required<{ name: string; breed: string; type: string }>({
   //   transform: (value: any) => ({...value, newField: 'added'}) 
   // });
+  isChecked = model(false)
+
+  toggleChecked() {
+    this.isChecked.update(value => !value)
+  }
 }

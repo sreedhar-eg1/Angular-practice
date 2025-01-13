@@ -693,6 +693,31 @@
   <p>Which allow component value to be bound to the parent componet</p>
   <p>We can make use of <strong>computed</strong> and <strong>effect</strong> along with input signal</p>
   <p>We can also transform raw value which are comming from parent component using input signal</p>
-  <app-input-signals [userRole]="userRole()"/>
+  <app-input-signals [userRole]="userRole()" [(isChecked)]="checked" (isCheckedChange)="getChangeValue($event)"/>
+</div>
+
+<hr>
+<div>
+  <h3>Model Input</h3>
+  <div>
+    <p>Which allow two way data binding within the component</p>
+    <p>When we use model, and the model name is isChecked, and we can recieve the changes in parent componet bu appending change to the end, here for isChe</p>
+    <div>Component level two way binding : {{checked()}}</div>
+  </div>
+</div>
+
+<hr>
+<div>
+  <h3>View Child and View Children</h3>
+  <div>
+    <p>Angular provide two types of queries</p>
+    <p><strong>View Queries :</strong> This retrieve results from the components own template</p>
+    <p><strong>Content Queries :</strong>This retrieve results from the content projected into the template</p>
+    <p><strong>View Child :</strong>Querying the single element or the component. retrieves single element either by a string reference (template variable) or by the component or template type<p>
+    <p #element>Get this element using viewchild</p>
+    <p #element>Get this element using viewchilden (Multiple element)</p>
+    <P>we can use signal based viewChild with computed as well as effect</P>
+    <p>We can pass the read type, i.e reading the elememt with particular type by passing read as an second parameter inside object and specifying the type</p>
+  </div>
 </div>
 

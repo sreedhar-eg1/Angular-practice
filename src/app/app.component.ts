@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnInit, signal, viewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, ElementRef, inject, OnInit, signal, viewChild, viewChildren } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AdminProfileComponent } from './basics/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './basics/user-profile/user-profile.component';
@@ -104,6 +104,8 @@ import { InputSignalsComponent } from "./basics/input-signals/input-signals.comp
 })
 export class AppComponent implements OnInit, AfterViewInit {
   computedSignal = viewChild<ComputedSignalComponent>('computedSignal')
+  element = viewChild('element', {read: ElementRef})
+  allElement = viewChildren('element')
 
   convertCounterToObservable$!: Observable<number> 
 
@@ -175,8 +177,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     }
   ]
 
+  checked = signal(false)
+
   getComponent() {
     return this.isAdmin() ? AdminProfileComponent : UserProfileComponent;
+  }
+
+  getChangeValue(event: boolean) {
+    console.log(event)
   }
 
   // With the help of lazy loading
@@ -196,6 +204,12 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   private storage = inject(BrowserStorageService)
 
+  viewEffect = effect(() => {
+    console.log(this.element())
+    console.log(this.computedSignal())
+    console.log(this.allElement())
+  })
+
   ngOnInit(): void {
     this.getComponentUsingLazy();
     this.villans.set(this.villanService.getVillans())
@@ -205,7 +219,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
       if (this.computedSignal()) {
         this.convertCounterToObservable$ = outputToObservable(this.computedSignal()!.sendEmittedCounter)
+        // console.log('Computed Signal component using viewChild' + this.computedSignal());
       }
+
+      // if(this.element()) {
+      //   console.log('Element using viewChild' + this.element());
+      // }
   }
 
   getCounter(event: number) {
