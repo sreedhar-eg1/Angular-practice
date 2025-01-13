@@ -9,13 +9,25 @@ import { ErrorHandler, inject } from '@angular/core';
 import { ChildAComponent } from './child-a/child-a.component';
 import { ChildBComponent } from './child-b/child-b.component';
 
+// passing dynamic title using resolve function (promise resolve)
+const resolveChildATitle = () => {
+  return Promise.resolve('Child A Dynamic title');
+};
+
 export const routes: Routes = [
   { path: '', redirectTo: 'groceries/123', pathMatch: 'full' },
   {
     path: 'first-component',
     component: FirstComponent,
+    // passing title
+    title: 'First Component',
     children: [
-      { path: 'child-a', component: ChildAComponent },
+      {
+        path: 'child-a',
+        component: ChildAComponent,
+        // title with the help of resolve promise
+        title: resolveChildATitle,
+      },
       { path: 'child-b', component: ChildBComponent },
     ],
   },
