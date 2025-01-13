@@ -50,6 +50,8 @@ import { ListComponent } from "./basics/list/list.component";
 import { ComputedSignalComponent } from "./basics/computed-signal/computed-signal.component";
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import { InputSignalsComponent } from "./basics/input-signals/input-signals.component";
+import { ContentComponent } from "./basics/content/content.component";
+import { ContentProjectionComponent } from "./basics/content-projection/content-projection.component";
 
 @Component({
   selector: 'app-root',
@@ -93,7 +95,9 @@ import { InputSignalsComponent } from "./basics/input-signals/input-signals.comp
     LibCardComponent,
     ListComponent,
     ComputedSignalComponent,
-    InputSignalsComponent
+    InputSignalsComponent,
+    ContentComponent,
+    ContentProjectionComponent
 ],
   // providers: [DiService],
   // When we are using host while using dependency injection, then we cant provide service in providers array, we should provide it in viewproviders array

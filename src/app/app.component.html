@@ -721,3 +721,17 @@
   </div>
 </div>
 
+<hr>
+<div>
+  <h3>Content Queries: contentChild & contentChildren</h3>
+  <div>
+    <p>Allow a component to access child elements that are projected into its content from a parent component</p>
+    <app-content>
+      <h5 #h5>This is the header projected from parent component</h5>
+      <h5 #h5>This is the header projected from parent component to access multiple using contentChilden </h5>
+      <p>By default queries return only the direct children, to get the descendent we need to pass some options, i.e by passing descendent to true, for component, we dont need to pass this option</p>
+      <app-content-projection></app-content-projection>
+    </app-content>
+  </div>
+</div>
+
