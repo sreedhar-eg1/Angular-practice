@@ -6,23 +6,34 @@ import { EditGroceryitemComponent } from './edit-groceryitem/edit-groceryitem.co
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { UserComponent } from './user/user.component';
 import { ErrorHandler, inject } from '@angular/core';
+import { ChildAComponent } from './child-a/child-a.component';
+import { ChildBComponent } from './child-b/child-b.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'groceries/123', pathMatch: 'full' },
-  { path: 'first-component', component: FirstComponent },
+  {
+    path: 'first-component',
+    component: FirstComponent,
+    children: [
+      { path: 'child-a', component: ChildAComponent },
+      { path: 'child-b', component: ChildBComponent },
+    ],
+  },
   { path: 'second-component', component: SecondComponent },
   { path: 'user/:userId', component: UserComponent },
   //   Dynamic redirect
   {
     path: 'old-user-page',
-    redirectTo: ({queryParams}) => {
-        const errorHandler = inject(ErrorHandler)
-        const userIdparams = queryParams['userId']
-        if (userIdparams) {
-            return `user/${userIdparams}`
-        } else {
-            errorHandler.handleError(new Error('Attempted navigation to user page without user ID'))
-        }
+    redirectTo: ({ queryParams }) => {
+      const errorHandler = inject(ErrorHandler);
+      const userIdparams = queryParams['userId'];
+      if (userIdparams) {
+        return `user/${userIdparams}`;
+      } else {
+        errorHandler.handleError(
+          new Error('Attempted navigation to user page without user ID')
+        );
+      }
       return 'not-found';
     },
   },

@@ -1,1 +1,9 @@
-<p>first works!</p>
+<h3>First Component with nested child</h3>
+<nav>
+  <ul>
+    <li><a [routerLink]="['child-a']" routerLinkActive="active" >Child A</a></li>
+    <li><a [routerLink]="['child-b']" routerLinkActive="active" >Child B</a></li>
+  </ul>
+</nav>
+
+<router-outlet></router-outlet>
