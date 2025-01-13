@@ -5,8 +5,15 @@ import { GroceryListComponent } from './grocery-list/grocery-list.component';
 import { EditGroceryitemComponent } from './edit-groceryitem/edit-groceryitem.component';
 
 export const routes: Routes = [
-    {path: 'first-component', component: FirstComponent},
-    {path: 'second-component', component: SecondComponent},
-    {path: 'groceries', component: GroceryListComponent},
-    {path: 'groceries/edit/:id', component: EditGroceryitemComponent}
+  { path: 'first-component', component: FirstComponent },
+  { path: 'second-component', component: SecondComponent },
+  // {path: 'groceries', component: GroceryListComponent},
+  // {path: 'groceries/edit/:id', component: EditGroceryitemComponent}
+  {
+    path: 'groceries/:categoryId',
+    component: GroceryListComponent,
+    children: [
+      { path: 'details/:id', component: EditGroceryitemComponent },
+    ],
+  },
 ];

@@ -1,4 +1,10 @@
-@if (grocery$ | async; as grocery) {
+<!-- @if (grocery$ | async; as grocery) {
+    <div>
+        <h1>{{grocery.name}}</h1>
+    </div>
+} -->
+
+@if (grocerySignal(); as grocery) {
     <div>
         <h1>{{grocery.name}}</h1>
     </div>

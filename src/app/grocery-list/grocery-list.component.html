@@ -1,10 +1,13 @@
 <h1>Grocery List</h1>
 
 <ul>
-  @for (grocery of groceryList$ | async; track grocery.id) {
+  @for (grocery of groceryListSignal(); track grocery.id) {
   <span>
-    <li>{{ grocery.name }}</li>
-    <a [routerLink]="['/groceries', 'edit', grocery.id]">Edit</a>
+    <li>{{ grocery.name }}
+    <!-- <a [routerLink]="['/groceries', 'edit', grocery.id]">Edit</a></li> -->
+    <a [routerLink]="['details', grocery.id]">Edit</a></li>
   </span>
   }
 </ul>
+
+<router-outlet></router-outlet>
