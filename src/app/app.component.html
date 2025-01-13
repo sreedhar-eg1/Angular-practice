@@ -735,3 +735,10 @@
   </div>
 </div>
 
+<hr>
+<h3>No More Undefined Values in Your Components</h3>
+<div>
+  <p>When angular builds a component, there is a period where signal query has been created, but template has not been fully processed, during this time query will return undefined for single query and empty array for multiple query</p>
+  <p><strong>Query declaration and usage : </strong> we can only declare signal based queries in class class properties, These functions should not be called in other parts of the component(e,g in constructor)</p>
+</div>
+
