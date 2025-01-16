@@ -6,7 +6,13 @@ import { Injectable, signal } from '@angular/core';
 export class AuthenticationService {
   private loggedIn = signal(false);
 
+  private role = signal('admin')
+
   constructor() {}
+
+  getRole() {
+    return this.role()
+  }
 
   hasPermission() {
     return false

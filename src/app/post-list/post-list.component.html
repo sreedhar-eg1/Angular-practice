@@ -1,0 +1,16 @@
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (post of posts; track post.id) {
+            <tr>
+                <td>{{post.title}}</td>
+                <td>{{post.body}}</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -18,6 +18,9 @@ import { authGuard } from './gaurds/auth.guard';
 import { hasPermissionGuard } from './gaurds/has-permission.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { userGuard } from './gaurds/user.guard';
+import { adminGuard } from './gaurds/admin.guard';
+import { PostListComponent } from './post-list/post-list.component';
+import { postResolver } from './gaurds/postResolver';
 
 // passing dynamic title using resolve function (promise resolve)
 const resolveChildATitle = () => {
@@ -30,13 +33,15 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home/item', component: ItemComponent },
   // Sending and Capturing the Dynamic Route Params
-  { path: 'hero', component: HeroListComponent },
+  { path: 'hero', component: HeroListComponent, canMatch: [adminGuard] },
   { path: 'hero/:id', component: HeroDetailComponent },
   // CanActivate gaurd
   {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'login', component: LoginComponent},
   // canDeactivate
   {path: 'user-profile', component: UserProfileComponent, canDeactivate: [userGuard]},
+  // Resolve function
+  {path: 'posts', component: PostListComponent, resolve: {posts: postResolver}},
   {
     path: 'first-component',
     component: FirstComponent,
