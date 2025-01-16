@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import {
+  PreloadingStrategy,
   provideRouter,
   TitleStrategy,
   withComponentInputBinding,
@@ -15,7 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withRouterConfig({ paramsInheritanceStrategy: 'always' }),
-      withComponentInputBinding()
+      withComponentInputBinding(),
     ),
     {provide: TitleStrategy, useClass: TemplatePageTitleStrategyService}
   ],

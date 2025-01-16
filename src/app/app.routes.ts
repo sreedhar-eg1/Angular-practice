@@ -24,8 +24,8 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home/item', component: ItemComponent },
   // Sending and Capturing the Dynamic Route Params
-  {path: 'hero', component: HeroListComponent },
-  {path: 'hero/:id', component: HeroDetailComponent},
+  { path: 'hero', component: HeroListComponent },
+  { path: 'hero/:id', component: HeroDetailComponent },
   {
     path: 'first-component',
     component: FirstComponent,
@@ -38,7 +38,13 @@ export const routes: Routes = [
         // title with the help of resolve promise
         title: resolveChildATitle,
       },
-      { path: 'child-b', component: ChildBComponent },
+      {
+        path: 'child-b',
+        loadComponent: () =>
+          import('../app/child-b/child-b.component').then(
+            (comp) => comp.ChildBComponent
+          ),
+      },
     ],
   },
   { path: 'second-component', component: SecondComponent },
