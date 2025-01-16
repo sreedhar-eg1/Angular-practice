@@ -12,6 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
 import { HeroListComponent } from './hero-list/hero-list.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { authGuard } from './gaurds/auth.guard';
+import { hasPermissionGuard } from './gaurds/has-permission.guard';
 
 // passing dynamic title using resolve function (promise resolve)
 const resolveChildATitle = () => {
@@ -19,16 +23,20 @@ const resolveChildATitle = () => {
 };
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'groceries/123', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   // RelativeRoutes
   { path: 'home', component: HomeComponent },
   { path: 'home/item', component: ItemComponent },
   // Sending and Capturing the Dynamic Route Params
   { path: 'hero', component: HeroListComponent },
   { path: 'hero/:id', component: HeroDetailComponent },
+  // CanActivate gaurd
+  {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
+  {path: 'login', component: LoginComponent},
   {
     path: 'first-component',
     component: FirstComponent,
+    canActivateChild: [hasPermissionGuard],
     // passing title
     title: 'First Component',
     children: [
