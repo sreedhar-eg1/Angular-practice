@@ -1,0 +1,8 @@
+<h4>User Profile</h4>
+
+<div>
+    <label for="text-box">Username</label>
+    <input type="text" name="text-box" id="text-box" [(ngModel)]="username" (input)="onChange($event)">
+</div>
+
+<a [routerLink]="['/dashboard']" >Back to dashboard</a>

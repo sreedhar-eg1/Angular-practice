@@ -16,6 +16,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { authGuard } from './gaurds/auth.guard';
 import { hasPermissionGuard } from './gaurds/has-permission.guard';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { userGuard } from './gaurds/user.guard';
 
 // passing dynamic title using resolve function (promise resolve)
 const resolveChildATitle = () => {
@@ -33,6 +35,8 @@ export const routes: Routes = [
   // CanActivate gaurd
   {path: 'dashboard', component: DashboardComponent, canActivate: [authGuard]},
   {path: 'login', component: LoginComponent},
+  // canDeactivate
+  {path: 'user-profile', component: UserProfileComponent, canDeactivate: [userGuard]},
   {
     path: 'first-component',
     component: FirstComponent,
