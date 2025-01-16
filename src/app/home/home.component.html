@@ -1,0 +1,6 @@
+<p>How relative route works</p>
+<p>If we dont pass forward slash at beginning of the route, then that route gets appended to current route</p>
+
+<!-- <a [routerLink]="['/home/item']" >Go to Item</a> -->
+<a [routerLink]="['item']" >Go to Item</a>
+<button (click)="goToItem()" type="button">Go to Item</button>

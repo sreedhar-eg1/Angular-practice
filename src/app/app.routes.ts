@@ -8,6 +8,8 @@ import { UserComponent } from './user/user.component';
 import { ErrorHandler, inject } from '@angular/core';
 import { ChildAComponent } from './child-a/child-a.component';
 import { ChildBComponent } from './child-b/child-b.component';
+import { HomeComponent } from './home/home.component';
+import { ItemComponent } from './item/item.component';
 
 // passing dynamic title using resolve function (promise resolve)
 const resolveChildATitle = () => {
@@ -16,6 +18,9 @@ const resolveChildATitle = () => {
 
 export const routes: Routes = [
   { path: '', redirectTo: 'groceries/123', pathMatch: 'full' },
+  // RelativeRoutes
+  { path: 'home', component: HomeComponent },
+  { path: 'home/item', component: ItemComponent },
   {
     path: 'first-component',
     component: FirstComponent,
