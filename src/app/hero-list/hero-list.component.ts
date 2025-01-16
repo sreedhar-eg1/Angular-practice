@@ -7,16 +7,20 @@ import { ActivatedRoute, Router } from '@angular/router';
   selector: 'app-hero-list',
   imports: [AsyncPipe],
   templateUrl: './hero-list.component.html',
-  styleUrl: './hero-list.component.scss'
+  styleUrl: './hero-list.component.scss',
 })
 export class HeroListComponent {
-  private heroservice = inject(HeroService)
-  private router = inject(Router)
-  private route = inject(ActivatedRoute)
+  private heroservice = inject(HeroService);
+  private router = inject(Router);
+  private route = inject(ActivatedRoute);
 
-  heroes$ = this.heroservice.getHeroes()
+  heroes$ = this.heroservice.getHeroes();
 
   goToHero(hero: Hero) {
-    this.router.navigate([hero.id], {relativeTo: this.route})
+    this.router.navigate([hero.id], {
+      relativeTo: this.route,
+      queryParams: { id: hero.id },
+      fragment: hero.name
+    });
   }
 }

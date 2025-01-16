@@ -1,4 +1,6 @@
 @if (hero$ | async; as hero) {
     <p>{{hero.name}}</p>
     <p>{{hero.description}}</p>
+
+    <a [routerLink]="['/hero', hero.id]" [queryParams]="{'id': 2}" [fragment]="hero.name">Go to batman</a>
 }
