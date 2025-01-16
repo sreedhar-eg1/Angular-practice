@@ -1,0 +1,5 @@
+<ul>
+    @for (hero of heroes$ | async; track hero.id) {
+        <li (click)="goToHero(hero)">{{hero.name}}</li>
+    }
+</ul>

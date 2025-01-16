@@ -10,6 +10,8 @@ import { ChildAComponent } from './child-a/child-a.component';
 import { ChildBComponent } from './child-b/child-b.component';
 import { HomeComponent } from './home/home.component';
 import { ItemComponent } from './item/item.component';
+import { HeroListComponent } from './hero-list/hero-list.component';
+import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 
 // passing dynamic title using resolve function (promise resolve)
 const resolveChildATitle = () => {
@@ -21,6 +23,9 @@ export const routes: Routes = [
   // RelativeRoutes
   { path: 'home', component: HomeComponent },
   { path: 'home/item', component: ItemComponent },
+  // Sending and Capturing the Dynamic Route Params
+  {path: 'hero', component: HeroListComponent },
+  {path: 'hero/:id', component: HeroDetailComponent},
   {
     path: 'first-component',
     component: FirstComponent,
