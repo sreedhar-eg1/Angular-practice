@@ -1,0 +1,82 @@
+<h3>Simple reactive Form</h3>
+<form [formGroup]="profileForm" class="mx-auto" style="width: 30%;" (ngSubmit)="onSubmit()">
+    <div class="my-3">
+        <label for="formGroupFirstName" class="form-label">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupFirstName"
+          placeholder="First Name"
+          formControlName="firstName"
+        />
+      </div>
+      <div class="my-3">
+        <label for="formGroupLastName" class="form-label">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="formGroupLastName"
+          placeholder="Last Name"
+          formControlName="lastName"
+        />
+      </div>
+      <div formGroupName="address">
+        <div class="my-3">
+            <label for="formGroupStreet" class="form-label">Street</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupStreet"
+              placeholder="Street"
+              formControlName="street"
+            />
+          </div>
+          <div class="my-3">
+            <label for="formGroupCity" class="form-label">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupCity"
+              placeholder="City"
+              formControlName="city"
+            />
+          </div>
+          <div class="my-3">
+            <label for="formGroupState" class="form-label">State</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupState"
+              placeholder="State"
+              formControlName="state"
+            />
+          </div>
+          <div class="my-3">
+            <label for="formGroupZip" class="form-label">Zip</label>
+            <input
+              type="text"
+              class="form-control"
+              id="formGroupZip"
+              placeholder="Zip"
+              formControlName="zip"
+            />
+          </div>
+      </div>
+      <div formArrayName="aliases">
+        <h5>Aliases</h5>
+        <button (click)="onAddAliases()" class="btn btn-warning" type="button">Add Aliases</button>
+        @for (alias of aliases.controls; track $index; let i = $index) {
+          <div [formGroupName]="i" class="my-3">
+              <label [for]="'alias' + i" class="form-label">Alias {{ i }}</label>
+              <input
+                type="text"
+                class="form-control"
+                [id]="'alias' + i"
+                [placeholder]="'Alias' + i"
+                formControlName="alias"
+              />
+            </div>
+        }
+      </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+</form>

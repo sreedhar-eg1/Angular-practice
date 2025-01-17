@@ -1,0 +1,12 @@
+<div class="my-3 mx-3" style="width: 30%;">
+  <label for="formGroupExampleInput" class="form-label">Color - Reactive Form</label>
+  <input
+    type="text"
+    class="form-control"
+    id="formGroupExampleInput"
+    placeholder="Example input placeholder"
+    [formControl]="favoriteColor"
+  />
+</div>
+
+<p>Favorite Color : {{favoriteColor.value}}</p>

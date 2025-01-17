@@ -1,0 +1,14 @@
+<div class="my-3 mx-3" style="width: 30%;">
+    <label for="formGroupExampleInput" class="form-label">Color - Template Form</label>
+    <input
+      type="text"
+      class="form-control"
+      id="formGroupExampleInput"
+      placeholder="Example input placeholder"
+      [(ngModel)]="favoriteColor"
+      #colorInput="ngModel"
+    />
+  </div>
+  
+  <h5>Favorite Color : {{favoriteColor()}}</h5>
+  
