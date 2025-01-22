@@ -1,0 +1,39 @@
+<h3>Reactive Form with strict type</h3>
+<form
+  [formGroup]="userLoginForm"
+  class="mx-auto"
+  style="width: 30%"
+  (ngSubmit)="onSubmit()"
+>
+  <div class="my-3">
+    <label for="formGroupName" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="formGroupName"
+      placeholder="Name"
+      formControlName="name"
+    />
+  </div>
+  <div class="my-3">
+    <label for="formGroupAge" class="form-label">Age</label>
+    <input
+      type="text"
+      class="form-control"
+      id="formGroupAge"
+      placeholder="Age"
+      formControlName="age"
+    />
+  </div>
+  <div class="my-3">
+    <label for="formGroupEmail" class="form-label">Email</label>
+    <input
+      type="text"
+      class="form-control"
+      id="formGroupEmail"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>
