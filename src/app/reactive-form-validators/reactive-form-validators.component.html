@@ -1,0 +1,68 @@
+<div class="container">
+  <h3>Reactive Form validators</h3>
+  <form [formGroup]="actorForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="formGroupName" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="formGroupName"
+        formControlName="name"
+        placeholder="Example input placeholder"
+      />
+      @if (name.invalid && (name.touched || name.dirty)) { @if
+      (name.hasError('required')) {
+      <div class="alert alert-danger mt-1">Name is required!</div>
+      } @if (name.hasError('minlength')) {
+      <div class="alert alert-danger mt-1">
+        Name should me minimum of 4 character!
+      </div>
+      } @if (name.hasError('forbidden')) {
+      <div class="alert alert-danger mt-1">This name is not allowed</div>
+      } }
+    </div>
+    <div class="mb-3">
+      <label for="formGroupRole" class="form-label">Role</label>
+      <input
+        type="text"
+        class="form-control"
+        name="role"
+        id="formGroupRole"
+        formControlName="role"
+        placeholder="Example input placeholder"
+      />
+      @if (role.pending) {
+      <p>Checking availability of role</p>
+      } @if (role.hasError('uniqueRole')) {
+      <div class="alert alert-danger mt-1">This role cant be used, use another role!</div>
+      }
+    </div>
+    <div class="mb-3">
+      <label for="formGroupSkill" class="form-label">Skill</label>
+      <input
+        type="text"
+        class="form-control"
+        name="skill"
+        id="formGroupSkill"
+        formControlName="skill"
+        placeholder="Example input placeholder"
+      />
+      @if (skill.invalid && (skill.touched || skill.dirty)) { @if
+      (skill.hasError('required')) {
+      <div class="alert alert-danger mt-1">Skill is required!</div>
+      } }
+    </div>
+    @if (actorForm.hasError('mustNotMatch') && (actorForm.touched ||
+    actorForm.dirty)) {
+    <div class="alert alert-danger mt-1">Name and Skill must be different!</div>
+    }
+    <button
+      [disabled]="actorForm.invalid"
+      class="btn btn-primary"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+</div>

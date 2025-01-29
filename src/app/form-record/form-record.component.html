@@ -1,0 +1,17 @@
+<h4>Form Record</h4>
+@for (address of getAddresses(); track $index) {
+<div class="mb-3">
+  <label for="exampleInputEmail1" class="form-label">{{ address }}</label>
+  <input
+    [formControl]="addresses.controls[address]"
+    type="email"
+    class="form-control"
+    id="exampleInputEmail1"
+    aria-describedby="emailHelp"
+  />
+</div>
+}
+
+<button (click)="addAddress()" class="btn btn-primary" type="button">
+  Add Address
+</button>

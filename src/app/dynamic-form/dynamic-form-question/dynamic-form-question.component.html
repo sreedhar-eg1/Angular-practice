@@ -1,0 +1,24 @@
+<div class="mb-3" [formGroup]="form()!">
+    <label [for]="question().key" class="form-label">{{
+      question().label
+    }}</label>
+    @if (question().controlType === 'textbox') {
+        <input
+          [formControlName]="question().key"
+          type="text"
+          class="form-control"
+          [id]="question().key"
+          [placeholder]="question().label"
+        />
+    } @else if (question().controlType === 'dropdown') {
+        <select class="form-select" [formControlName]="question().key" [name]="question().key" [id]="question().key">
+            @for (option of question().options; track option.key) {
+                <option [value]="option.key">{{option.value}}</option>
+            }
+        </select>
+    }
+
+    @if (isValid) {
+        <div class="alert alert-danger mt-2">{{question().label}} is not valid</div>
+    }
+  </div>

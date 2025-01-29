@@ -1,0 +1,94 @@
+<div class="container">
+  <h3>Actor Form using template driven approach</h3>
+  <form #actorForm="ngForm" (ngSubmit)="onSubmit(actorForm)" appMustNotMatchTemp ngNativeValidate>
+    <div class="mb-3">
+      <label for="formGroupName" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="formGroupName"
+        #name="ngModel"
+        [(ngModel)]="model.name"
+        appForbiddenName="sreedhar"
+        placeholder="Example input placeholder"
+        required
+      />
+    </div>
+    @if (name.invalid && (name.touched || name.dirty)) { 
+      @if (name.hasError('required')) {
+        <div class="alert alert-danger">Name is required</div>} 
+      } 
+      @if (name.hasError('fordiddenName')) {
+        <div class="alert alert-danger">This name is not allowed</div>
+      }
+      <div class="mb-3">
+        <label for="formGroupRole" class="form-label">Role</label>
+        <input
+          type="text"
+          class="form-control"
+          name="role"
+          id="formGroupRole"
+          #role="ngModel"
+          appUniqueRoletemp
+          [(ngModel)]="model.role"
+          placeholder="Example input placeholder"
+          [ngModelOptions]="{updateOn: 'blur'}"
+          required
+        />
+      </div>
+      @if (role.pending) {
+        <p>Checking availability of role</p>
+      } 
+      @if (role.hasError('uniqueRole')) {
+        <div class="alert alert-danger mt-1">This role cant be used, use another role!</div>
+      }
+      @if (role.invalid && (role.touched || role.dirty)) { 
+        @if (role.hasError('required')) {
+          <div class="alert alert-danger">Name is required</div>
+        } 
+        @if (role.hasError('fordiddenName')) {
+          <div class="alert alert-danger">This name is not allowed</div>
+        }
+      }
+    <div class="mb-3">
+      <label for="formGroupStudio" class="form-label">Studio</label>
+      <input
+        type="text"
+        class="form-control"
+        name="studio"
+        id="formGroupStudio"
+        [(ngModel)]="model.studio"
+        placeholder="Example input placeholder"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="formGroupSkills" class="form-label">Skills</label>
+      <select
+        name="skills"
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="model.skill"
+        required
+      >
+        @for (skill of skills; track skill) {
+        <option [value]="skill">{{ skill }}</option>
+        }
+      </select>
+    </div>
+    @if (actorForm.hasError('mustNotMatch') && (actorForm.touched || actorForm.dirty)) {
+      <div class="alert alert-danger mt-1">Name and Skill must be different!</div>
+      }
+    <button [disabled]="actorForm.invalid" class="btn btn-primary me-2" type="submit">Submit</button>
+    <button
+      (click)="onAddActor(); actorForm.reset()"
+      class="btn btn-secondary"
+      type="button"
+    >
+      Add Actor
+    </button>
+  </form>
+  <div>
+    {{ model | json }}
+  </div>
+</div>

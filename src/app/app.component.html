@@ -1,7 +1,27 @@
-<!-- <app-reactive-form />
+<app-reactive-form />
 
-<app-template-form></app-template-form> -->
+<hr>
+<app-template-form></app-template-form>
+<hr>
 
-<!-- <app-name-editor></app-name-editor> -->
+<app-name-editor></app-name-editor>
+<hr>
 
 <app-user-login></app-user-login>
+<hr>
+
+<app-form-record></app-form-record>
+<hr>
+
+<app-actor-form></app-actor-form>
+<hr>
+
+<app-reactive-form-validators></app-reactive-form-validators>
+
+<hr>
+<h3>Dynamic Form(Final)</h3>
+@if (questions$ | async; as questions) {
+    <app-dynamic-form [questions]="questions!"></app-dynamic-form>
+}
+
+

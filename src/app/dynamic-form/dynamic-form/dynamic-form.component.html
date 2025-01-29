@@ -1,0 +1,8 @@
+<div class="container">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        @for (question of questions(); track question.key) {
+        <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
+        }
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
