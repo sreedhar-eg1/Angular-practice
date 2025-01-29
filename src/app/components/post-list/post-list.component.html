@@ -1,0 +1,6 @@
+<h5>Post List</h5>
+<ul class="list-group">
+    @for (post of posts$ | async; track post.id) {
+        <li class="list-group-item">{{post.title}}</li>
+    }
+  </ul>
