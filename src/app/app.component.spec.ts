@@ -1,29 +1,41 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import {
+  HttpTestingController,
+  provideHttpClientTesting,
+} from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AppComponent', () => {
+  let componentFixture: ComponentFixture<AppComponent>;
+  let httpTestingController: HttpTestingController;
+  let component: AppComponent;
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [provideHttpClient, provideHttpClientTesting],
     }).compileComponents();
+    componentFixture = TestBed.createComponent(AppComponent)
+    httpTestingController = TestBed.inject(HttpTestingController)
+    component = componentFixture.componentInstance
+    componentFixture.detectChanges
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  it('Should make a call and update the data', () => {
+    const mockResponse = {data: {
+      "userId": 1,
+      "id": 1,
+      "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+      "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+    }}
+    component.onFetch()
 
-  it(`should have the 'angular-19-http' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('angular-19-http');
-  });
+    const req = httpTestingController.expectOne('https://jsonplaceholder.typicode.com/posts/1')
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, angular-19-http');
-  });
+    expect(req.request.method).toBe('GET')
+    req.flush(mockResponse)
+
+    expect(component.post()).toEqual(mockResponse.data)
+  })
 });

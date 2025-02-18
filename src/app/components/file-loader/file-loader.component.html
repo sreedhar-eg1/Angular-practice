@@ -1,0 +1,28 @@
+<div class="container">
+  <form [formGroup]="fileForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Upload file</label>
+      <input
+        class="form-control"
+        type="file"
+        id="formFile"
+        formControlName="file"
+        (change)="onFileSelected($event)"
+      />
+    </div>
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </form>
+  @if (progress() >= 0) {
+  <div
+    class="progress"
+    role="progressbar"
+    aria-label="Example with label"
+    [attr.aria-valuenow]="progress()"
+    aria-valuemin="0"
+    aria-valuemax="100"
+  >
+    <div class="progress-bar" [ngStyle]="{width: progress() + '' + '%'}">{{progress()}} %</div>
+  </div>
+
+  }
+</div>

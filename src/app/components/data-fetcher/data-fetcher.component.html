@@ -1,0 +1,22 @@
+<h3>Different types of response type</h3>
+
+<div>
+    <button class="btn btn-primary mb-3" (click)="onFetchJson()" type="button">Fetch Json data</button>
+    @if (singlePost$ | async; as post) {
+        <pre>{{post | json}}</pre>
+    }
+</div>
+
+<div>
+    <button class="btn btn-secondary mb-3" (click)="onFetchText()" type="button">Fetch text data</button>
+    @if (sampleText()) {
+        <p>{{sampleText()}}</p>
+    }
+</div>
+
+<div>
+    <button class="btn btn-info mb-3" (click)="onFetchImage()" type="button">Fetch Image</button>
+    @if (imageData()) {
+        <p>{{imageData().byteLength}}</p>
+    }
+</div>

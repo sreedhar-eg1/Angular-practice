@@ -1,3 +1,21 @@
 <div class="container">
-  <app-post-list></app-post-list>
+  <!-- <app-post-list></app-post-list> -->
+   <button (click)="onFetch()" class="btn btn-primary" type="button">Fetch Single Post</button>
+   <hr>
+   <pre>{{post() | json}}</pre>
 </div>
+
+<hr>
+<app-data-fetcher></app-data-fetcher>
+<hr>
+
+<app-file-loader></app-file-loader>
+<hr>
+
+<app-error-handler></app-error-handler>
+<hr>
+
+<router-outlet></router-outlet>
+
+<!-- Notes -->
+<!-- Usually angular uses XML based http request, but if we want to use es6 fetch based API then we cab use withFetch() inside provideHttpClient() -->

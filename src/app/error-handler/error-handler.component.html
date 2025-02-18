@@ -1,0 +1,12 @@
+<div>
+    <h3>Error handling example</h3>
+    <button (click)="onFetch()" class="btn btn-info" type="button">Fetch data</button>
+
+    @if (user()) {
+        <pre>{{user() | json}}</pre>
+    }
+
+    @if (errorMessage()) {
+        <h5 style="color: red;">{{errorMessage()}}</h5>
+    }
+</div>
