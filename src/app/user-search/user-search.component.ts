@@ -37,26 +37,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 export class UserSearchComponent {
   query = signal('');
 
-  // with the help of resource to fetch data
-  users = resource<User[], { query: string }>({
-    // It will reexecute when the signal specified changes
-    request: () => ({ query: this.query() }),
-    loader: async ({ request, abortSignal }) => {
-      // Manully aborting API calls
-      // const customAbortCtrl = new AbortController()
-      // setTimeout(() => customAbortCtrl.abort("Too long waiting time"), 500)
-
-      const users = await fetch(`${API_URL}?name_like=^${request.query}`, {
-        // signal: customAbortCtrl.signal,
-        signal: abortSignal
-      });
-
-      if (!users.ok) throw Error('Could not fetch...');
-
-      return await users.json();
-    },
-  });
-
+  // with the help of http resource to fetch data
+  users = <User[]>([]);
 
   constructor() {
     // effect(() => {
