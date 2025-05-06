@@ -1,0 +1,17 @@
+Shadow DOM
+It will hide the DOM logic behind the elements and also scope the styles to an element
+
+if we specify shadowDOM using encapsulation: ViewEncapsulation.shadowDOM, then the global syles specified in the styles.css
+will not be applied, only the styles that is scoped to that component will be applied
+
+The difference between emulated and shadowDOM is, global styles wont work in shadowDOM whereas it will work well with angulars default emulated approach
+
+If we want to apply style to the component in the component declaration, then we can use :host
+if we want to apply using any selector then we can use :host(selector_name)
+here host element means component name
+
+If we want to apply style to the parent element of the host element, then we can use :host-context(parent_selector(class,id..))
+here style will be applied to the host element, not the parent element
+
+
+

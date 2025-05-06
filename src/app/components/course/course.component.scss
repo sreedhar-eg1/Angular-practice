@@ -1,0 +1,18 @@
+// To apply the style to the host element itself, these style will be directly applied to the host element itself
+:host {
+  display: inline-block;
+  padding: 1rem 2rem;
+  margin: 8px;
+  border: 1px solid black;
+}
+
+// to apply styling to the host element via class
+:host(.active) {
+    background-color: lightblue;
+    border-color: red;
+}
+
+// to select the parent element of the host element
+:host-context(.course-container) {
+  margin: 0 auto;
+}
