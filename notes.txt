@@ -13,5 +13,10 @@ here host element means component name
 If we want to apply style to the parent element of the host element, then we can use :host-context(parent_selector(class,id..))
 here style will be applied to the host element, not the parent element
 
+In a component, if we use another component, and then we need to apply style for that component in the component where it has been used
+then we need to use ::ng-deep, this is deprecated
+we can use /deep/ instead of ::ng-deep, this is also deprecated
+or we can use >>> instead of ::ng-deep, here basically this is deprecated
+any style that is applied using ::ng-deep will become global styles
 
 
