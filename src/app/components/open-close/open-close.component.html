@@ -1,1 +1,8 @@
-<p>open-close works!</p>
+<div>
+  <button (click)="onToggle()" class="btn btn-warning" type="button">
+    Toggle {{isOpen() ? 'Close' : 'Open' }}
+  </button>
+</div>
+<div class="open-close-container" [@openClose]="isOpen() ? 'open' : 'closed'">
+  <p>The box is {{isOpen() ? 'Open' : 'Closed'}}</p>
+</div>
