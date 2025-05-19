@@ -2,18 +2,17 @@
   <h1>Angular Animations</h1>
 </header>
 
-<div class="course-container">
-  @for (course of courses; track course.title) {
-    <app-course
-      [course]="course"
-      [ngClass]="{ active: course.isActive }"
-      (click)="course.isActive = !course.isActive"
-    ></app-course>
-    }  
-</div>
 
-<div class="course-container">
-  <app-course
-  [course]="courses[0]"
-></app-course>
-</div>
+<main class="container mt-5">
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a class="nav-link" [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Courses</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['basic']" routerLinkActive="active" >Basics</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['users']" routerLinkActive="active" >Users</a></li>
+        <li class="nav-item"><a class="nav-link" [routerLink]="['ang-animation']" routerLinkActive="active" >Angular Animations</a></li>
+      </ul>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</main>

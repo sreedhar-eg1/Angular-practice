@@ -1,20 +1,12 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { Course } from './models/course.model';
-import { CourseComponent } from './components/course/course.component';
-import { NgClass } from '@angular/common';
+import { Component, ElementRef, inject, Renderer2, viewChild } from '@angular/core';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CourseComponent, NgClass],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'angular-animation';
-  courses: Course[] = [
-    { title: 'Angular Complete Course', isActive: false },
-    { title: 'Angular Animation', isActive: false },
-    { title: 'Angular RxJS', isActive: false },
-  ];
+  
 }

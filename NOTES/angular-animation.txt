@@ -1,0 +1,64 @@
+Angular Animation
+
+in component directive, we have animation property, which can be used to trigger animation
+
+some of the angular animation functions
+
+trigger
+It creates named animation trigger
+It consist of list of state and transition
+syntax : trigger('trigger name'. definitions)
+here definition is of type animationMetaData[]
+animationMetaData contains list of state and its transition
+state - it declares the animation state within the transition or animation
+syntax for state, it also contains unique name and also contains styles object
+transition -> declares animation transition, which should be played when  certain condition is met
+it consits of expression (from state to to state), and also consists of animate method
+
+animation requires a trigger, hence it knows when to start the animation
+trigger function collects the list of state and transition
+
+
+animations: [
+    trigger('clickedState', [
+      state('default', style({
+        width: '100px',
+        height: '100px',
+        backgroundColor: 'orange',
+      }))
+    ])
+  ]
+
+<div [@clickedState]="'default'"></div>
+
+now this div element will have the state defined initially
+we can have multiple state like this
+
+we need to define animation transition to show animation from one state to another
+in transition we need to pass expression and animate method
+In animate method we pass length duration and ease in function
+
+
+ animations: [
+    trigger('clickedState', [
+      state(
+        'default',
+        style({
+          width: '100px',
+          height: '100px',
+          backgroundColor: 'orange',
+        })
+      ),
+      state(
+        'clicked',
+        style({
+          width: '200px',
+          height: '100px',
+          backgroundColor: 'pink',
+        })
+      ),
+      transition("default => clicked", animate('1s 200ms ease-in'))
+    ]),
+  ],
+
+applying transition from one state to another, 

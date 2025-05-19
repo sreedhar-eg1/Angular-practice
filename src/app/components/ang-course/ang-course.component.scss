@@ -1,0 +1,22 @@
+:host {
+    display: block;
+    margin: 3rem 0;
+    padding: 2rem;
+    border: 1px solid black;
+    // box-shadow: vertical horizontal spread blur color;
+    box-shadow: 2px 2px 2px 5px #ccc;
+}
+
+:host(.inActive) .card{
+    color: #ccc;
+}
+
+:host(.inActive) {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 2px 1px #ccc;
+}
+
+.form-select {
+    width:  45%;
+    display: inline-block;
+}

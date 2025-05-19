@@ -1,0 +1,27 @@
+<div class="row my-3">
+  <div class="col-md-12">
+    <h3>My Courses</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    @if (loading()) {
+    <div class="loading-bar">
+      <div class="loading-bar-elemnet"></div>
+    </div>
+    }
+    @for (course of courses(); track course.name; let i = $index;) {
+    <app-ang-course
+      [ngClass]="{
+        selected: selectedCourse() === i,
+        inActive: course.status === 'inActive'
+      }"
+      [course]="course"
+      (statusUpdate)="updateStatus($event, i)"
+      (deleteCourse)="onDeleteCourse(i)"
+      (click)="onSelectedCourse(i)"
+    ></app-ang-course>
+    }
+  </div>
+</div>

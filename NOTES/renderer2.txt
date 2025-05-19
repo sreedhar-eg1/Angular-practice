@@ -1,0 +1,6 @@
+Renderer2
+
+If we try to change style using native javascript, then we are try to change the DOM
+In such case sometimes angular will not work as expected
+
+So to solve this issue, we can use Renderer2, need to be imported and injected

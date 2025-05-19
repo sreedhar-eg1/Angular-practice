@@ -1,0 +1,12 @@
+<p [ngClass]="'bg-blue'">Ng Class using string</p>
+<p [ngClass]="['bg-pink', 'text-white']">Ng Class using array</p>
+<p [ngClass]="{'bg-blue': true, 'text-white': true}">Ng Class using object</p>
+<p [class.bg-pink]="isActive()">Class binding</p>
+<p [class]="['bg-pink', 'text-white']">Class binding with array</p>
+
+<hr>
+
+<h3>Ng Style</h3>
+<p [ngStyle]="{backgroundColor: 'lightGreen'}">Applying Style using NgStyle</p>
+<p [style.backgroundColor]="'yellow'">Applying single style using style</p>
+<p [ngStyle]="{'fontSize.px': 24}">Adding pixel using fontSize.px</p>

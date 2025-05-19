@@ -1,0 +1,31 @@
+<h3>:host, :host-context()</h3>
+<div class="course-container">
+  @for (course of courses; track course.title) {
+    <app-course
+      [course]="course"
+      [ngClass]="{ active: course.isActive }"
+      (click)="course.isActive = !course.isActive"
+    ></app-course>
+    }  
+</div>
+
+<div class="course-container">
+  <app-course
+  [course]="courses[0]"
+></app-course>
+</div>
+
+<hr>
+
+<div>
+  <h3>NgStyle</h3>
+  <app-ng-style-comp></app-ng-style-comp>
+</div>
+
+<hr>
+
+<div>
+  <h3>Renderer 2</h3>
+  <p #paraRef>Change color of text using renderer2</p>
+  <button (click)="onChangeColor(paraRef)" type="button" class="btn btn-primary">Change color</button>
+</div>

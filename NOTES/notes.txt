@@ -19,4 +19,23 @@ we can use /deep/ instead of ::ng-deep, this is also deprecated
 or we can use >>> instead of ::ng-deep, here basically this is deprecated
 any style that is applied using ::ng-deep will become global styles
 
+NgClass directive
+we can use ngClass to dynamically add and remove classes
+we can pass string , array, object to ngClass directive
+string -> [NgClass]="'active'"
+array -> [NgClass]="['active', 'class-1]"
+object -> [NgClass]="{active: true, 'class-1': true}"
+
+to remove or add single class we can use class binding
+[class.active]="isActive"
+so with class binding we can use array and object as well
+[class]="["a", "b"]"
+
+NgStyle
+If we need to add style element, then we can make use of NgStyle
+here ngStyle value is an javascript object, where key is css property, and value is its value
+in place of value we can use function, which in turn return the value of the css property
+If we have single style to apply then we can make use of [style.backgroundColor]="red"
+we can add pixel in alternative way using [ngStyle]="{'fontSize.px': 24}"
+
 

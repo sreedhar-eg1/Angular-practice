@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-body">
+    <h3>
+      {{ course().name }}
+      <span
+        class="badge"
+        [ngClass]="{ 'bg-success': course().status === 'active',
+          'bg-secondary': course().status === 'inActive',
+          'bg-danger': course().status === 'draft' }"
+        >{{ course().status }}</span
+      >
+    </h3>
+    <hr />
+    <p>{{ course().description }}</p>
+  </div>
+</div>
+
+<div>
+  <select class="form-select my-3" aria-label="Change status" #statusRef>
+    <option value="active">Active</option>
+    <option value="inActive">InActive</option>
+    <option value="draft">Draft</option>
+  </select>
+  <button (click)="onUpdateStatus()" class="btn btn-dark mx-3" type="button">
+    Update Status
+  </button>
+  <button (click)="onDeleteCourse()" class="btn btn-danger" type="button">
+    Delete Course
+  </button>
+</div>
