@@ -8,6 +8,7 @@ import {
   // ...
 } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
+import { conditionalAnimation, listAnimation } from '../../animation/conditionalAnimation';
 
 @Component({
   selector: 'app-angular-animations',
@@ -59,12 +60,14 @@ import { FormsModule } from '@angular/forms';
         animate('0.5s ease-in'),
       ]),
     ]),
+    listAnimation
   ],
 })
 export class AngularAnimationsComponent implements OnInit {
   clickAnimationInfo = signal('default');
 
   enteredNum = signal<number | null>(null);
+  listData = signal<number[]>([])
 
   ngOnInit(): void {
     setTimeout(() => {
@@ -74,5 +77,9 @@ export class AngularAnimationsComponent implements OnInit {
 
   onInputChange(event: Event) {
     this.enteredNum.set(+(event.target as HTMLInputElement).value);
+  }
+
+  onAddElement() {
+    this.listData().push(Math.random() * 100)
   }
 }

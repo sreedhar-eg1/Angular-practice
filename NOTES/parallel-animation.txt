@@ -1,0 +1,27 @@
+parellel animation
+we can make a group, where all animation specified inside group will run parallely
+
+transition(':enter', [
+style({
+    opacity: 0,
+}),
+group([
+    animate(
+    300,
+    style({
+        opacity: 0.5,
+        backgroundColor: 'lightyellow',
+    })
+    ),
+    animate(
+    600,
+    style({
+        backgroundColor: 'lightcoral',
+    })
+    ),
+]),
+animate(1000),
+]),
+
+here you can see we made use of group, and grouped two animation
+so the animation defined inside group run parallely
