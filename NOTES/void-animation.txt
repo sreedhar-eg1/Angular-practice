@@ -14,3 +14,48 @@ style({ opacity: 0 }),
 animate('200ms', style({ opacity: 1 })),
 ]),
 transition('shown => void', animate('200ms', style({ opacity: 0 }))), 
+
+
+we can make use of wildcard in angular animation
+transition('void => shown', [
+style({ opacity: 0 }),
+animate('200ms', style({ opacity: 1 })),
+]),
+
+here in above transition, it means the animation is happening from void to showm, we can replace
+shown with *, which means animation is happening from void to any state
+transition('void => *', [
+style({ opacity: 0 }),
+animate('200ms', style({ opacity: 1 })),
+]),
+
+when we use wilcard state, then we dont need to specify the state in the template
+ <p @conditionalAnimationTrigger class="para">
+    Content are shown dynamically
+  </p>
+
+here [@conditionalAnimationTrigger]="show() ? 'shown' : 'hidden'" is replaced with @conditionalAnimationTrigger
+where shown and hidden are state name we are given, but now we are using wild card state
+
+transition('void => *', [
+style({ opacity: 0 }),
+animate('200ms', style({ opacity: 1 })),
+]),
+
+there is an alias for void to any state and vice versa
+void => *, is same as ":enter"
+* => void, is same as ":leave"
+
+transition(':enter', [
+style({ opacity: 0 }),
+animate('200ms', style({ opacity: 1 })),
+]),
+
+we can also make use of * => * to animate the state change from any state to any state
+
+transition(':enter', [
+style({ opacity: 0 }),
+animate('200ms', style({ width: '*' })),
+]),
+here when the width dynamically changes, and we need to know its width, then we can make use of "*"
+this works with all element
