@@ -1,0 +1,4 @@
+timing function
+
+if we dont specify timing function , then linear will be applied by default
+animate(300) => animate('300ms linear')
