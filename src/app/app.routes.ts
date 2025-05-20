@@ -5,6 +5,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AngularAnimationsComponent } from './components/angular-animations/angular-animations.component';
 import { OpenCloseComponent } from './components/open-close/open-close.component';
 import { AngularAnimationLayoutComponent } from './components/angular-animation-layout/angular-animation-layout.component';
+import { VoidAnimationComponent } from './components/void-animation/void-animation.component';
 
 export const routes: Routes = [
   { path: '', component: CoursesComponent, pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const routes: Routes = [
     children: [
       { path: '', component: AngularAnimationsComponent, pathMatch: 'full'  },
       { path: 'open', component: OpenCloseComponent },
+      { path: 'void', component: VoidAnimationComponent },
     ],
   },
 ];

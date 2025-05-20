@@ -10,22 +10,22 @@ export class CourseService {
     {
       name: 'Angular NgModule',
       description: 'Learn Angular NgModule',
-      status: 'inActive',
+      status: 'active',
     },
     {
       name: 'Angular 19 Standalone',
       description: 'Learn Angular 19 Standalone',
-      status: 'inActive',
+      status: 'active',
     },
     {
       name: 'Angular RxJS',
       description: 'Learn Angular RxJS',
-      status: 'inActive',
+      status: 'active',
     },
     {
       name: 'Angular Animations',
       description: 'Learn Angular Animations',
-      status: 'inActive',
+      status: 'active',
     },
   ];
 

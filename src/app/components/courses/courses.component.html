@@ -1,6 +1,6 @@
 <div class="row my-3">
   <div class="col-md-12">
-    <h3>My Courses</h3>
+    <h3>My Courses with CSS Animation</h3>
   </div>
 </div>
 
@@ -25,3 +25,29 @@
     }
   </div>
 </div>
+
+<div class="row my-3">
+  <div class="col-md-12">
+    <h3>My Courses with Angular Animation</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    @if (loading()) {
+    <div class="loading-bar">
+      <div class="loading-bar-elemnet"></div>
+    </div>
+    }
+    @for (course of courses(); track course.name; let i = $index;) {
+    <app-ang-course
+      [@selectedTrigger]="selectedCourse() === i ? 'selected' : 'default'"
+      [course]="course"
+      (statusUpdate)="updateStatus($event, i)"
+      (deleteCourse)="onDeleteCourse(i)"
+      (click)="onSelectedCourse(i)"
+    ></app-ang-course>
+    }
+  </div>
+</div>
+

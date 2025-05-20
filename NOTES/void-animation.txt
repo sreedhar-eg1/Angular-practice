@@ -1,0 +1,16 @@
+Adding animation to the dynamically rendered element to the DOM
+Like while using ngIf...
+
+when we apply angular animation to the dynamically reneered element, then angular animation wont work
+ @if (show()) {
+  <p [@conditionalAnimationTrigger]="show() ? 'shown' : 'hidden'" class="para">
+    Content are shown dynamically
+  </p>
+  }
+
+to solve this there is special reserved name called "void", which means the transition is from void to element rendered
+transition('void => shown', [
+style({ opacity: 0 }),
+animate('200ms', style({ opacity: 1 })),
+]),
+transition('shown => void', animate('200ms', style({ opacity: 0 }))), 

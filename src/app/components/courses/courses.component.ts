@@ -3,12 +3,14 @@ import { CourseService } from '../../services/course.service';
 import { ICourse, Status } from '../../models/course.model';
 import { AngCourseComponent } from '../ang-course/ang-course.component';
 import { NgClass } from '@angular/common';
+import { triggerState } from '../../animation/animation';
 
 @Component({
   selector: 'app-courses',
   imports: [AngCourseComponent, NgClass],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
+  animations: [triggerState]
 })
 export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);

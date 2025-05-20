@@ -1,0 +1,11 @@
+<button (click)="onToggle()" class="btn btn-secondary" type="button">
+  Toggle Content
+</button>
+
+<div class="my-3">
+  @if (show()) {
+  <p [@conditionalAnimationTrigger]="show() ? 'shown' : 'hidden'" class="para">
+    Content are shown dynamically
+  </p>
+  }
+</div>
