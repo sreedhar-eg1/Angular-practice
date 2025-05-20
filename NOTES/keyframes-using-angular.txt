@@ -1,0 +1,33 @@
+using keyframes in angular animation
+trigger('keyTrigger', [
+  state(
+    'default',
+    style({
+      width: '100px',
+      height: '100px',
+      backgroundColor: 'lightblue',
+    })
+  ),
+  transition(':enter', [
+    animate(
+      '4000ms ease-in',
+      keyframes([
+        style({ backgroundColor: 'lightyellow' }),
+        style({ backgroundColor: 'lightgreen' }),
+        style({ backgroundColor: 'lightpink'}),
+        style({ backgroundColor: 'lightbrown' }),
+      ])
+    ),
+  ]),
+]);
+
+within animate method only we can use keyframes
+
+we can also specify offset, ranges from 0 to 1, to have a greater control over the animation
+keyframes([
+    style({ backgroundColor: 'lightyellow', offset: 0 }),
+    style({ backgroundColor: 'lightgreen', offset: 0.5  }),
+    style({ backgroundColor: 'lightpink', offset: 0.75}),
+    style({ backgroundColor: 'lightbrown', offset: 1}),
+    ])
+

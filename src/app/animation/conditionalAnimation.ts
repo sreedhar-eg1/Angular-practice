@@ -1,6 +1,7 @@
 import {
   animate,
   group,
+  keyframes,
   state,
   style,
   transition,
@@ -44,5 +45,27 @@ export const listAnimation = trigger('listTrigger', [
     style({
       opacity: 0,
     }),
+  ]),
+]);
+
+export const keyAnimation = trigger('keyTrigger', [
+  state(
+    'default',
+    style({
+      width: '100px',
+      height: '100px',
+      backgroundColor: 'lightblue',
+    })
+  ),
+  transition(':enter', [
+    animate(
+      '4000ms ease-in',
+    keyframes([
+      style({ backgroundColor: 'lightyellow', offset: 0 }),
+      style({ backgroundColor: 'lightgreen', offset: 0.5  }),
+      style({ backgroundColor: 'lightpink', offset: 0.75}),
+      style({ backgroundColor: 'lightbrown', offset: 1}),
+    ])
+    ),
   ]),
 ]);

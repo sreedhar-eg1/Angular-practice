@@ -8,7 +8,7 @@ import {
   // ...
 } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
-import { conditionalAnimation, listAnimation } from '../../animation/conditionalAnimation';
+import { conditionalAnimation, keyAnimation, listAnimation } from '../../animation/conditionalAnimation';
 
 @Component({
   selector: 'app-angular-animations',
@@ -60,7 +60,8 @@ import { conditionalAnimation, listAnimation } from '../../animation/conditional
         animate('0.5s ease-in'),
       ]),
     ]),
-    listAnimation
+    listAnimation,
+    keyAnimation
   ],
 })
 export class AngularAnimationsComponent implements OnInit {

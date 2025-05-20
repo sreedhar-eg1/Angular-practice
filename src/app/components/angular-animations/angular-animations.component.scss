@@ -1,14 +1,20 @@
 .box {
-    width: 100px;
-    height: 100px;
-    background-color: salmon;
+  width: 100px;
+  height: 100px;
+  background-color: salmon;
 }
 
 .element {
-    display: inline-block;
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid blue;
-    border-radius: 4px;
-    background-color: lightblue;
+  display: inline-block;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid blue;
+  border-radius: 4px;
+  background-color: lightblue;
+}
+
+.key {
+  width: 100px;
+  height: 100px;
+  background-color: palegreen;
 }
