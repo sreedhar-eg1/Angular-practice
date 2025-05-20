@@ -62,3 +62,21 @@ In animate method we pass length duration and ease in function
   ],
 
 applying transition from one state to another, 
+
+
+transition("open => closed", animate("1s linear")),
+transition("closed => open", animate("2s linear")),
+
+here instead of defining two different transition like above, we can make use of bi directional approach
+transition("open <=> closed", animate("1s linear"))
+
+when we apply animation to two different element, then both element apply animation independently
+
+transition('unselected <=> selected', [
+        style({
+          border: '1px solid black',
+        }),
+        animate('0.5s ease-in'),
+      ]),
+
+here before animation begins, the defined style will be applied

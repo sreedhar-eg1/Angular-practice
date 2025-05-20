@@ -1,1 +1,17 @@
 <div [@clickedState]="clickAnimationInfo()"></div>
+<hr />
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Enter Number</label>
+  <input
+    type="number"
+    class="form-control"
+    id="exampleFormControlInput1"
+    placeholder="Enter Number"
+    (input)="onInputChange($event)"
+  />
+</div>
+
+@for (item of [0,1,2,3,4,5,6,7,8,9]; track $index) {
+<span [@numberState]="item === enteredNum() ? 'selected' : 'unselected'" class="mx-2">{{ item }}</span>
+}

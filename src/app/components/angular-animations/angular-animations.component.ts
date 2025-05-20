@@ -7,10 +7,11 @@ import {
   transition,
   // ...
 } from '@angular/animations';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-angular-animations',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './angular-animations.component.html',
   styleUrl: './angular-animations.component.scss',
   animations: [
@@ -31,16 +32,47 @@ import {
           backgroundColor: 'pink',
         })
       ),
-      transition("default => clicked", animate('1s 200ms ease-in'))
+      transition('default => clicked', animate('1s 200ms ease-in')),
+    ]),
+    trigger('numberState', [
+      state(
+        'unselected',
+        style({
+          border: '1px solid black',
+          borderRadius: '4px',
+          padding: '4px',
+        })
+      ),
+      state(
+        'selected',
+        style({
+          border: '1px solid red',
+          borderRadius: '4px',
+          padding: '4px',
+          backgroundColor: 'pink',
+        })
+      ),
+      transition('unselected <=> selected', [
+        style({
+          border: '1px solid black',
+        }),
+        animate('0.5s ease-in'),
+      ]),
     ]),
   ],
 })
 export class AngularAnimationsComponent implements OnInit {
   clickAnimationInfo = signal('default');
 
+  enteredNum = signal<number | null>(null);
+
   ngOnInit(): void {
     setTimeout(() => {
       this.clickAnimationInfo.set('clicked');
     }, 3000);
+  }
+
+  onInputChange(event: Event) {
+    this.enteredNum.set(+(event.target as HTMLInputElement).value);
   }
 }
