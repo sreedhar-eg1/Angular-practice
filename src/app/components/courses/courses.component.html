@@ -6,13 +6,33 @@
 
 <div class="row">
   <div class="col-md-12">
+    <button
+      (click)="createNewCourse.set(!createNewCourse())"
+      class="btn btn-info"
+      type="button"
+    >
+      Add Course
+    </button>
+  </div>
+</div>
+
+@if (createNewCourse()) {
+<div class="row">
+  <div class="col-md-12">
+    <app-new-course (createCourse)="onCreateCourse($event)" (close)="onClose()"></app-new-course>
+  </div>
+</div>
+}
+
+<div class="row">
+  <div class="col-md-12">
     @if (loading()) {
     <div class="loading-bar">
       <div class="loading-bar-elemnet"></div>
     </div>
-    }
-    @for (course of courses(); track course.name; let i = $index;) {
+    } @for (course of courses(); track course.name; let i = $index;) {
     <app-ang-course
+      @courseAddTrigger
       [ngClass]="{
         selected: selectedCourse() === i,
         inActive: course.status === 'inActive'
@@ -38,8 +58,7 @@
     <div class="loading-bar">
       <div class="loading-bar-elemnet"></div>
     </div>
-    }
-    @for (course of courses(); track course.name; let i = $index;) {
+    } @for (course of courses(); track course.name; let i = $index;) {
     <app-ang-course
       [@selectedTrigger]="selectedCourse() === i ? 'selected' : 'default'"
       [course]="course"
@@ -50,4 +69,3 @@
     }
   </div>
 </div>
-

@@ -3,14 +3,15 @@ import { CourseService } from '../../services/course.service';
 import { ICourse, Status } from '../../models/course.model';
 import { AngCourseComponent } from '../ang-course/ang-course.component';
 import { NgClass } from '@angular/common';
-import { triggerState } from '../../animation/animation';
+import { courseAddAnimation, triggerState } from '../../animation/animation';
+import { NewCourseComponent } from "../new-course/new-course.component";
 
 @Component({
   selector: 'app-courses',
-  imports: [AngCourseComponent, NgClass],
+  imports: [AngCourseComponent, NgClass, NewCourseComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
-  animations: [triggerState]
+  animations: [triggerState, courseAddAnimation]
 })
 export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);
@@ -19,6 +20,8 @@ export class CoursesComponent implements OnInit {
   selectedCourse = signal<number | undefined>(undefined);
 
   loading = signal(false)
+
+  createNewCourse = signal(false)
 
   ngOnInit(): void {
     this.loading.set(true)
@@ -45,5 +48,14 @@ export class CoursesComponent implements OnInit {
   onSelectedCourse(index: number) {
     if (this.courses()[index].status === 'inActive') return;
     this.selectedCourse.set(index);
+  }
+
+  onCreateCourse(newCourse: ICourse) {
+   this.courses.update(prevCourse => [newCourse, ...prevCourse])
+   this.createNewCourse.set(false)
+  }
+
+  onClose() {
+    this.createNewCourse.set(false)
   }
 }
