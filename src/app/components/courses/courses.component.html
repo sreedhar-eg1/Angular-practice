@@ -1,8 +1,3 @@
-<div class="row my-3">
-  <div class="col-md-12">
-    <h3>My Courses with CSS Animation</h3>
-  </div>
-</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -24,28 +19,6 @@
 </div>
 }
 
-<div class="row">
-  <div class="col-md-12">
-    @if (loading()) {
-    <div class="loading-bar">
-      <div class="loading-bar-elemnet"></div>
-    </div>
-    } @for (course of courses(); track course.name; let i = $index;) {
-    <app-ang-course
-      @courseAddTrigger
-      [ngClass]="{
-        selected: selectedCourse() === i,
-        inActive: course.status === 'inActive'
-      }"
-      [course]="course"
-      (statusUpdate)="updateStatus($event, i)"
-      (deleteCourse)="onDeleteCourse(i)"
-      (click)="onSelectedCourse(i)"
-    ></app-ang-course>
-    }
-  </div>
-</div>
-
 <div class="row my-3">
   <div class="col-md-12">
     <h3>My Courses with Angular Animation</h3>
@@ -58,9 +31,39 @@
     <div class="loading-bar">
       <div class="loading-bar-elemnet"></div>
     </div>
-    } @for (course of courses(); track course.name; let i = $index;) {
+    } @for (course of displayedCourse(); track $index; let i = $index;) {
     <app-ang-course
+    @courseAddTrigger
       [@selectedTrigger]="selectedCourse() === i ? 'selected' : 'default'"
+      [course]="course"
+      (statusUpdate)="updateStatus($event, i)"
+      (deleteCourse)="onDeleteCourse(i)"
+      (click)="onSelectedCourse(i)"
+      (@courseAddTrigger.start)="onAnimationStart($event)"
+      (@courseAddTrigger.done)="onAnimationEnd($event, i)"
+    ></app-ang-course>
+    }
+  </div>
+</div>
+
+<div class="row my-3">
+  <div class="col-md-12">
+    <h3>My Courses with CSS Animation</h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    @if (loading()) {
+    <div class="loading-bar">
+      <div class="loading-bar-elemnet"></div>
+    </div>
+    } @for (course of courses(); track $index; let i = $index;) {
+    <app-ang-course
+      [ngClass]="{
+        selected: selectedCourse() === i,
+        inActive: course.status === 'inActive'
+      }"
       [course]="course"
       (statusUpdate)="updateStatus($event, i)"
       (deleteCourse)="onDeleteCourse(i)"

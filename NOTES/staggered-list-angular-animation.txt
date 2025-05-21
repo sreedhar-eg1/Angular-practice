@@ -1,0 +1,14 @@
+Staggered List using Angular Animations
+
+there will be lifecycle hooks in angular Animations
+
+whenever animation occurs, it goes through two phase
+that is when the animation start, and when the animation ends
+
+(@courseAddTrigger.start)="onAnimationStart($event)"
+(@courseAddTrigger.done)="onAnimationEnd($event)"
+
+we can make use of this like event binding
+
+onAnimationStart(event: AnimationEvent) {
+}
