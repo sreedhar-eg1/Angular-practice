@@ -3,7 +3,7 @@ import { CourseService } from '../../services/course.service';
 import { ICourse, Status } from '../../models/course.model';
 import { AngCourseComponent } from '../ang-course/ang-course.component';
 import { NgClass } from '@angular/common';
-import { courseAddAnimation, triggerState } from '../../animation/animation';
+import { courseAddAnimation, newCourseAnimation, triggerState } from '../../animation/animation';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { AnimationEvent } from '@angular/animations';
 
@@ -12,7 +12,7 @@ import { AnimationEvent } from '@angular/animations';
   imports: [AngCourseComponent, NgClass, NewCourseComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
-  animations: [triggerState, courseAddAnimation],
+  animations: [triggerState, courseAddAnimation, newCourseAnimation],
 })
 export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);

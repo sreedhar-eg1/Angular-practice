@@ -71,3 +71,22 @@ export const courseAddAnimation = trigger('courseAddTrigger', [
     ]))
   ])
 ])
+
+export const newCourseAnimation = trigger('newCourseTrigger', [
+  transition(':enter', [
+    style({
+      transform: 'translateY(-100%)'
+    }),
+    animate('1000ms', style({
+      transform: 'translateY(0%)',
+    }))
+  ]),
+  transition(':leave', [
+    style({
+      transform: 'translateY(0%)'
+    }),
+    animate('1000ms', style({
+      transform: 'translateY(-100%)',
+    }))
+  ])
+])

@@ -32,7 +32,16 @@
         <option value="draft">Draft</option>
       </select>
     </div>
-    <button class="btn btn-success me-2" type="submit">Add</button>
-    <button (click)="onClose()" class="btn btn-secondary"  type="button">Cancel</button>
+    <button
+      [@newCourseTrigger]="newCourseForm.invalid ? 'invalid' : 'valid'"
+      [disabled]="newCourseForm.invalid"
+      class="btn btn-success me-2"
+      type="submit"
+    >
+      Add
+    </button>
+    <button (click)="onClose()" class="btn btn-secondary" type="button">
+      Cancel
+    </button>
   </form>
 </div>

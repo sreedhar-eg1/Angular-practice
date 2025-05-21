@@ -13,8 +13,8 @@
 
 @if (createNewCourse()) {
 <div class="row">
-  <div class="col-md-12">
-    <app-new-course (createCourse)="onCreateCourse($event)" (close)="onClose()"></app-new-course>
+  <div class="col-md-12 overflow-hidden">
+    <app-new-course @newCourseTrigger (createCourse)="onCreateCourse($event)" (close)="onClose()"></app-new-course>
   </div>
 </div>
 }
