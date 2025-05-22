@@ -1,0 +1,8 @@
+ Route Navigation animate
+
+ we cannot apply transition/animation to router-outlet
+
+ but we need to bind the animation to the component that was loaded in place of the router-outlet
+
+ so we can make use of hostbinding
+  @HostBinding('@routeAnimationTrigger') routeAnimation = true

@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, HostBinding, inject, OnInit, signal } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { ICourse, Status } from '../../models/course.model';
 import { AngCourseComponent } from '../ang-course/ang-course.component';
@@ -6,16 +6,19 @@ import { NgClass } from '@angular/common';
 import { courseAddAnimation, newCourseAnimation, triggerState } from '../../animation/animation';
 import { NewCourseComponent } from '../new-course/new-course.component';
 import { AnimationEvent } from '@angular/animations';
+import { routeAnimation } from '../../animation/routeAnimation';
 
 @Component({
   selector: 'app-courses',
   imports: [AngCourseComponent, NgClass, NewCourseComponent],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.scss',
-  animations: [triggerState, courseAddAnimation, newCourseAnimation],
+  animations: [triggerState, courseAddAnimation, newCourseAnimation, routeAnimation],
 })
 export class CoursesComponent implements OnInit {
   private courseService = inject(CourseService);
+
+  @HostBinding('@routeAnimationTrigger') routeAnimation = true
 
   courses = signal<ICourse[]>([]);
   selectedCourse = signal<number | undefined>(undefined);
@@ -75,7 +78,7 @@ export class CoursesComponent implements OnInit {
   }
 
   onAnimationEnd(event: AnimationEvent, index: number) {
-    console.log(event, index);
+    // console.log(event, index);
     if (event.fromState !== 'void') return;
 
     if (this.courses().length > index + 1) {
