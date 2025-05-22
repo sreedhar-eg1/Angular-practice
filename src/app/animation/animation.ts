@@ -1,5 +1,6 @@
 import {
   animate,
+  animation,
   keyframes,
   query,
   stagger,
@@ -7,6 +8,7 @@ import {
   style,
   transition,
   trigger,
+  useAnimation,
 } from '@angular/animations';
 
 export const triggerState = trigger('selectedTrigger', [
@@ -111,15 +113,24 @@ export const newCourseAnimation = trigger('newCourseTrigger', [
   ]),
 ]);
 
+const translateStyle = animation([
+  style({
+    // without using params
+    // opacity: 0,
+    // transform: 'translateX(-100%)',
+
+    // with params
+     opacity: '{{opacity}}',
+    transform: '{{transform}}',
+  })
+], {params: {opacity: 0, transform: 'translateX(-100%)'}});
+
 export const staggeredListAnimation = trigger('staggeredListTrigger', [
   transition('* => *', [
     query(
       ':enter',
       [
-        style({
-          opacity: 0,
-          transform: 'translateX(-100%)',
-        }),
+        useAnimation(translateStyle, {params: {opacity: 0, transform: 'translateX(-100%)'}}),
         stagger(200, [
           animate(
             '800ms ease-out',
