@@ -1,0 +1,18 @@
+we can apply different animation within a trigger using query method
+
+with the help of query method, we can animate individual part of the animation trigger
+
+ query('.card-header', [style({
+          opacity: 0,
+          transform: 'translateY(-100%)',
+        }), animate(300)]),
+
+
+here first parameter for query method acts as a query selector, where we give identifier like class name or id
+
+in query we can give options as a third parameter
+{
+    optional: true
+}
+
+if we set optional true, then it means, if the element is present then animate, otherwise dont animate

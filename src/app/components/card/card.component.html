@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-8 offset-md-4 my-4">
+    <button
+      (click)="showCard.set(!showCard())"
+      class="btn btn-dark"
+      type="button"
+    >
+      Show card
+    </button>
+  </div>
+  <hr />
+  @if (showCard()) {
+  <div [@cardTrigger]="showPara()" class="card">
+    <div class="card-header">Featured</div>
+    <div class="card-body">
+      <h5 class="card-title">Special title treatment</h5>
+      <p class="card-text">
+        With supporting text below as a natural lead-in to additional content.
+      </p>
+      @if (showPara()) {
+         <p class="card-text dynamic-para">
+        With supporting text below as a natural lead-in to additional content will be shown dynamically.
+      </p>
+      }
+      <button (click)="showPara.set(!showPara())" class="btn btn-primary me-2" type="button">Show para</button>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    <div class="card-footer text-body-secondary">2 days ago</div>
+  </div>
+  }
+</div>

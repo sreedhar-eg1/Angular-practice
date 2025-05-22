@@ -6,6 +6,7 @@ import { AngularAnimationsComponent } from './components/angular-animations/angu
 import { OpenCloseComponent } from './components/open-close/open-close.component';
 import { AngularAnimationLayoutComponent } from './components/angular-animation-layout/angular-animation-layout.component';
 import { VoidAnimationComponent } from './components/void-animation/void-animation.component';
+import { CardComponent } from './components/card/card.component';
 
 export const routes: Routes = [
   { path: '', component: CoursesComponent, pathMatch: 'full' },
@@ -20,4 +21,5 @@ export const routes: Routes = [
       { path: 'void', component: VoidAnimationComponent },
     ],
   },
+  { path: 'card', component: CardComponent },
 ];
