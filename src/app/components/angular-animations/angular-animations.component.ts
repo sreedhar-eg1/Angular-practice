@@ -1,10 +1,11 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   trigger,
   state,
   style,
   animate,
   transition,
+  AnimationBuilder,
   // ...
 } from '@angular/animations';
 import { FormsModule } from '@angular/forms';
@@ -65,6 +66,7 @@ import { conditionalAnimation, keyAnimation, listAnimation } from '../../animati
   ],
 })
 export class AngularAnimationsComponent implements OnInit {
+  private builder = inject(AnimationBuilder)
   clickAnimationInfo = signal('default');
 
   enteredNum = signal<number | null>(null);
@@ -82,5 +84,15 @@ export class AngularAnimationsComponent implements OnInit {
 
   onAddElement() {
     this.listData().push(Math.random() * 100)
+  }
+
+  onAnimate(element: HTMLElement) {
+    const animation = this.builder.build([
+      // style({backgroundColor: 'orange', width: '100px'}),
+      animate('800ms', style({backgroundColor: 'orange', width: '300px'}))
+    ])
+
+    const player = animation.create(element)
+    player.play()
   }
 }

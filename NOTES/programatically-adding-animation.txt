@@ -1,0 +1,23 @@
+Programatically animating
+
+first we need to inject AnimationBuilder
+private builder = inject(AnimationBuilder)
+
+this is neccesary to add animation programatically
+
+then we need to pass animation and style libe below
+
+<div id="box2" #box></div>
+<button (click)="onAnimate(box)" class="btn btn-secondary" type="button">Animate Programatically</button>
+
+onAnimate(element: HTMLElement) {
+const animation = this.builder.build([
+    // style({backgroundColor: 'orange', width: '100px'}),
+    animate('800ms', style({backgroundColor: 'orange', width: '300px'}))
+])
+
+const player = animation.create(element)
+player.play()
+}
+
+we need to pass animation to create method, which in turn gives us play, pause,... and many usefull method
