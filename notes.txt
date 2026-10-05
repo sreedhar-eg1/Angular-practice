@@ -1,0 +1,17 @@
+If we use ng update command, we get the list of dependency that need to be updated
+    based on that we can update the dependency
+
+
+We may get peer dependency issue
+    Peer dependency
+        Those are packages that library consumer must install into the host application to make library properly work
+
+        we can resolve this by using --force flag, but it is not recommended
+
+        The recommended solution is to add the library that is causing peer dependency issue to ng update command along
+        with its version
+
+Project update phases:
+    Angular CLI resolves, updates and intall NPM dependencies
+    Execute a group of migration scripts (schematics) that modify source code, configs, etc to make your code base compatible
+    wuth the new version or bring other improvement
