@@ -36,3 +36,8 @@ ELEMENT INJECTOR HIERARCHY
     This injector is a child injector for root component and parent injector for  grand child component
 
     So all the child component can access the service that was specified
+
+
+So basically when we inject something, angular tries to resolve it from parent of where it is injected
+    And if it fail to resolve, it returns back to the place where it was injected and tries to resolve using MODULE 
+    INJECTOR HIERARCHY

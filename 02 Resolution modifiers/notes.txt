@@ -1,0 +1,44 @@
+Resolution modifier
+    It is a special annotation which helps us to slightly change the logic of how angular resolves dependency tree
+
+There are four resolutional modifier
+    @Optional()
+    @Self()
+    @Host()
+    @SkipSelf()
+
+
+@Optional()
+    When angular not able to resolve dependency it throws an error (From Null Injector)
+
+    Angular prevents this behaviour if we decorates it with @Optional() while injecting
+        With this instead of error we will get null
+
+
+@Self()
+    It will be searching for the injector where it is defined
+    It will not go up to parent to check for the dependency
+
+    For example, if we add @Self() decorator in component A, it search for the injector in A component itself
+
+    It will create different instance, for example if we make use of self in two separate component, then two
+    different instance will be created instead of one
+
+    We can check it by changing any one of the property from where it called, you can notice in both place you 
+    see different value
+
+
+@SkipSelf
+    It does the opposite of what @Skip does
+
+    It starts resolving the dependency from the parent and skipping from where it was injected
+
+
+
+@Host()
+    Every angular component has its own host element and it is represented by components selector
+
+    Example: Yoy have a child component for component A
+        If we use @Host() inside child component, it tries to resolve it in component A
+
+        If it fails, we get an error
