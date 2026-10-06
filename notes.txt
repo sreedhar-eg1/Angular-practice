@@ -1,0 +1,6 @@
+Dependency Injection
+    It is a coding pattern in which class asks for dependencies from external sources rather 
+    than creating them itself
+
+Injector
+    It is responsible for creation of a class instance and inject it into constructor of the object

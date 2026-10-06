@@ -1,0 +1,38 @@
+MODULE INJECTOR HIERARCHY
+
+    When angular starts, it create a root injector
+    In there our service will be registered
+
+        This registered service will come from the services that has @Injectable decorator with providedIn set to root
+        The other way is by the providers property in the @ngModule decorator
+
+    We have some hierarchy
+
+                Null Injector
+
+                Platform Module
+
+                Root Injector
+
+                Child Injector
+
+
+    Platform Module
+        Created when we call method platFormBrowserDynamic()
+
+    Null Injector
+        At very top we have null injector
+        It throws error if angular tries to find the service in Null injector
+
+    Child Injector
+        This injector is being created for every lazy loaded module
+
+
+ELEMENT INJECTOR HIERARCHY
+
+    element injector are created when services are created inside @Component decorator
+    Inside component decorator, we have providers field there we can add the service
+
+    This injector is a child injector for root component and parent injector for  grand child component
+
+    So all the child component can access the service that was specified
