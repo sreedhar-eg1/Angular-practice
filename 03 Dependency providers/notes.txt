@@ -1,0 +1,43 @@
+Dependency providers
+    Likewise, resolution modifiers control how Angular resolves dependency - dependency providers responsible for how 
+    Angular should create dependency instances
+
+    It allows you to replace different service implementations in runtime which makes your application extremely 
+    powerful and flexible
+
+            useClass
+            useExisting
+            useValue
+            usefactory
+
+
+useClass
+    It is used to create a instance of the class that was specified to it
+
+    providers: [{
+        provide: Logger,
+        useClass: ExperimentalLogger
+    }],
+
+        Here instead of creating the instance for Logger, it create the instance of ExperimentalLogger
+
+    Not only in component, we can make use of useClass in service also
+    This will overwrite the current service instance with ExperimentalLogger instance
+        @Injectable({
+            providedIn: 'root',
+            useClass: ExperimentalLogger
+        })
+        export class Logger {}
+
+        In newer Angular vrsion, which uses @Service()
+            we dont have option to use useClass, instead we have autoProvided property,
+
+            @Service({
+                autoProvided: false
+            })
+
+        This will override the instance to ExperimentalLogger
+            @Service({
+                factory: () => new ExperimentalLogger()
+            })
+            export class Logger {}
