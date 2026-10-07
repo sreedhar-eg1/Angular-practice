@@ -3,6 +3,7 @@ import { Logger } from "./services/logger";
 import { Parent } from "./parent";
 import { Child } from "./child";
 import { ExperimentalLogger } from "./services/experimental-logger";
+import { LegacyLogger } from "./models/logger.legacy";
 
 @Component({
   selector: "app-root",
@@ -15,7 +16,8 @@ import { ExperimentalLogger } from "./services/experimental-logger";
     {
       provide: Logger,
       // useClass: ExperimentalLogger,
-      useExisting: ExperimentalLogger
+      // useExisting: ExperimentalLogger,
+      useValue: LegacyLogger
     },
   ],
 })
