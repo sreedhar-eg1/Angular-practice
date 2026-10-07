@@ -14,7 +14,8 @@ import { ExperimentalLogger } from "./services/experimental-logger";
   providers: [
     {
       provide: Logger,
-      useClass: ExperimentalLogger,
+      // useClass: ExperimentalLogger,
+      useExisting: ExperimentalLogger
     },
   ],
 })
@@ -23,6 +24,7 @@ export class App {
 
   // With Optional
   private logger = inject(Logger, { optional: true });
+  private experimentalLogger = inject(ExperimentalLogger)
 
   // With Self
   // private logger = inject(Logger, { self: true });
@@ -31,5 +33,6 @@ export class App {
 
   ngOnInit() {
     this.logger?.log("From app component");
+    console.log('is these two instance same:', this.logger === this.experimentalLogger)
   }
 }

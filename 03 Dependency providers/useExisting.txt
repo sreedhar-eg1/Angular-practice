@@ -1,0 +1,40 @@
+@Component({
+  selector: "app-root",
+  imports: [Parent, Child],
+  template: `<div appParent>
+    <div appChild>Child</div>
+  </div> `,
+  styleUrls: ["./app.css"],
+  providers: [
+    {
+      provide: Logger,
+      useClass: ExperimentalLogger,
+    },
+  ],
+})
+
+
+Here we overrided the Logger instance with ExperimentalLogger instance
+
+But if we instantiate the overrided service in our component, it create a new instance of it
+    private logger = inject(Logger, { optional: true });
+    private experimentalLogger = inject(ExperimentalLogger)
+
+    You can notice, logger is overriden by experimentalLogger in providers
+        but experimentalLogger is instantiated again in the component and it create a new instance
+
+        ngOnInit() {
+            console.log('is these two instance same:', this.logger === this.experimentalLogger)
+        }
+
+        it returns false, actually it should be true because logger has become ExperimentalLogger
+
+    We can solve this by making use of useExisting instead of useClass 
+        providers: [
+            {
+            provide: Logger,
+            useClass: ExperimentalLogger,
+            },
+        ],
+
+It tells dont create a new instance for the service, instead use already instantiated one
