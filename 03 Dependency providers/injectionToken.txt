@@ -1,0 +1,10 @@
+InjectionToken is a unique key that Angular's Dependency Injection system can use to identify a dependency.
+
+export const APP_CONFIG = new InjectionToken<AppConfig>("app.config", {
+  providedIn: "root",
+  factory: () => ({
+    experimentalEnabled: true,
+  }),
+});
+
+To use it in our component, we can make use of @Inject()

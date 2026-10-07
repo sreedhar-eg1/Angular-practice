@@ -1,0 +1,6 @@
+useFactory
+    This provider is usefull when we dont know which service instance we need in advance
+
+    These can only be known during the runtime
+
+    useFactory calls the method and returns something
