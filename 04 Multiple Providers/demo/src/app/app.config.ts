@@ -6,8 +6,14 @@
  * found in the LICENSE file at https://angular.dev/license
  */
 
-import {ApplicationConfig} from '@angular/core';
+import { ApplicationConfig } from "@angular/core";
+import { REPORTERS } from "./config/reporter.token";
+import { BrowserReporter } from "./services/browser-reporter";
+import { EngagingReporter } from "./services/engaging-reporter";
 
 export const appConfig: ApplicationConfig = {
-  providers: [],
+  providers: [
+    { provide: REPORTERS, useExisting: BrowserReporter, multi: true },
+    { provide: REPORTERS, useExisting: EngagingReporter, multi: true },
+  ],
 };

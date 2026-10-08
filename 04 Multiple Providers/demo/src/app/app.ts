@@ -6,7 +6,9 @@ import { ExperimentalLogger } from "./services/experimental-logger";
 import { LegacyLogger } from "./models/logger.legacy";
 import { APP_CONFIG, AppConfig } from "./config/token";
 
-function loggerFactory(injector: Injector): ExperimentalLogger | typeof LegacyLogger {
+function loggerFactory(
+  injector: Injector,
+): ExperimentalLogger | typeof LegacyLogger {
   return injector.get(APP_CONFIG).experimentalEnabled
     ? injector.get(ExperimentalLogger)
     : LegacyLogger;
@@ -24,7 +26,13 @@ function loggerFactory(injector: Injector): ExperimentalLogger | typeof LegacyLo
       provide: Logger,
       useFactory: loggerFactory,
       deps: [Injector],
+      // multi: true,
     },
+    // {
+    //   provide: Logger,
+    //   useValue: LegacyLogger,
+    //   multi: true,
+    // },
   ],
 })
 export class App {
@@ -36,6 +44,7 @@ export class App {
   constructor(@Inject(APP_CONFIG) private appConfig: AppConfig) {}
 
   ngOnInit() {
+    console.log(this.logger);
     this.logger?.log("From app component");
     console.log("Injected value: ", this.appConfig.experimentalEnabled);
   }

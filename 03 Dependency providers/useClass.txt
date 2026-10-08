@@ -41,3 +41,6 @@ useClass
                 factory: () => new ExperimentalLogger()
             })
             export class Logger {}
+
+
+useClass Always creates a new instances

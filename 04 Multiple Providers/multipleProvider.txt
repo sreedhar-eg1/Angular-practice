@@ -1,0 +1,33 @@
+providers: [
+    {
+      provide: Logger,
+      useFactory: loggerFactory,
+      deps: [Injector],
+    },
+    {
+      provide: Logger,
+      useValue: LegacyLogger,
+    },
+]
+
+    If we multiple provider, without setting multi to true, second provider in the providers array gets resolved
+        Which means it resolves only one dependency that too the last one in the providers array
+
+But with multi set to true, it resolves both dependency
+    providers: [
+        {
+        provide: Logger,
+        useFactory: loggerFactory,
+        deps: [Injector],
+        multi: true,
+        },
+        {
+        provide: Logger,
+        useValue: LegacyLogger,
+        multi: true,
+        },
+    ]
+
+    And it returns an with resolved dependency
+
+Angular uses multi true in HTTP_INTERCEPTORS
