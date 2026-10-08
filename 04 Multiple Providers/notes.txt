@@ -1,0 +1,36 @@
+Multiple Providers
+    We can associate multiple different services to only one token
+
+
+providers: [
+    {
+      provide: Logger,
+      useFactory: (config: AppConfig) => {
+        return config.experimentalEnabled
+          ? new ExperimentalLogger()
+          : new Logger();
+      },
+      deps: [APP_CONFIG],
+    },
+]
+
+The problem here with the usefactory is, whenever we need to pass something as an argument to the usefactory function
+    we need to add it to the deps array, and here we need to preserve the order
+
+    If anything removed, then we need to adjust it in the argument too
+
+    Basically useFactory method accepts the argument in the same order defined in the deps array
+
+        The solution for this issue is to add one deps, i,e Injector
+
+                providers: [
+                    {
+                    provide: Logger,
+                    useFactory: (injector: Injector) => {
+                        return injector.get(APP_CONFIG).experimentalEnabled
+                        ? injector.get(ExperimentalLogger)
+                        : injector.get(Logger);
+                    },
+                    deps: [Injector],
+                    },
+                ],
