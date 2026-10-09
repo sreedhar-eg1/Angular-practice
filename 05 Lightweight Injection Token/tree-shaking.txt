@@ -1,0 +1,4 @@
+Tree Shaking
+    Removal of code that is not being used in our application
+
+    It is performed by webpack when angular compile the project for production build
