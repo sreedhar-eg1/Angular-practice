@@ -1,0 +1,21 @@
+In decorator like @Component() or @NgModule()
+    we have providers array field
+
+    So whatever dependency defined inside that get resolved first
+        For example, we have component heirarchy A -> B -> C
+
+            A is the parent of B and C and B is the parent of C
+                if we add some dependency in component B and try to use it in component C
+                And also if provide some dependency at component And
+
+            When angular tries to reolve the dependency, it get resolved in component B, it never reaches component A
+
+    We can change this behaviour of angular using viewProviders
+
+One thing we need to remember is that viewProviders is only available for component
+    because directives dont have view, view/template can be found only in component
+
+
+viewProviders
+    What defined inside viewProviders will only be available for that particular component view
+    So here in the view, if any ng-content is used, it never come into picture
