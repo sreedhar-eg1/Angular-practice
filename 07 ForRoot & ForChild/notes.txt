@@ -1,0 +1,28 @@
+If we load the module lazily, it will create child injector
+
+    So if we use any dependency from this lazy module, then new instance will be created
+
+To solve this, in our lazy loaded module, we need to expose our service to root component, i.e App in our case
+    Untill angular 6 version, we used to solve this issue like below
+
+    export class LazyModule {
+        static forRoot(): ModuleWithProviders<LazyModule> {
+            return {
+                ngModule: LazyModule,
+                providers: [PollingService]
+            }
+        }
+    }
+
+    In our App component, we can import it
+    ....
+    import: [LazyModule.forRoot()]
+    ....
+
+    With this we are just importing the service, not entire module
+
+
+But with version higher than angular 6, we can use @Injectable() in our service
+    @Injectable({
+        provideIn: 'root'
+    })
