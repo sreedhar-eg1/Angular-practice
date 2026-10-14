@@ -1,0 +1,56 @@
+forwardRef
+    It allows to refer to references which are not yet defined
+
+usecase of forwardRef
+    We are using the class before it is defined
+        in this case we can make use of forwardRef
+
+    Ex:
+        ...
+        providers: [
+            {
+                provide: WIDJET,
+                useExisting: VelocityComponent
+            }
+        ]
+        ...
+        export class VelocityComponent {}
+
+    You can notice, VelocityComponent has been used inside providers before it has been defined
+
+------------------------------------
+
+When we defined inside providers array, tthen we dont need to use forwardRef
+    But we outsource the content of provider to some file or assign to a variable, then we need to make use of forwardRef
+
+    const WIDJET_PROVIDER = {
+        provide: WIDJEt,
+        useExisting: VelocityComponent, // will see an error stating we cannot use class before it has been declared
+    }
+
+    ...
+    providers: [WIDJET_PROVIDER]
+    ...
+
+
+--------------------------------------
+
+The solution for this is to make use of forwardRef
+
+    const WIDJET_PROVIDER = {
+        provide: WIDJET,
+        useExisting: forwardRef(() => VelocityComponent)
+    }
+
+--------------------------------------
+
+Another use case is to avoid circular dependency when we have multiple component or directive in a single file
+
+Ex:
+    We have a parent component and we pass something inside the parent component
+        To access it we use ng-content on our template file
+
+    But in our ts(main component) file if we try to access the ng-content component, then we face the circular 
+    dependency issue
+
+    @contentChild(forwardRef(() => Component)) comp: Component
