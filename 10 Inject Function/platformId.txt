@@ -1,0 +1,26 @@
+PLATFORM_ID
+    In Angular, PLATFORM_ID is an injection token that tells you which platform your 
+    Angular application is running on, such as a browser or server (Node.js).
+
+
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: `<h1>Platform Detection</h1>`
+})
+export class AppComponent {
+  private platformId = inject(PLATFORM_ID);
+
+  constructor() {
+    if (isPlatformBrowser(this.platformId)) {
+      console.log('Running in the browser');
+    }
+
+    if (isPlatformServer(this.platformId)) {
+      console.log('Running on the server');
+    }
+  }
+}
