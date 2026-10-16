@@ -1,0 +1,14 @@
+Treeshaking:
+    If the code was not used in our file, then while building that code will not be included
+
+impure function
+    If our function modifies any array or object (anything) outside of its scope
+    Like this operation is called side effect
+
+    It is not possible to completely avoid side effect
+
+--------------------------------------------------------------------
+
+Treeshaking in Angular context
+    If we use a service with providedIn root, then the service will be tree shaken if we dont use it anywhere in the
+    application
