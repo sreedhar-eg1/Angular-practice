@@ -1,0 +1,59 @@
+Before Angular 14 version, we could use inject() inside @Injectable() or while creating InjectionToken
+
+Ex: 
+    export const WINDOW = new InjectionToken({
+        providedIn: 'root',
+        useFactory: () => {
+            cost platform = inject(PlatForm_ID)
+            return platform === 'browser' ? window : {} as any
+        }
+    })
+
+
+With Angular 14 and later version, we can make use of inject() function inside our component too
+    Ex: constructor(@Inject(Window) private window: Window)
+
+                            to
+
+        window = inject(Window)
+
+
+Scenario 1
+One of the benifits of using inject() function is, it can infer the type by itself
+    In our case, it automatically infer the type of window
+
+
+Scenario 2
+Regarding inheritance
+    Whenever we make use of inheritance and the aprent class constructor contains some paramter
+    When we try to add our own paramter to the child class, we need to call super()
+        And inside super we need to pass the neccessary thing that needed by the parent constructor
+
+        abstract class Parent {
+            constructor(p1, p2) {}
+        }
+
+        class Child extends Parent {
+            constructor(C1, p1, p2) {
+                super(p1, p2)
+            }
+        }
+
+    We can solve this using inject() function
+        abstract class Parent {
+            p1 = inject(p1)
+            p2 = inject(p2)
+
+            constructor() {}
+        }
+
+       class Child extends Parent {
+            constructor(C1) {
+                super()
+            }
+        }
+
+        You can notice, with inject() function we dont nees to pass all the info that parent constructor needed
+        As we outsource it to the inject in our parent class
+
+We cannot use inject() function inside any life cycle hooks or methods
