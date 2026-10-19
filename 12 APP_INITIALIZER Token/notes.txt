@@ -1,0 +1,30 @@
+In real Angular applications, it might happen that you need to perform some logic or pull the data even before 
+Angular will start rendering the very first component. So basically, we want to have something 
+like ngOnInit lifecycle hook but for the whole application. 
+
+This is where the APP_INITIALIZER token in Angular comes into play! In this video, you will see how to use this token 
+and what you should pay attention to
+
+This can be achieved using APP_INITIALIZER token, we need to provide it in our root module providers array
+And this token should be multi: true
+
+@NgModule({
+    ...
+    providers: [
+        {
+            provide: APP_INITIALIZER,
+            multi: true,
+            useValue: () => {
+                console.log("app initialization")
+            }
+        }
+    ]
+    ...
+})
+
+When exactly angular performs this task?
+    Its perform when we call bootstrapModule method, which is present in main.ts file
+
+
+If we return promise or observable for APP_INITIALIZER provider, it will wait untill it has been resolved
+    
