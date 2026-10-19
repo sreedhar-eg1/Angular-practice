@@ -1,0 +1,20 @@
+If we want to use any API particularly for a route
+
+    To achieve this, we have a providers array in thr route object itself
+
+    const routes: Routes = [
+        ...
+        {
+            path: 'admin',
+            providers: [
+                {
+                    provide: UserLoaderService,
+                    useExisting: ExperimentalUserLoaderService,
+                },
+            ],
+            loadChildren: import('./component/admin').then(c => c.AdminComponent)
+        }
+        ...
+    ]
+
+This providers works for any route, there is no restriction that we need to use it for particular type of route
