@@ -1,0 +1,11 @@
+DOCUMENT
+    In Angular, DOCUMENT is an injection token that allows you to access the browser's document object through Angular's 
+    Dependency Injection (DI) system
+
+    You import it from @angular/common
+
+...
+constructor(@Inject(DOCUMENT) private document: Document) {
+    console.log(this.document.title);
+}
+...
