@@ -1,0 +1,57 @@
+We have provideEnvironmentalInitializer()
+    In app.config.ts file if we are using standalone approach
+
+export const appConfig: ApplicationConfig = {
+    providers: [
+        provideHttpClient(),
+        ...
+        provideEnvironmentalInitializer(() => {
+            inject(service)
+        })
+    ]
+}
+
+By making use of provideEnvironmentalInitializer(), we dont need to inject the service in other place to make certain
+things work
+
+
+------------------------------------------------------------------------
+
+const route: Routes = [
+    {....},
+    {
+        path: 'users',
+        component: UserPage,
+        providers: [
+            DataPolling,
+            provideEnvironmentalInitializer(() => {
+                const dataPolling = inject(DataPollin)
+                dataPolling.setScope(['user'])
+                dataPolling.start()
+            })
+        ]
+    }
+]
+
+If we want to use this in multiple route, then we will be having duplicate of providers in multiple routes
+
+We have another pattern to solve this issue in standalone approach
+
+    function providePolling(scopes: string[]) {
+        return makeEnvironmentProviders([
+            DataPolling,
+            provideEnvironmentalInitializer(() => {
+                const dataPolling = inject(DataPollin)
+                dataPolling.setScope(scopes)
+                dataPolling.start()
+            })
+        ])
+    }
+
+    And we can make use of this function
+    ...
+    providers: [providePolling(['user'])]
+    ...
+
+
+------------------------------------------------------------------------
